@@ -58,7 +58,7 @@ function ProductHowItWorks(props) {
     <section className={classes.root}>
       <Container className={classes.container}>
         <img
-          src="productCurvyLines.png"
+          src="/productCurvyLines.png"
           className={classes.curvyLines}
           alt="curvy lines"
         />
@@ -71,7 +71,7 @@ function ProductHowItWorks(props) {
               <div className={classes.item}>
                 <div className={classes.number}>1.</div>
                 <img
-                  src="productHowItWorks1.svg"
+                  src="/productHowItWorks1.svg"
                   alt="suitcase"
                   className={classes.image}
                 />
@@ -84,7 +84,7 @@ function ProductHowItWorks(props) {
               <div className={classes.item}>
                 <div className={classes.number}>2.</div>
                 <img
-                  src="productHowItWorks2.svg"
+                  src="/productHowItWorks2.svg"
                   alt="graph"
                   className={classes.image}
                 />
@@ -97,7 +97,7 @@ function ProductHowItWorks(props) {
               <div className={classes.item}>
                 <div className={classes.number}>3.</div>
                 <img
-                  src="productHowItWorks3.svg"
+                  src="/productHowItWorks3.svg"
                   alt="clock"
                   className={classes.image}
                 />
