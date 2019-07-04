@@ -48,7 +48,7 @@ function AppAppBar(props) {
             underline="none"
             color="inherit"
             className={classes.title}
-            href="/premium-themes/onepirate/"
+            href="/meraki"
           >
             {'Meraki Events'}
           </Link>
@@ -58,7 +58,7 @@ function AppAppBar(props) {
               variant="h6"
               underline="none"
               className={classes.rightLink}
-              href="/premium-themes/onepirate/sign-in/"
+              href="/meraki/sign-in/"
             >
               {'Sign In'}
             </Link>
@@ -66,9 +66,18 @@ function AppAppBar(props) {
               variant="h6"
               underline="none"
               className={clsx(classes.rightLink, classes.linkSecondary)}
-              href="/premium-themes/onepirate/sign-up/"
+              href="/meraki/sign-up/"
             >
               {'Sign Up'}
+            </Link>
+
+            <Link
+                variant="h6"
+                underline="none"
+                className={clsx(classes.rightLink, classes.linkSecondary)}
+                href="/meraki/search-properties/"
+            >
+              {'Search'}
             </Link>
           </div>
         </Toolbar>
