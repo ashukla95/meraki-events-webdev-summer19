@@ -64,7 +64,7 @@ function SearchBar(props) {
                             underline="none"
                             color="inherit"
                             className={classes.title}
-                            href="/meraki">
+                            href="/home">
                             {'Meraki Events'}
                         </Link>
                     </div>
