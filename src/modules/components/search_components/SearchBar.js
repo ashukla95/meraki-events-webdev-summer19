@@ -41,6 +41,8 @@ const styles = theme => ({
     textField: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
+        backgroundColor: "White",
+        borderRadius: "0.2em 0.2em 0.3em 0.3em "
     },
     button: {
         margin: theme.spacing(1),
@@ -75,11 +77,6 @@ function SearchBar(props) {
                             fullWidth
                             className={classes.textField}
                             variant={"filled"}
-                            margin={"normal"}
-                            style={{
-                                backgroundColor: "White",
-                                borderRadius: "0.2em 0.2em 0.3em 0.3em "
-                            }}
                         />
                     </div>
                     <div className={classes.right}>
