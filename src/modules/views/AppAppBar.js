@@ -72,10 +72,10 @@ function AppAppBar(props) {
             </Link>
 
             <Link
-                variant="h6"
-                underline="none"
-                className={clsx(classes.rightLink, classes.linkSecondary)}
-                href="/meraki/search-properties/"
+              variant="h6"
+              underline="none"
+              className={clsx(classes.rightLink, classes.linkSecondary)}
+              href="/search"
             >
               {'Search'}
             </Link>

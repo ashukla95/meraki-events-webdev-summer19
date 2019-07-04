@@ -1,13 +1,11 @@
 import React from "react"
-import Toolbar, {styles as toolbarStyles} from "../components/Toolbar";
-import withRoot from "../withRoot";
-import AppBar from "../components/AppBar";
+import Toolbar, { styles as toolbarStyles } from "../Toolbar";
+import AppBar from "../AppBar";
 import Link from "@material-ui/core/Link";
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
-import {TextField} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+import { TextField } from "@material-ui/core";
 
 const styles = theme => ({
     title: {
@@ -24,7 +22,7 @@ const styles = theme => ({
         color: theme.palette.common.white,
     },
     leftSmall: {
-      flex: 1,
+        flex: 1,
     },
     right: {
         flex: 1,
@@ -53,7 +51,7 @@ const styles = theme => ({
 
 function SearchBar(props) {
     const { classes } = props;
-    return(
+    return (
         <div>
             <AppBar position="fixed">
                 <Toolbar className={classes.toolbar}>
@@ -77,19 +75,20 @@ function SearchBar(props) {
                             className={classes.textField}
                             variant={"filled"}
                             margin={"normal"}
-                            borderRadius={16}
-                            style={{backgroundColor:"White",
-                                borderRadius:"0.2em 0.2em 0.3em 0.3em "}}
+                            style={{
+                                backgroundColor: "White",
+                                borderRadius: "0.2em 0.2em 0.3em 0.3em "
+                            }}
                         />
                     </div>
                     <div className={classes.right}>
-                            <Link
-                                variant="h6"
-                                underline="none"
-                                className={clsx(classes.rightLink, classes.linkSecondary)}
-                                href="/meraki/search-properties/">
+                        <Link
+                            variant="h6"
+                            underline="none"
+                            className={clsx(classes.rightLink, classes.linkSecondary)}
+                            href="/search/">
                             {'Search'}
-                            </Link>
+                        </Link>
                     </div>
                 </Toolbar>
             </AppBar>
