@@ -11,6 +11,7 @@ const routing = (
     <Route path={"/search/"} component={Search} />
     <Route path={"/sign-in/"} component={Home} />
     <Route path={"/sign-up/"} component={Home} />
+    <Route path={"/book-now/"} component={Home} />
   </Router>
 )
 
