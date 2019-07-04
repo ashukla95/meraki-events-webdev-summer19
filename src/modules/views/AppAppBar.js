@@ -58,7 +58,7 @@ function AppAppBar(props) {
               variant="h6"
               underline="none"
               className={classes.rightLink}
-              href="/meraki/sign-in/"
+              href="/sign-in/"
             >
               {'Sign In'}
             </Link>
@@ -66,7 +66,7 @@ function AppAppBar(props) {
               variant="h6"
               underline="none"
               className={clsx(classes.rightLink, classes.linkSecondary)}
-              href="/meraki/sign-up/"
+              href="/sign-up/"
             >
               {'Sign Up'}
             </Link>
