@@ -8,10 +8,11 @@ import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
     title: {
-        fontSize: 24,
+        fontSize: 16,
     },
     placeholder: toolbarStyles(theme).root,
     toolbar: {
@@ -25,6 +26,7 @@ const styles = theme => ({
     },
     leftSmall: {
       flex: 1,
+      display: 'flex',
     },
     right: {
         flex: 1,
@@ -57,31 +59,39 @@ function SearchBar(props) {
         <div>
             <AppBar position="fixed">
                 <Toolbar className={classes.toolbar}>
-                    <div className={classes.leftSmall}>
-                        <Link
-                            variant="h6"
-                            underline="none"
-                            color="inherit"
-                            className={classes.title}
-                            href="/meraki">
-                            {'Meraki Events'}
-                        </Link>
-                    </div>
-                    <div className={classes.left}>
-                        <TextField
-                            id="filled-search"
-                            label="Enter Property"
-                            autoFocus={true}
-                            type="search"
-                            fullWidth
-                            className={classes.textField}
-                            variant={"filled"}
-                            margin={"normal"}
-                            borderRadius={16}
-                            style={{backgroundColor:"White",
-                                borderRadius:"0.2em 0.2em 0.3em 0.3em "}}
-                        />
-                    </div>
+                    <Grid item xs={2}>
+                        <div className={classes.leftSmall}>
+                            <Link
+                                variant="h6"
+                                underline="none"
+                                color="inherit"
+                                className={classes.title}
+                                href="/meraki">
+                                {'Meraki Events'}
+                            </Link>
+                        </div>
+                    </Grid>
+                    <Grid
+                        item
+                        xs={9}
+                        alignItems={"center"}
+                        alignContent={"center"}>
+                        <div className={classes.left}>
+                            <TextField
+                                id="filled-search"
+                                label="Enter Property"
+                                autoFocus={true}
+                                type="search"
+                                fullWidth
+                                className={classes.textField}
+                                variant={"filled"}
+                                
+                                borderRadius={16}
+                                style={{backgroundColor:"White",
+                                    borderRadius:"0.2em 0.2em 0.3em 0.3em "}}
+                            />
+                        </div>
+                    </Grid>
                     <div className={classes.right}>
                             <Link
                                 variant="h6"
