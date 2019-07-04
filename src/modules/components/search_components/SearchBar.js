@@ -5,11 +5,13 @@ import Link from "@material-ui/core/Link";
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
-import { TextField } from "@material-ui/core";
+import {TextField} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
     title: {
-        fontSize: 24,
+        fontSize: 16,
     },
     placeholder: toolbarStyles(theme).root,
     toolbar: {
@@ -22,7 +24,8 @@ const styles = theme => ({
         color: theme.palette.common.white,
     },
     leftSmall: {
-        flex: 1,
+      flex: 1,
+      display: 'flex',
     },
     right: {
         flex: 1,
