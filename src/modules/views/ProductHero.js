@@ -48,7 +48,7 @@ function ProductHero(props) {
         size="large"
         className={classes.button}
         component="a"
-        href="/premium-themes/onepirate/sign-up/"
+        href="/book-now/"
       >
         Register
       </Button>
