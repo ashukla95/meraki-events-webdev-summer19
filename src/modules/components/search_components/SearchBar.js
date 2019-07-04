@@ -5,9 +5,7 @@ import Link from "@material-ui/core/Link";
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
-import {TextField} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
+import { TextField } from "@material-ui/core";
 
 const styles = theme => ({
     title: {
@@ -24,8 +22,8 @@ const styles = theme => ({
         color: theme.palette.common.white,
     },
     leftSmall: {
-      flex: 1,
-      display: 'flex',
+        flex: 1,
+        display: 'flex',
     },
     right: {
         flex: 1,
