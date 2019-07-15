@@ -72,7 +72,9 @@ function SearchBar(props) {
                             color="inherit"
                             className={classes.title}
                             href="/">
-                            <Typography variant={"h5"} align={"center"} color={"initial"}>
+                            <Typography variant={"h5"}
+                                        align={"center"}
+                                        color={"initial"}>
                                 {'Meraki Events'}
                             </Typography>
                         </Link>
