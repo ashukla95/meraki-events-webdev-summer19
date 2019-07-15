@@ -8,8 +8,7 @@ import {withStyles} from "@material-ui/core";
 /*import compose from 'docs/src/modules/utils/compose';*/
 
 /*const Search = () => <SearchBar />;*/
-const styles = theme => ({
-});
+const styles = theme => ({});
 
 class Search extends Component {
 
@@ -18,7 +17,7 @@ class Search extends Component {
         this.state = {
             googlePlaceAPI: TextSearchAPIService.getInstance(),
             searchFormData: '',
-            searchDataFromPlacesAPI:''
+            searchDataFromPlacesAPI: ''
         }
     }
 
@@ -26,39 +25,41 @@ class Search extends Component {
         //console.log("event hit.");
         this.setState({
             searchFormData: evt.target.value
-        },() => {/*console.log("search data: ", this.state.searchFormData)*/})
+        }, () => {/*console.log("search data: ", this.state.searchFormData)*/
+        })
     };
 
     search = () => {
-        let temp = this.state.googlePlaceAPI.findPlaces(this.state.searchFormData);
+        /*let temp = this.state.googlePlaceAPI.findPlaces(this.state.searchFormData);
         console.log("temp:", temp);
         this.setState({
             searchDataFromPlacesAPI: temp
-        }, () => this.render());
-        /*let temp = '';
+        }, () => this.render());*/
+        let temp = '';
         this.state.googlePlaceAPI.findPlaces(this.state.searchFormData)
-            .then(places => {temp = places;
-                                        console.log("places found: ", temp);
-                                        this.setState({
-                                            searchDataFromPlacesAPI: temp
-                                        },() => this.render()) });*/
+            .then(places => {
+                console.log("places found: ", temp);
+                console.log(("places found candidate: ", "places found candidate: ", places.candidates))
+                this.setState({
+                    searchDataFromPlacesAPI: places.candidates
+                })
+            });
     };
 
     render() {
-        return(
+        return (
             <div>
-            <div>
-                <SearchBar googlePlaceAPI={this.state.googlePlaceAPI}
-                           searchBoxData = {this.state.searchFormData}
-                           changeField = {this.changeField}
-                           search = {this.search}/>
+                <div>
+                    <SearchBar googlePlaceAPI={this.state.googlePlaceAPI}
+                               searchBoxData={this.state.searchFormData}
+                               changeField={this.changeField}
+                               search={this.search}/>
+                </div>
+                <div className={"container-fluid bg-dark"}>
+                    {console.log('result found: ', this.state.searchDataFromPlacesAPI)}
+                    <SearchResult resultsFound={this.state.searchDataFromPlacesAPI}/>
+                </div>
             </div>
-            <div className={"container-fluid bg-dark"}>
-                {console.log('result found: ', this.state.searchDataFromPlacesAPI)}
-                <SearchResult resultsFound = {this.state.searchDataFromPlacesAPI}/>
-            </div>
-            </div>
-
 
 
         )

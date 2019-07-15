@@ -12,19 +12,13 @@ export default class TextSearchAPIService {
     }
 
     findPlaces = (data) => {
-        let temp = [];
+        /*let temp = [];
         console.log("places", places, " ", places.candidates);
         temp = places.candidates.filter(places => places.name.toUpperCase().search(data.toUpperCase()) > -1);
         console.log("temp", temp);
-        return temp;
-        /*let temp = {"place": data};
-        return fetch("https://meraki-backend-wbdv.herokuapp.com/api/places",{
-            method: "GET",
-            body: JSON.stringify(temp),
-            headers: {
-                "content-type":"application/json",
-            }
-        }).then(response => response.json());*/
+        return temp;*/
+        let temp = {"place": data};
+        return fetch("https://meraki-backend-wbdv.herokuapp.com/api/places"+"?search="+encodeURIComponent(data)).then(response => response.json());
     }
 }
 

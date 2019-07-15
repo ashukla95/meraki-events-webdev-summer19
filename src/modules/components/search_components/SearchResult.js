@@ -26,6 +26,13 @@ const SearchResult = ({resultsFound}) => {
     return Array.from(resultsFound).map(result =>
         <Card className={classes.card} width={"100%"}>
             <CardActionArea>
+                <CardMedia
+                    component="img"
+                    alt="Contemplative Reptile"
+                    height="140"
+                    image="https://picsum.photos/id/237/200/300"
+                    title={result["name"]}
+                />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
                         {result["name"]}
