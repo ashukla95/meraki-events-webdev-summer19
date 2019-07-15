@@ -17,48 +17,60 @@ const styleCustom = makeStyles({
         maxWidth: 0.95 * screenWidth,
         margin: 0.01 * screenWidth,
         padding: 0.01 * screenWidth,
-        marginLeft: 0.02 * screenWidth
+        marginLeft: 0.01 * screenWidth
     },
+
+
 });
 
 const SearchResult = ({resultsFound}) => {
     const classes = styleCustom();
     return Array.from(resultsFound).map(result =>
-        <Card className={classes.card} width={"100%"}>
-            <CardActionArea>
-                <CardMedia
-                    component="img"
-                    alt="Contemplative Reptile"
-                    height="140"
-                    image="https://picsum.photos/id/237/200/300"
-                    title={result["name"]}
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        {result["name"]}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {result["formatted_address"]}
-                    </Typography>
-                    <Typography component={"div"} display={"inline"}>
-                        <Typography variant="body2" color="textSecondary" align={"right"} inline>
-                            Rating
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" align={"right"} inline>
-                            {result["rating"]}
-                        </Typography>
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <Button size="small" color="primary">
-                    Book Now
-                </Button>
-                <Button size="small" color="primary">
-                    Learn More
-                </Button>
-            </CardActions>
-        </Card>
+        <Grid alignContent={"center"}
+              alignItems={"center"}
+              container
+              spacing={3}
+              justify={"center"}>
+            <Grid className={classes.innerGrid} item lg={6} md={6} sm={12}>
+                <Card className={classes.card} width={"100%"} raised >
+                    <CardActionArea>
+                        <CardMedia
+                            component="img"
+                            alt={result["name"]}
+                            height="200"
+                            width={screenWidth/2}
+                            image="https://picsum.photos/200/300/?grayscale&blur"
+                            title={result["name"]}
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                {result["name"]}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                {result["formatted_address"]}
+                            </Typography>
+                            <Typography component={"div"} display={"inline"}>
+                                <Typography variant="body2" color="textSecondary" align={"right"}>
+                                    Rating
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" align={"right"}>
+                                    {result["rating"]}
+                                </Typography>
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                        <Button size="small" color="primary">
+                            Book Now
+                        </Button>
+                        <Button size="small" color="primary">
+                            Learn More
+                        </Button>
+                    </CardActions>
+                </Card>
+            </Grid>
+        </Grid>
+
     );
 };
 

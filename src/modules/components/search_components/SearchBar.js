@@ -1,13 +1,16 @@
 import React from "react"
-import Toolbar, { styles as toolbarStyles } from "../Toolbar";
+import Toolbar, {styles as toolbarStyles} from "../Toolbar";
 import AppBar from "../AppBar";
 import Link from "@material-ui/core/Link";
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
-import { TextField } from "@material-ui/core";
+import {withStyles} from '@material-ui/core/styles';
+import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Input from "@material-ui/core/Input";
+import Typography from "@material-ui/core/Typography";
+import SearchIcon from "@material-ui/icons/Search"
+import IconButton from "@material-ui/core/IconButton";
 
 const styles = theme => ({
     title: {
@@ -29,11 +32,12 @@ const styles = theme => ({
     },
     right: {
         flex: 1,
+        justifyContent: "left",
         display: 'flex',
-        justifyContent: 'center',
+        marginLeft: 50
     },
     rightLink: {
-        fontSize: 16,
+        fontSize: 32,
         color: theme.palette.common.white,
         marginLeft: theme.spacing(2),
     },
@@ -44,8 +48,7 @@ const styles = theme => ({
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
         backgroundColor: "White",
-        borderRadius: "0.2em 0.2em 0.3em 0.3em ",
-        height: 55,
+        borderRadius: "0.2em 0.2em 0.3em 0.3em "
     },
     button: {
         margin: theme.spacing(1),
@@ -53,28 +56,32 @@ const styles = theme => ({
     input1: {
         height: "0.3em",
     },
+    icon: {
+        margin: theme.spacing(1),
+        fontSize: 40,
+    },
 });
 
 function SearchBar(props) {
-    const { classes } = props;
+    const {classes} = props;
     return (
         <div>
             <AppBar position="fixed">
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.leftSmall}>
                         <Link
-                            variant="h6"
                             underline="none"
                             color="inherit"
                             className={classes.title}
                             href="/">
-                            {'Meraki Events'}
+                            <Typography variant={"h5"} align={"center"} color={"initial"}>
+                                {'Meraki Events'}
+                            </Typography>
                         </Link>
                     </div>
                     <div className={classes.left}>
-                        <Input
+                        <TextField
                             id="filled-search"
-                            placeholder={"Enter the hotel to be searched."}
                             label="Enter Property"
                             autoFocus={true}
                             type="text"
@@ -85,17 +92,16 @@ function SearchBar(props) {
                             onChange={props.changeField}
                         />
                     </div>
-                    <div className={classes.right}>
-                        <Button
-                            variant="contained"
-                            className={clsx(classes.rightLink, classes.linkSecondary)}
-                            onClick={props.search}>
-                            {'Search'}
-                        </Button>
+                    <div className={classes.right}
+                         onClick={props.search}>
+                        <IconButton>
+                            <SearchIcon className={clsx(classes.rightLink, classes.linkSecondary, classes.icon)}>
+                            </SearchIcon>
+                        </IconButton>
                     </div>
                 </Toolbar>
             </AppBar>
-            <div className={classes.placeholder} />
+            <div className={classes.placeholder}/>
         </div>
     )
 };
