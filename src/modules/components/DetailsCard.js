@@ -1,31 +1,17 @@
-import React from 'react';
-import {makeStyles, withStyles} from '@material-ui/core/styles';
+import React from 'react'
+import Grid from "@material-ui/core/Grid";
 import {Card} from "@material-ui/core";
-import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
-import CardMedia from "@material-ui/core/CardMedia";
-import { sizing, width } from '@material-ui/system';
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
 
-let screenWidth = window.screen.width;
-const styleCustom = makeStyles({
-    card: {
-        maxWidth: 0.95 * screenWidth,
-        margin: 0.01 * screenWidth,
-        padding: 0.01 * screenWidth,
-        marginLeft: 0.01 * screenWidth
-    },
-
-
-});
-
-const SearchResult = ({resultsFound}) => {
-    const classes = styleCustom();
-    return Array.from(resultsFound).map(result =>
+const DetailsCard = ({classes,
+                         result,
+                         screenWidth}) => {
+    return (
         <Grid alignContent={"center"}
               alignItems={"center"}
               container
@@ -70,8 +56,7 @@ const SearchResult = ({resultsFound}) => {
                 </Card>
             </Grid>
         </Grid>
-
     );
 };
 
-export default SearchResult;
+export default DetailsCard;

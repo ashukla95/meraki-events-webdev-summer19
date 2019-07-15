@@ -1,10 +1,10 @@
 import React, {Component} from "react"
-import withRoot from '../../withRoot';
-import SearchBar from "./SearchBar";
-import TextSearchAPIService from './../../APIServices/TextSearchAPIService'
-import SearchResult from './SearchResult'
+import withRoot from './modules/withRoot';
+import SearchBar from "./modules/views/SearchBar";
+import TextSearchAPIService from './modules/APIServices/TextSearchAPIService'
+import SearchResult from './modules/views/SearchResult'
 import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/core";
+import {withStyles} from "@material-ui/core/index";
 /*import compose from 'docs/src/modules/utils/compose';*/
 
 /*const Search = () => <SearchBar />;*/

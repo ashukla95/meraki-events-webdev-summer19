@@ -1,16 +1,14 @@
 import React from "react"
-import Toolbar, {styles as toolbarStyles} from "../Toolbar";
-import AppBar from "../AppBar";
-import Link from "@material-ui/core/Link";
+import Toolbar, {styles as toolbarStyles} from "../components/Toolbar";
+import AppBar from "../components/AppBar";
+import Link from "@material-ui/core/Link/index";
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {withStyles} from '@material-ui/core/styles';
-import {TextField} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import Input from "@material-ui/core/Input";
-import Typography from "@material-ui/core/Typography";
+import {withStyles} from '@material-ui/core/styles/index';
+import {TextField} from "@material-ui/core/index";
+import Typography from "@material-ui/core/Typography/index";
 import SearchIcon from "@material-ui/icons/Search"
-import IconButton from "@material-ui/core/IconButton";
+import IconButton from "@material-ui/core/IconButton/index";
 
 const styles = theme => ({
     title: {

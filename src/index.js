@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Home from './Home';
-import Search from "./modules/components/search_components/Search"
+import Search from "./Search"
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const routing = (
