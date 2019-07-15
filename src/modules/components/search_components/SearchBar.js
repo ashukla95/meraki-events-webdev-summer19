@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import { TextField } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import Input from "@material-ui/core/Input";
 
 const styles = theme => ({
     title: {
@@ -69,24 +71,25 @@ function SearchBar(props) {
                         </Link>
                     </div>
                     <div className={classes.left}>
-                        <TextField
+                        <Input
                             id="filled-search"
                             label="Enter Property"
                             autoFocus={true}
-                            type="search"
+                            type="text"
                             fullWidth
                             className={classes.textField}
                             variant={"filled"}
+                            onChange={props.changeField}
                         />
                     </div>
                     <div className={classes.right}>
-                        <Link
+                        <Button
                             variant="h6"
                             underline="none"
                             className={clsx(classes.rightLink, classes.linkSecondary)}
-                            href="/search/">
+                            onClick={props.search}>
                             {'Search'}
-                        </Link>
+                        </Button>
                     </div>
                 </Toolbar>
             </AppBar>

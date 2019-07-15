@@ -1,0 +1,77 @@
+{
+  "candidates": [
+    {
+      "formatted_address": "39 Dalton St, Boston, MA 02199, USA",
+      "geometry": {
+        "location": {
+          "lat": 42.3465151,
+          "lng": -71.08392239999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 42.34754852989272,
+            "lng": -71.08249324999998
+          },
+          "southwest": {
+            "lat": 42.34484887010727,
+            "lng": -71.08553185
+          }
+        }
+      },
+      "name": "The Sheraton Boston Hotel",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 991,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/109177232670640530186/photos\">Sheraton Boston Hotel</a>"
+          ],
+          "photo_reference": "CmRaAAAAEPR9eVlh_h9Abs26pdRzyAE_-Zuz_V2kQF-3rX7_xVaqtge5OXo3qNc7E7vYq1v1QtRR-p_qlFyYEGqjXF6cHUY4BfVhRgRWvwpgpWYO3q11BEARS8UXdCWaRf6htN-kEhDup04bYqISO5pzu78r9frPGhRWciApRa7qCvZWi7p-SWqwtJmX8g",
+          "width": 1500
+        }
+      ],
+      "rating": 4.2
+    },
+    {
+      "formatted_address": "220 Huntington Ave, Boston, MA 02115",
+      "geometry": {},
+      "name": "The Modtown Hotel",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [],
+      "rating": 3.7
+    },
+    {
+      "formatted_address": "40 Berkeley St, Boston, MA 02116",
+      "geometry": {},
+      "name": "The Revolution Hotel",
+      "opening_hours": {
+        "open_now": true},
+      "photos": [],
+      "rating": 4.5
+    },
+    {
+      "formatted_address": "50 Park Plaza, Boston, MA 02116",
+      "geometry": {},
+      "name": "The Boston Park Plaza",
+      "opening_hours": {
+        "open_now": true},
+      "photos": [],
+      "rating": 4.1
+    },
+    {
+      "formatted_address": "19 Stuart St, Boston, MA 02116",
+      "geometry": {},
+      "name": "The HI Boston Hostel",
+      "opening_hours": {
+        "open_now": true},
+      "photos": [],
+      "rating": 4.5
+    }
+
+  ],
+  "status": "OK"
+}
