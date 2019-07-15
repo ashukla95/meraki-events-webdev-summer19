@@ -65,7 +65,7 @@ class Search extends Component {
     }
 }
 
-export default Search;
+export default withRoot(Search);
 /*export default compose(
     withRoot,
     withStyles(styles),

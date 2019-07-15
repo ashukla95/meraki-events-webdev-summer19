@@ -15,7 +15,8 @@ let screenWidth = window.screen.width;
 const styleCustom = makeStyles({
     card: {
         maxWidth: screenWidth,
-        marginBottom: 0.01 * screenWidth,
+        marginTop: 0.01 * screenWidth,
+        padding: 0.01 * screenWidth
     },
 });
 

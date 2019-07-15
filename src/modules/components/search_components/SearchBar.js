@@ -44,7 +44,8 @@ const styles = theme => ({
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
         backgroundColor: "White",
-        borderRadius: "0.2em 0.2em 0.3em 0.3em "
+        borderRadius: "0.2em 0.2em 0.3em 0.3em ",
+        height: 55,
     },
     button: {
         margin: theme.spacing(1),
@@ -73,10 +74,12 @@ function SearchBar(props) {
                     <div className={classes.left}>
                         <Input
                             id="filled-search"
+                            placeholder={"Enter the hotel to be searched."}
                             label="Enter Property"
                             autoFocus={true}
                             type="text"
                             fullWidth
+                            margin={"dense"}
                             className={classes.textField}
                             variant={"filled"}
                             onChange={props.changeField}
@@ -84,8 +87,7 @@ function SearchBar(props) {
                     </div>
                     <div className={classes.right}>
                         <Button
-                            variant="h6"
-                            underline="none"
+                            variant="contained"
                             className={clsx(classes.rightLink, classes.linkSecondary)}
                             onClick={props.search}>
                             {'Search'}
