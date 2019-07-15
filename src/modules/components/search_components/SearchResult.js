@@ -14,9 +14,10 @@ import Grid from "@material-ui/core/Grid";
 let screenWidth = window.screen.width;
 const styleCustom = makeStyles({
     card: {
-        maxWidth: screenWidth,
-        marginTop: 0.01 * screenWidth,
-        padding: 0.01 * screenWidth
+        maxWidth: 0.95 * screenWidth,
+        margin: 0.01 * screenWidth,
+        padding: 0.01 * screenWidth,
+        marginLeft: 0.02 * screenWidth
     },
 });
 
