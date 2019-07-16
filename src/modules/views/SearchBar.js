@@ -1,11 +1,14 @@
 import React from "react"
-import Toolbar, { styles as toolbarStyles } from "../Toolbar";
-import AppBar from "../AppBar";
-import Link from "@material-ui/core/Link";
+import Toolbar, { styles as toolbarStyles } from "../components/Toolbar";
+import AppBar from "../components/AppBar";
+import Link from "@material-ui/core/Link/index";
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
-import { TextField } from "@material-ui/core";
+import { withStyles } from '@material-ui/core/styles/index';
+import { TextField } from "@material-ui/core/index";
+import Typography from "@material-ui/core/Typography/index";
+import SearchIcon from "@material-ui/icons/Search"
+import IconButton from "@material-ui/core/IconButton/index";
 
 const styles = theme => ({
     title: {
@@ -27,11 +30,12 @@ const styles = theme => ({
     },
     right: {
         flex: 1,
+        justifyContent: "left",
         display: 'flex',
-        justifyContent: 'center',
+        marginLeft: 50
     },
     rightLink: {
-        fontSize: 16,
+        fontSize: 30,
         color: theme.palette.common.white,
         marginLeft: theme.spacing(2),
     },
@@ -50,6 +54,10 @@ const styles = theme => ({
     input1: {
         height: "0.3em",
     },
+    icon: {
+        margin: theme.spacing(1),
+        fontSize: 40,
+    },
 });
 
 function SearchBar(props) {
@@ -60,12 +68,15 @@ function SearchBar(props) {
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.leftSmall}>
                         <Link
-                            variant="h6"
                             underline="none"
                             color="inherit"
                             className={classes.title}
                             href="/">
-                            {'Meraki Events'}
+                            <Typography variant={"h5"}
+                                align={"center"}
+                                color={"initial"}>
+                                {'Meraki Events'}
+                            </Typography>
                         </Link>
                     </div>
                     <div className={classes.left}>
@@ -73,20 +84,21 @@ function SearchBar(props) {
                             id="filled-search"
                             label="Enter Property"
                             autoFocus={true}
-                            type="search"
+                            type="text"
                             fullWidth
+                            margin={"dense"}
                             className={classes.textField}
                             variant={"filled"}
+                            onChange={props.changeField}
                         />
                     </div>
-                    <div className={classes.right}>
-                        <Link
-                            variant="h6"
-                            underline="none"
-                            className={clsx(classes.rightLink, classes.linkSecondary)}
-                            href="/search/">
-                            {'Search'}
-                        </Link>
+                    <div className={classes.right}
+                        onClick={props.search}>
+                        <IconButton size={"small"}>
+                            <SearchIcon
+                                className={clsx(classes.rightLink, classes.linkSecondary, classes.icon)}>
+                            </SearchIcon>
+                        </IconButton>
                     </div>
                 </Toolbar>
             </AppBar>
