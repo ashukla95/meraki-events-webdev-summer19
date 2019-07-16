@@ -35,7 +35,7 @@ const styles = theme => ({
         marginLeft: 50
     },
     rightLink: {
-        fontSize: 32,
+        fontSize: 30,
         color: theme.palette.common.white,
         marginLeft: theme.spacing(2),
     },
@@ -94,8 +94,9 @@ function SearchBar(props) {
                     </div>
                     <div className={classes.right}
                          onClick={props.search}>
-                        <IconButton>
-                            <SearchIcon className={clsx(classes.rightLink, classes.linkSecondary, classes.icon)}>
+                        <IconButton size={"small"}>
+                            <SearchIcon
+                                className={clsx(classes.rightLink, classes.linkSecondary, classes.icon)}>
                             </SearchIcon>
                         </IconButton>
                     </div>

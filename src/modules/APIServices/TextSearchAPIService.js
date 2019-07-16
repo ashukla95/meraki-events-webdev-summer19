@@ -1,25 +1,21 @@
-import Accessory from './../accessories/Accessory'
-import places from './../../dummyData/placesD'
 export default class TextSearchAPIService {
+    /*A class that provides functionality tocommunicate with various back-end services inorder to extract details
+    that are required to be rendered inside the respective components of the application.*/
 
+    //static variable to hold the instance of the class TextSearchApiService.
     static oneInstance = null;
 
+    //return a single instance of the TextSearchAPIService class.
     static getInstance() {
-        if(this.oneInstance === null){
+        if (this.oneInstance === null) {
             TextSearchAPIService.oneInstance = new TextSearchAPIService();
         }
         return this.oneInstance;
     }
 
+    //call the back-end service that fetches the property details for the data provided via the search field inside the search bar component.
     findPlaces = (data) => {
-        /*let temp = [];
-        console.log("places", places, " ", places.candidates);
-        temp = places.candidates.filter(places => places.name.toUpperCase().search(data.toUpperCase()) > -1);
-        console.log("temp", temp);
-        return temp;*/
-        let temp2  = null;
-        let temp = {"place": data};
-        return fetch("https://meraki-backend-wbdv.herokuapp.com/api/places"+"?search="+encodeURIComponent(data))
+        return fetch("https://meraki-backend-wbdv.herokuapp.com/api/places?search=" + encodeURIComponent(data))
             .then(response => response.json());
     }
 }
