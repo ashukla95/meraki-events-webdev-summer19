@@ -1,5 +1,5 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles/index';
+import { makeStyles } from '@material-ui/core/styles/index';
 import DetailsCard from "../components/DetailsCard";
 
 
@@ -12,15 +12,15 @@ const styleCustom = makeStyles({
 });
 
 /*Stateless component to render the results retrieved by calling the necessary back-end service inside a card component */
-const SearchResult = ({resultsFound}) => {
+const SearchResult = ({ resultsFound }) => {
     const classes = styleCustom();
     return (resultsFound)
         .map(result => result["candidates"]
             .map(resultInner =>
                 <DetailsCard classes={classes}
-                             result={resultInner}
-                             fullDetails={resultInner}
-                             key={new Date().getTime() + resultInner["name"]}/>
+                    result={resultInner}
+                    fullDetails={resultInner}
+                    key={new Date().getTime() + resultInner["name"]} />
             )
         );
 };

@@ -1,4 +1,4 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
 import withRoot from './modules/withRoot';
 import SearchBar from "./modules/views/SearchBar";
 import TextSearchAPIService from './modules/APIServices/TextSearchAPIService'
@@ -39,18 +39,18 @@ class Search extends Component {
             <div>
                 <div>
                     <SearchBar searchBoxData={this.state.searchFormData}
-                               changeField={this.changeField}
-                               search={this.search}/>
+                        changeField={this.changeField}
+                        search={this.search} />
                 </div>
                 <div className={"container"}>
                     <Grid alignContent={"space-around"}
-                          container>
+                        container>
                         <Grid alignContent={"center"}
-                              alignItems={"center"}
-                              container
-                              spacing={3}
-                              justify={"flex-start"}>
-                            <SearchResult resultsFound={this.state.searchDataFromPlacesAPI}/>
+                            alignItems={"center"}
+                            container
+                            spacing={3}
+                            justify={"flex-start"}>
+                            <SearchResult resultsFound={this.state.searchDataFromPlacesAPI} />
                         </Grid>
                     </Grid>
                 </div>
