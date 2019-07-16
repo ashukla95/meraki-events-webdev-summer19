@@ -5,6 +5,7 @@ import TextSearchAPIService from './modules/APIServices/TextSearchAPIService'
 import SearchResult from './modules/views/SearchResult'
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/core/index";
+import Grid from "@material-ui/core/Grid";
 /*import compose from 'docs/src/modules/utils/compose';*/
 
 /*const Search = () => <SearchBar />;*/
@@ -17,7 +18,7 @@ class Search extends Component {
         this.state = {
             googlePlaceAPI: TextSearchAPIService.getInstance(),
             searchFormData: '',
-            searchDataFromPlacesAPI: ''
+            searchDataFromPlacesAPI: []
         }
     }
 
@@ -38,16 +39,21 @@ class Search extends Component {
         let temp = '';
         this.state.googlePlaceAPI.findPlaces(this.state.searchFormData)
             .then(places => {
-                console.log("places found: ", temp);
-                console.log(("places found candidate: ", "places found candidate: ", places.candidates))
+                console.log("places found candidate: ", "places found candidate: ", places, typeof places);
                 this.setState({
-                    searchDataFromPlacesAPI: places.candidates
+                    searchDataFromPlacesAPI: places
                 })
             });
     };
 
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log("should component update: ", nextState, this.state);
+        return true;
+    }
+
     render() {
         return (
+
             <div>
                 <div>
                     <SearchBar googlePlaceAPI={this.state.googlePlaceAPI}
@@ -56,8 +62,19 @@ class Search extends Component {
                                search={this.search}/>
                 </div>
                 <div className={"container-fluid bg-dark"}>
-                    {console.log('result found: ', this.state.searchDataFromPlacesAPI)}
-                    <SearchResult resultsFound={this.state.searchDataFromPlacesAPI}/>
+                    {console.log("****************************")}
+                    {console.log(typeof this.state.searchDataFromPlacesAPI)}
+                    {(this.state.searchDataFromPlacesAPI).forEach(re => {
+                        console.log(re.candidates);
+                    })}
+                    {console.log("----------------------------")}
+                    <Grid alignContent={"center"}
+                          alignItems={"center"}
+                          container
+                          spacing={3}
+                          justify={"flex-start"}>
+                        <SearchResult resultsFound={this.state.searchDataFromPlacesAPI}/>
+                    </Grid>
                 </div>
             </div>
 

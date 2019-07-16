@@ -8,15 +8,13 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 
+
+
 const DetailsCard = ({classes,
                          result,
                          screenWidth}) => {
     return (
-        <Grid alignContent={"center"}
-              alignItems={"center"}
-              container
-              spacing={3}
-              justify={"center"}>
+
             <Grid className={classes.innerGrid} item lg={6} md={6} sm={12}>
                 <Card className={classes.card} width={"100%"} raised >
                     <CardActionArea>
@@ -25,7 +23,7 @@ const DetailsCard = ({classes,
                             alt={result["name"]}
                             height="200"
                             width={screenWidth/2}
-                            image="https://picsum.photos/200/300/?grayscale&blur"
+                            image="https://picsum.photos/id/870/200/300?grayscale&blur=2"
                             title={result["name"]}
                         />
                         <CardContent>
@@ -55,7 +53,6 @@ const DetailsCard = ({classes,
                     </CardActions>
                 </Card>
             </Grid>
-        </Grid>
     );
 };
 

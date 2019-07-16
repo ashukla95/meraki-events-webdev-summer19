@@ -17,8 +17,10 @@ export default class TextSearchAPIService {
         temp = places.candidates.filter(places => places.name.toUpperCase().search(data.toUpperCase()) > -1);
         console.log("temp", temp);
         return temp;*/
+        let temp2  = null;
         let temp = {"place": data};
-        return fetch("https://meraki-backend-wbdv.herokuapp.com/api/places"+"?search="+encodeURIComponent(data)).then(response => response.json());
+        return fetch("https://meraki-backend-wbdv.herokuapp.com/api/places"+"?search="+encodeURIComponent(data))
+            .then(response => response.json());
     }
 }
 
