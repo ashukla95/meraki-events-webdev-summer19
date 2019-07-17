@@ -10,7 +10,6 @@ class PropertyDetails extends Component {
             .getPlaceDetails(props.match.params.placeId)
             .then(placeDetails => {
                 this.setState({ placeDetails });
-                console.log(this.state.placeDetails);
             })
     }
 
