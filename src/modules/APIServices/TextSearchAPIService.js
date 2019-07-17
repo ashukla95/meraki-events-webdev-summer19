@@ -14,9 +14,14 @@ export default class TextSearchAPIService {
     }
 
     //call the back-end service that fetches the property details for the data provided via the search field inside the search bar component.
-    findPlaces = (data) => {
-        return fetch("https://meraki-backend-wbdv.herokuapp.com/api/places?search=" + encodeURIComponent(data))
-            .then(response => response.json());
+    findPlaces = async (data) => {
+        const response = await fetch("http://localhost:8080/api/places?search=" + encodeURIComponent(data));
+        return await response.json();
+    }
+
+    getPlaceDetails = async (placeId) => {
+        const response = await fetch(`http://localhost:8080/api/details?placeId=${placeId}`);
+        return await response.json();
     }
 }
 
