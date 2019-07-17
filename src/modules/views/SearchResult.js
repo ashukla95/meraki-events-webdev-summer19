@@ -12,17 +12,14 @@ const styleCustom = makeStyles({
 });
 
 /*Stateless component to render the results retrieved by calling the necessary back-end service inside a card component */
-const SearchResult = ({ resultsFound }) => {
+const SearchResult = ({ autoCompleteResults }) => {
     const classes = styleCustom();
-    return (resultsFound)
-        .map(result => result["candidates"]
-            .map(resultInner =>
-                <DetailsCard classes={classes}
-                    result={resultInner}
-                    fullDetails={resultInner}
-                    key={new Date().getTime() + resultInner["name"]} />
-            )
-        );
+    return (autoCompleteResults)
+        .map(prediction =>
+            <DetailsCard classes={classes}
+                result={prediction}
+                key={prediction.place_id} />
+        )
 };
 
 export default SearchResult;

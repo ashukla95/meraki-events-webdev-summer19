@@ -1,6 +1,6 @@
 import React from 'react'
 import Grid from "@material-ui/core/Grid";
-import {Card} from "@material-ui/core";
+import { Card } from "@material-ui/core";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
@@ -10,9 +10,9 @@ import Button from "@material-ui/core/Button";
 
 /*Stateless component that renders the card with the information obtained from the parent component.*/
 const DetailsCard = ({
-                         classes,
-                         result
-                     }) => {
+    classes,
+    result
+}) => {
     return (
         <Grid className={classes.innerGrid} item lg={6} md={6} sm={12}>
             <Card className={classes.card} raised m={2}>
@@ -23,32 +23,21 @@ const DetailsCard = ({
                         height="200"
                         width={345}
                         image="https://picsum.photos/id/870/200/300?grayscale&blur=2"
-                        title={result["name"]}/>
+                        title={result["name"]} />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
-                            {result["name"]}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            {result["formatted_address"]}
-                        </Typography>
-                        <Typography component={"div"} display={"inline"}>
-                            <Typography variant="body2" color="textSecondary" align={"right"}>
-                                Rating
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" align={"right"}>
-                                {result["rating"]}
-                            </Typography>
+                            {result["description"]}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
                     <Button size="small"
-                            color="primary" href={`/boook-now/`}>
+                        color="primary" href={`/boook-now/`}>
                         Book Now
                     </Button>
                     <Button size="small"
-                            color="primary"
-                            href={`/property-details/${result.name}&&${result.formatted_address}/`}>
+                        color="primary"
+                        href={`/property/${result.place_id}/`}>
                         Learn More
                     </Button>
                 </CardActions>

@@ -29,7 +29,7 @@ class Search extends Component {
         TextSearchAPIService.getInstance().findPlaces(this.state.searchFormData)
             .then(places => {
                 this.setState({
-                    searchDataFromPlacesAPI: places
+                    searchDataFromPlacesAPI: places.predictions
                 })
             });
     };
@@ -50,7 +50,7 @@ class Search extends Component {
                             container
                             spacing={3}
                             justify={"flex-start"}>
-                            <SearchResult resultsFound={this.state.searchDataFromPlacesAPI} />
+                            <SearchResult autoCompleteResults={this.state.searchDataFromPlacesAPI} />
                         </Grid>
                     </Grid>
                 </div>
