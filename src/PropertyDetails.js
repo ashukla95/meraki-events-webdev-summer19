@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TextSearchAPIService from './modules/APIServices/TextSearchAPIService'
 import withRoot from "./modules/withRoot";
+import SearchBar from "./modules/views/SearchBar";
+import DetailsCard from "./modules/components/DetailsCard";
 
 class PropertyDetails extends Component {
     constructor(props) {
@@ -13,10 +15,23 @@ class PropertyDetails extends Component {
             })
     }
 
+
     render() {
         return (
             <div>
-
+                <div>
+                    <SearchBar />
+                </div>
+                <div>
+                    <DetailsCard
+                        gridWidgthLarge={12}
+                        gridWidgthMedium={12}
+                        gridWidgthSmall={12}
+                        imageHeight={365}
+                        imageWidth={345}
+                        result={this.state.placeDetails}
+                        detailsForSingleProperty={true}/>
+                </div>
             </div>
         )
     }

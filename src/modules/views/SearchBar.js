@@ -28,6 +28,18 @@ const styles = theme => ({
         flex: 1,
         display: 'flex',
     },
+    textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        backgroundColor: "White",
+        borderRadius: "0.2em 0.2em 0.3em 0.3em "
+    },
+    button: {
+        margin: theme.spacing(1),
+    },
+    input1: {
+        height: "0.3em",
+    },
     right: {
         flex: 1,
         justifyContent: "left",
@@ -42,22 +54,11 @@ const styles = theme => ({
     linkSecondary: {
         color: theme.palette.secondary.main,
     },
-    textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        backgroundColor: "White",
-        borderRadius: "0.2em 0.2em 0.3em 0.3em "
-    },
-    button: {
-        margin: theme.spacing(1),
-    },
-    input1: {
-        height: "0.3em",
-    },
     icon: {
         margin: theme.spacing(1),
         fontSize: 40,
     },
+
 });
 
 function SearchBar(props) {
@@ -93,7 +94,7 @@ function SearchBar(props) {
                         />
                     </div>
                     <div className={classes.right}
-                        onClick={props.search}>
+                         onClick={props.search}>
                         <IconButton size={"small"}>
                             <SearchIcon
                                 className={clsx(classes.rightLink, classes.linkSecondary, classes.icon)}>
