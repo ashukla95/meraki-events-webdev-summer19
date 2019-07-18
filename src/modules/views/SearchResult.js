@@ -9,7 +9,7 @@ const SearchResult = ({ autoCompleteResults }) => {
             <Grid item lg={6} md={6} sm={12} key={prediction.place_id}>
                 <DetailsCard
                     result={prediction}
-                    detailsForSingleProperty={false}
+                    showLearnMore={false}
                     imageHeight={200}
                     imageWidth={345}
                     key={prediction.place_id} />

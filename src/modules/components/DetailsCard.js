@@ -25,7 +25,7 @@ const DetailsCard = ({
                          result,
                          imageHeight,
                          imageWidth,
-                         detailsForSingleProperty
+                         showLearnMore
 
                      }) => {
     const classes = styleCustom();
@@ -45,7 +45,7 @@ const DetailsCard = ({
                                     component="p">
                             {result["description"] ? result["description"] : result["formatted_address"]}
                         </Typography>
-                        {detailsForSingleProperty ?
+                        {showLearnMore ?
                             <Typography gutterBottom
                                         align={"right"}
                                         variant="body1"
@@ -62,7 +62,7 @@ const DetailsCard = ({
                             color="primary" href={`/book-now/`}>
                         Book Now
                     </Button>
-                    {!detailsForSingleProperty ?
+                    {!showLearnMore ?
                         <Link to={`/property/${result.place_id}/`}>
                             <Button size="small"
                                     color="primary">
