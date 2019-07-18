@@ -30,8 +30,7 @@ class PropertyDetails extends Component {
                         imageHeight={365}
                         imageWidth={345}
                         result={this.state.placeDetails}
-                        detailsForSingleProperty={true}
-                        key={new Date().getTime()}/>
+                        detailsForSingleProperty={true}/>
                 </div>
             </div>
         )
