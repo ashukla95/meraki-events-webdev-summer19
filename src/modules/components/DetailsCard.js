@@ -1,5 +1,4 @@
 import React from 'react'
-import Grid from "@material-ui/core/Grid";
 import {Card, makeStyles} from "@material-ui/core";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -7,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
+import {Link} from 'react-router-dom';
 
 const styleCustom = makeStyles({
     /*Set the css property for the card to be rendered after retrieval of the data from the back-end service.*/
@@ -23,9 +23,6 @@ const styleCustom = makeStyles({
 /*Stateless component that renders the card with the information obtained from the parent component.*/
 const DetailsCard = ({
                          result,
-                         gridWidthLarge,
-                         gridWidthMedium,
-                         gridWidthSmall,
                          imageHeight,
                          imageWidth,
                          detailsForSingleProperty
@@ -33,8 +30,6 @@ const DetailsCard = ({
                      }) => {
     const classes = styleCustom();
     return (
-
-        <Grid item lg={gridWidthLarge} md={gridWidthMedium} sm={gridWidthSmall}>
             <Card className={classes.card} raised m={2}>
                 <CardActionArea>
                     <CardMedia
@@ -68,17 +63,18 @@ const DetailsCard = ({
                         Book Now
                     </Button>
                     {!detailsForSingleProperty ?
-                        <Button size="small"
-                                color="primary"
-                                href={`/property/${result.place_id}/`}>
-                            Learn More
-                        </Button> :
+                        <Link to={`/property/${result.place_id}/`}>
+                            <Button size="small"
+                                    color="primary">
+                                Learn More
+                            </Button>
+                        </Link>
+                         :
                         <div>
                         </div>}
 
                 </CardActions>
             </Card>
-        </Grid>
     );
 };
 
