@@ -17,14 +17,13 @@ const styleCustom = makeStyles({
     },
     cardContent: {
         height: 70
-    }
+    },
 });
 
 /*Stateless component that renders the card with the information obtained from the parent component.*/
 const DetailsCard = ({
                          result,
                          imageHeight,
-                         imageWidth,
                          showLearnMore
 
                      }) => {
@@ -33,10 +32,9 @@ const DetailsCard = ({
             <Card className={classes.card} raised m={2}>
                 <CardActionArea>
                     <CardMedia
+                        height={imageHeight}
                         component="img"
                         alt={result["name"]}
-                        height={imageHeight}
-                        width={imageWidth}
                         image="https://picsum.photos/id/870/500/500?"
                         title={result["name"]}/>
                     <CardContent className={classes.cardContent}>

@@ -26,9 +26,8 @@ class PropertyDetails extends Component {
                 <div>
                     <Grid item lg={12} md={12} sm={12}>
                         <DetailsCard
-                            imageHeight={365}
-                            imageWidth={345}
                             result={this.state.placeDetails}
+                            imageHeight={365}
                             showLearnMore={true}/>
                     </Grid>
                 </div>

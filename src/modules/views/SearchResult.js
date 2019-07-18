@@ -11,7 +11,6 @@ const SearchResult = ({ autoCompleteResults }) => {
                     result={prediction}
                     showLearnMore={false}
                     imageHeight={200}
-                    imageWidth={345}
                     key={prediction.place_id} />
             </Grid>
 
