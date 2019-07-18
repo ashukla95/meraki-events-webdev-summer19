@@ -35,8 +35,6 @@ const DetailsCard = ({
     return (
 
         <Grid item lg={gridWidthLarge} md={gridWidthMedium} sm={gridWidthSmall}>
-            {console.log("details: ", result, detailsForSingleProperty)}
-            {console.log("details photos: ", result["photos"])}
             <Card className={classes.card} raised m={2}>
                 <CardActionArea>
                     <CardMedia
