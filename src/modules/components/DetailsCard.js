@@ -60,16 +60,13 @@ const DetailsCard = ({
                             color="primary" href={`/book-now/`}>
                         Book Now
                     </Button>
-                    {!showLearnMore ?
+                    {!showLearnMore &&
                         <Link to={`/property/${result.place_id}/`}>
                             <Button size="small"
                                     color="primary">
                                 Learn More
                             </Button>
-                        </Link>
-                         :
-                        <div>
-                        </div>}
+                        </Link>}
 
                 </CardActions>
             </Card>
