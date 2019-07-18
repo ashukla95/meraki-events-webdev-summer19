@@ -1,18 +1,24 @@
 import React from 'react';
 import DetailsCard from "../components/DetailsCard";
 import {Grid} from "@material-ui/core";
-
+import {spacing} from '@material-ui/system'
 /*Stateless component to render the results retrieved by calling the necessary back-end service inside a card component */
 const SearchResult = ({ autoCompleteResults }) => {
     return (autoCompleteResults)
         .map(prediction =>
-            <Grid item lg={6} md={6} sm={12} key={prediction.place_id}>
-                <DetailsCard
-                    result={prediction}
-                    showLearnMore={false}
-                    imageHeight={200}
-                    key={prediction.place_id} />
-            </Grid>
+                <Grid item={true}
+                      key={prediction.place_id}
+                      margin={2}
+                      padding={2}
+                      lg={6}
+                      md={6}
+                      sm={12}>
+                    <DetailsCard
+                        result={prediction}
+                        showLearnMore={false}
+                        imageHeight={200}
+                        key={prediction.place_id} />
+                </Grid>
 
         )
 };
