@@ -43,16 +43,12 @@ class Search extends Component {
                         search={this.search} />
                 </div>
                 <div className={"container"}>
-                    <Grid alignContent={"space-around"}
-                        container>
                         <Grid alignContent={"center"}
-                            alignItems={"center"}
                             container
                             spacing={3}
                             justify={"flex-start"}>
                             <SearchResult autoCompleteResults={this.state.searchDataFromPlacesAPI} />
                         </Grid>
-                    </Grid>
                 </div>
             </div>
         )

@@ -3,6 +3,7 @@ import TextSearchAPIService from './modules/APIServices/TextSearchAPIService'
 import withRoot from "./modules/withRoot";
 import SearchBar from "./modules/views/SearchBar";
 import DetailsCard from "./modules/components/DetailsCard";
+import {Grid} from "@material-ui/core";
 
 class PropertyDetails extends Component {
     constructor(props) {
@@ -23,14 +24,12 @@ class PropertyDetails extends Component {
                     <SearchBar />
                 </div>
                 <div>
-                    <DetailsCard
-                        gridWidgthLarge={12}
-                        gridWidgthMedium={12}
-                        gridWidgthSmall={12}
-                        imageHeight={365}
-                        imageWidth={345}
-                        result={this.state.placeDetails}
-                        detailsForSingleProperty={true}/>
+                    <Grid item lg={12} md={12} sm={12}>
+                        <DetailsCard
+                            result={this.state.placeDetails}
+                            imageHeight={365}
+                            showLearnMore={true}/>
+                    </Grid>
                 </div>
             </div>
         )
