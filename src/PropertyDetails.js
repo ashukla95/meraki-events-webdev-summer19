@@ -15,6 +15,7 @@ class PropertyDetails extends Component {
             })
     }
 
+
     render() {
         return (
             <div>

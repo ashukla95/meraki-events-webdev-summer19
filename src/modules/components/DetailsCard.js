@@ -13,7 +13,11 @@ const styleCustom = makeStyles({
     card: {
         margin: 10,
         padding: 10,
+        maxHeight: 500
     },
+    cardContent: {
+        height: 70
+    }
 });
 
 /*Stateless component that renders the card with the information obtained from the parent component.*/
@@ -40,9 +44,9 @@ const DetailsCard = ({
                         alt={result["name"]}
                         height={imageHeight}
                         width={imageWidth}
-                        image="https://picsum.photos/id/870/200/300?grayscale&blur=2"
+                        image="https://picsum.photos/id/870/500/500?"
                         title={result["name"]}/>
-                    <CardContent>
+                    <CardContent className={classes.cardContent}>
                         <Typography gutterBottom
                                     variant="body1"
                                     component="p">
@@ -57,7 +61,6 @@ const DetailsCard = ({
                             </Typography>
                             :
                             <p>
-
                             </p>}
                     </CardContent>
                 </CardActionArea>
