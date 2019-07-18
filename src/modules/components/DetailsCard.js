@@ -34,7 +34,6 @@ const DetailsCard = ({
         <Card raised
               margin={2}
               className={classes.card}>
-            {console.log("result: ", result)}
             <Link className={classes.link} to={`/property/${result.place_id}/`}>
                 <CardActionArea>
                     <CardMedia

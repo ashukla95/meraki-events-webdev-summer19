@@ -4,7 +4,6 @@ import SearchBar from "./modules/views/SearchBar";
 import TextSearchAPIService from './modules/APIServices/TextSearchAPIService'
 import SearchResult from './modules/views/SearchResult'
 import Grid from "@material-ui/core/Grid";
-import {spacing} from '@material-ui/system';
 
 class Search extends Component {
 

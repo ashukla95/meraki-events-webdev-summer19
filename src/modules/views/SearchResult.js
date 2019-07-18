@@ -1,7 +1,7 @@
 import React from 'react';
 import DetailsCard from "../components/DetailsCard";
 import {Grid} from "@material-ui/core";
-import {spacing} from '@material-ui/system'
+
 /*Stateless component to render the results retrieved by calling the necessary back-end service inside a card component */
 const SearchResult = ({ autoCompleteResults }) => {
     return (autoCompleteResults)
