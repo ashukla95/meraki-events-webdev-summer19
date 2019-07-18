@@ -8,6 +8,7 @@ import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import {Link} from 'react-router-dom';
 import Grid from "@material-ui/core/Grid";
+import Rating from 'react-rating'
 
 const styleCustom = makeStyles({
     /*Set the css property for the card to be rendered after retrieval of the data from the back-end service.*/
@@ -30,59 +31,57 @@ const DetailsCard = ({
                      }) => {
     const classes = styleCustom();
     return (
-            <Card raised
-                  margin={2}
-                  className={classes.card}>
-                {console.log("result: ", result)}
-                <Link className={classes.link} to={`/property/${result.place_id}/`}>
-                    <CardActionArea>
-                        <CardMedia
-                            height={imageHeight}
-                            component="img"
-                            alt={result["name"]}
-                            image="https://picsum.photos/id/870/500/500?"
-                            title={result["name"]}/>
-                        <CardContent>
-                            <Typography variant={"body1"} component={"p"}>
-                                {result["name"]}
-                            </Typography>
-                            <Grid container  justify={"space-between"}>
-                                <Grid item>
-                                    <Typography gutterBottom
-                                                variant="body1"
-                                                component="p">
-                                        {result["description"] ? result["description"] : result["formatted_address"]}
-                                    </Typography>
-                                </Grid>
-                                <Grid item>
-                                    {showLearnMore &&
-                                    <Typography gutterBottom
-                                                align={"right"}
-                                                variant="body1"
-                                                component="p"
-                                                mt={2}>
-                                        Google Ratings: {result["rating"]}
-                                    </Typography>}
-                                </Grid>
+        <Card raised
+              margin={2}
+              className={classes.card}>
+            {console.log("result: ", result)}
+            <Link className={classes.link} to={`/property/${result.place_id}/`}>
+                <CardActionArea>
+                    <CardMedia
+                        height={imageHeight}
+                        component="img"
+                        alt={result["name"]}
+                        image="https://picsum.photos/id/870/500/500?"
+                        title={result["name"]}/>
+                    <CardContent>
+                        <Typography variant={"body1"} component={"p"}>
+                            {result["name"]}
+                        </Typography>
+                        <Grid container justify={"space-between"}>
+                            <Grid item>
+                                <Typography gutterBottom
+                                            variant="body1"
+                                            component="p">
+                                    {result["description"] ? result["description"] : result["formatted_address"]}
+                                </Typography>
                             </Grid>
-                        </CardContent>
-                    </CardActionArea>
-                </Link>
-                <CardActions>
+                            <Grid item>
+                                {showLearnMore &&
+                                <Rating initialRating={result["rating"]}
+                                        readonly
+                                        stop={5}
+                                        emptySymbol={['fa fa-star-o  red']}
+                                        fullSymbol={['fa fa-star  red']}/>}
+                            </Grid>
+                        </Grid>
+                    </CardContent>
+                </CardActionArea>
+            </Link>
+            <CardActions>
+                <Button size="small"
+                        color="primary" href={`/book-now/`}>
+                    Book Now
+                </Button>
+                {!showLearnMore &&
+                <Link className={classes.link} to={`/property/${result.place_id}/`}>
                     <Button size="small"
-                            color="primary" href={`/book-now/`}>
-                        Book Now
+                            color="primary">
+                        Learn More
                     </Button>
-                    {!showLearnMore &&
-                        <Link  className={classes.link} to={`/property/${result.place_id}/`}>
-                            <Button size="small"
-                                    color="primary">
-                                Learn More
-                            </Button>
-                        </Link>}
+                </Link>}
 
-                </CardActions>
-            </Card>
+            </CardActions>
+        </Card>
     );
 };
 
