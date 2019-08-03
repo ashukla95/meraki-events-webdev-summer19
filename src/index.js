@@ -4,6 +4,7 @@ import Home from './Home';
 import Search from "./Search"
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import PropertyDetails from './PropertyDetails';
+import Profile from "./Profile";
 
 const routing = (
   <Router>
@@ -14,8 +15,9 @@ const routing = (
     <Route path={"/sign-up/"} component={Home} />
     <Route path={"/book-now/"} component={Home} />
     <Route path={"/property/:placeId/"} component={PropertyDetails} />
+    <Route path={"/profile"} component={Profile}/>
   </Router>
-)
+);
 
 ReactDOM.render(routing, document.getElementById('root'));
 
