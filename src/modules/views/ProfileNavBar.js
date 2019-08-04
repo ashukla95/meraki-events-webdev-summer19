@@ -81,7 +81,7 @@ const ProfileNavBar = (props) => {
 						</Link>
 					</div>
 					<div align={"center"} className={classes.left}>
-						Lorum
+						Profile
 					</div>
 					<div className={classes.right}>
 						<Button
