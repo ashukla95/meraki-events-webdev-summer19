@@ -29,18 +29,18 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const ProfileBody = ({profileData, events}) => {
+const ProfileBody = ({profileData, events, networking}) => {
 	const classes = useStyles();
 	return (
 		<React.Fragment>
 			<Grid container spacing={2}>
-				<Grid item lg={2} md={2} sm={2} className={classes.demographics}>
+				<Grid item lg={2} md={12} sm={12} xs={12} className={classes.demographics}>
 					<Grid container>
 						<Demographics
 							profileData={profileData}/>
 					</Grid>
 				</Grid>
-				<Grid item lg={7} md={7} sm={7} margin={2} padding={2}>
+				<Grid item lg={7} md={12} sm={12} xs={12} margin={2} padding={2}>
 					<Paper className={classes.paper}>
 						<Grid container>
 							<Events
@@ -56,12 +56,13 @@ const ProfileBody = ({profileData, events}) => {
 						</Grid>
 					</Paper>
 				</Grid>
-				<Grid item lg={3} md={3} sm={3}>
+				<Grid item lg={3} md={12} sm={12} xs={12}>
 					<Paper className={classes.paper}>
 						<Grid container>
 							<Followers
 								addFollowers={true}
 								removeFollowers={false}
+								networking={networking.followers}
 								section={"Followers"}/>
 						</Grid>
 					</Paper>
@@ -70,6 +71,7 @@ const ProfileBody = ({profileData, events}) => {
 							<Followers
 								addFollowers={false}
 								removeFollowers={true}
+								networking={networking.following}
 								section={"Following"}/>
 						</Grid>
 					</Paper>

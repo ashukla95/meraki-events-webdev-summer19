@@ -1,12 +1,11 @@
 import React from 'react';
-import Avatar from "@material-ui/core/Avatar";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import {CardContent} from "@material-ui/core";
-import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
 	dataPanel: {
@@ -19,6 +18,7 @@ const Demographics = ({profileData}) => {
 	return (
 		<React.Fragment>
 			<Grid item
+			      xs={12}
 			      sm={12}
 			      md={12}
 			      lg={12}>
@@ -32,20 +32,33 @@ const Demographics = ({profileData}) => {
 							title="Profile Picture"
 						/>
 						<CardContent>
-							<Grid direction={"row"} container justify={"space-between"} m={2}>
-								{
-									Object.keys(profileData).map(key => (
-										<React.Fragment key={key}>
-											<Grid className={classes.dataPanel} item sm={6} md={6} lg={6}>
-												{key}
+							{
+								/*This code iterates over the json data directly thereby eliminating the need to pass props separately.*/
+								Object.keys(profileData).map(key => (
+									<React.Fragment key={key}>
+										<Grid direction={"row"} container justify={"space-between"} m={2}>
+											<Grid className={classes.dataPanel} item xs={12} sm={6} md={6} lg={6}>
+												<Typography display={"block"}
+												            align={"justify"}
+												            gutterBottom={false}
+												            variant={"subtitle2"}
+												            component={"p"}>
+													{key}
+												</Typography>
 											</Grid>
-											<Grid className={classes.dataPanel} item sm={6} md={6} lg={6}>
-												{profileData[key]}
+											<Grid className={classes.dataPanel} item xs={12} sm={6} md={6} lg={6}>
+												<Typography display={"block"}
+												            align={"justify"}
+												            gutterBottom={false}
+												            variant={"body2"}
+												            component={"p"}>
+													{profileData[key]}
+												</Typography>
 											</Grid>
-										</React.Fragment>
-									))
-								}
-							</Grid>
+										</Grid>
+									</React.Fragment>
+								))
+							}
 						</CardContent>
 					</CardActionArea>
 				</Card>

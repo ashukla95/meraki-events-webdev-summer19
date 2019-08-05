@@ -59,10 +59,6 @@ const ProfileNavBar = (props) => {
 		setAnchorEl(null);
 	}
 
-	function handleClose() {
-		setAnchorEl(null);
-	}
-
 	return (
 		<div>
 			<AppBar position={"fixed"}>
@@ -102,6 +98,7 @@ const ProfileNavBar = (props) => {
 								vertical: 'top',
 								horizontal: 'center',
 							}}
+							getContentAnchorEl={null}
 							keepMounted
 							open={Boolean(anchorEl)}
 							onClose={redirectToProfile}>

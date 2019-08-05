@@ -2,9 +2,7 @@ import React from 'react';
 import Grid from "@material-ui/core/Grid";
 import {Card} from "@material-ui/core";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
 import LockIcon from "@material-ui/icons/Lock"
 import LockOpenIcon from "@material-ui/icons/LockOpen"
 import DeleteIcon from "@material-ui/icons/Delete"
@@ -42,32 +40,33 @@ const Events = ({section, events}) => {
 			</Grid>
 			<Grid item sm={12} md={12} lg={12}>
 				{events.map(event => (
-					<Card className={classes.eventCard} style={{"backgroundColor": "#f9f9f9"}}>
+					<Card key={new Date().getTime()} className={classes.eventCard}
+					      style={{"backgroundColor": "#f9f9f9"}}>
 						<CardActionArea>
 							<Grid container spacing={2}>
-								<Grid item sm={3}>
+								<Grid item xs={12} sm={6} md={4} lg={3}>
 									<Box p={3}>
 										<Typography align={"justify"} variant={"body1"} component={"p"}>
 											{event.eventName}
 										</Typography>
 									</Box>
 								</Grid>
-								<Grid item sm={3}>
-									<Box sm={3} p={3}>
+								<Grid item xs={12} sm={6} md={2} lg={3}>
+									<Box p={3}>
 										<Typography align={"justify"} variant={"body1"} component={"p"}>
 											{event.eventDate}
 										</Typography>
 									</Box>
 								</Grid>
-								<Grid item sm={3}>
-									<Box sm={3} p={3}>
+								<Grid item xs={12} sm={6} md={4} lg={3}>
+									<Box p={3}>
 										<Typography align={"justify"} variant={"body1"} component={"p"}>
 											{event.eventPlace}
 										</Typography>
 									</Box>
 								</Grid>
-								<Grid item
-								      sm={3}>
+								<Grid item xs={12}
+								      sm={6} md={2} lg={3}>
 									<Box p={3}>
 										{event.eventVisibility === 'public' ?
 											<LockOpenIcon className={classes.iconButton}>

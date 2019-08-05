@@ -7,6 +7,8 @@ export default class Profile extends Component {
 		super(props);
 	}
 
+	/*This section has summy data. Since, it was very limited, I just created it here. But after we discuss the db design,
+	* I will move it to a separate file with the mock design and I will load this data when the component mounts.*/
 	data={
 		UserName: "Username",
 		Name: "FULL NAME",
@@ -37,6 +39,14 @@ export default class Profile extends Component {
 		}
 	];
 
+	followers =
+		{
+			followers: ["Harshil Mavani", "ParthSaarthi Mitra"],
+			following: ["Harshil Mavani"]
+		}
+	;
+
+	/*Dummy data section complete.*/
 
 
 	render() {
@@ -46,6 +56,7 @@ export default class Profile extends Component {
 					username={"Username"}/>
 				<ProfileBody
 					events={this.events}
+					networking={this.followers}
 					profileData={this.data}/>
 			</div>
 		)
