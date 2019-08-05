@@ -14,45 +14,50 @@ import Box from "@material-ui/core/Box";
 const useStyles = makeStyles({
 	title: {
 		alignItems: 'center',
-		alignContent: 'center'
+		alignContent: 'center',
+		margin: 10
 	},
 
 	iconButton: {
 		float: 'right'
 	},
 
+
 });
 
 const Events = ({section}) => {
 	const classes = useStyles();
-	return(
+	return (
 		<React.Fragment>
 			<Grid className={classes.title} item sm={12} md={12} lg={12}>
-				<p>{section}</p>
+				<Typography align={"justify"}
+				            variant={"h6"}
+				            display={"inline"}
+				            gutterBottom={true}
+				            component={"p"}>{section}</Typography>
 			</Grid>
 			<Grid item sm={12} md={12} lg={12}>
-				<Card style={{"backgroundColor":"#f9f9f9"}}>
+				<Card style={{"backgroundColor": "#f9f9f9"}}>
 					<CardActionArea>
 						<CardContent>
 							<Grid container spacing={2}>
-								<Box item={true} sm={3} p={3}>
-									<Typography m={2} align={"center"} variant={"body1"} component={"p"}>
+								<Box sm={3} p={3}>
+									<Typography align={"center"} variant={"body1"} component={"p"}>
 										Company Meeting
 									</Typography>
 								</Box>
-								<Grid item sm={9}>
-									<IconButton className={classes.iconButton}>
-										<LockIcon>
+								<Grid item
+								      sm={9}>
+									<Box p={2}>
+										<LockIcon className={classes.iconButton}>
 										</LockIcon>
-									</IconButton>
-									<IconButton className={classes.iconButton}>
-										<LockOpenIcon>
+
+										<LockOpenIcon className={classes.iconButton}>
 										</LockOpenIcon>
-									</IconButton>
-									<IconButton className={classes.iconButton}>
-										<DeleteIcon>
+
+										<DeleteIcon className={classes.iconButton}>
 										</DeleteIcon>
-									</IconButton>
+									</Box>
 								</Grid>
 							</Grid>
 						</CardContent>

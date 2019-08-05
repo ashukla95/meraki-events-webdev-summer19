@@ -9,11 +9,7 @@ import {CardContent} from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
-	cardname: {
-		border: "none",
-		textAlign: "center",
-	},
-	dataPanel :{
+	dataPanel: {
 		marginTop: 8
 	}
 });
@@ -26,7 +22,7 @@ const Demographics = ({profileData}) => {
 			      sm={12}
 			      md={12}
 			      lg={12}>
-				<Card className={classes.cardname}>
+				<Card>
 					<CardActionArea>
 						<CardMedia
 							component="img"
@@ -36,7 +32,7 @@ const Demographics = ({profileData}) => {
 							title="Profile Picture"
 						/>
 						<CardContent>
-							<Grid direction={"row"} container={true} justify={"space-between"} m={2}>
+							<Grid direction={"row"} container justify={"space-between"} m={2}>
 								{
 									Object.keys(profileData).map(key => (
 										<React.Fragment key={key}>
@@ -49,7 +45,6 @@ const Demographics = ({profileData}) => {
 										</React.Fragment>
 									))
 								}
-
 							</Grid>
 						</CardContent>
 					</CardActionArea>

@@ -54,7 +54,7 @@ const ProfileBody = ({profileData}) => {
 						</Grid>
 					</Paper>
 				</Grid>
-				<Grid item={true} lg={3} md={3} sm={3}>
+				<Grid item lg={3} md={3} sm={3}>
 					<Paper className={classes.paper}>
 						<Grid container>
 							<Followers
