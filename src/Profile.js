@@ -10,7 +10,7 @@ class Profile extends Component {
 
 	/*This section has summy data. Since, it was very limited, I just created it here. But after we discuss the db design,
 	* I will move it to a separate file with the mock design and I will load this data when the component mounts.*/
-	data={
+	data = {
 		UserName: "Username",
 		Name: "FULL NAME",
 		DOB: "DD/MM/YYY",
@@ -52,13 +52,15 @@ class Profile extends Component {
 
 	render() {
 		return (
-			<div>
+			<div style={{"height": "100%"}}>
 				<ProfileNavBar
 					username={"Username"}/>
+
 				<ProfileBody
 					events={this.events}
 					networking={this.followers}
 					profileData={this.data}/>
+
 			</div>
 		)
 	}
