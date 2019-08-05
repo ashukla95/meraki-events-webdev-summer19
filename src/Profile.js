@@ -7,11 +7,19 @@ export default class Profile extends Component {
 		super(props);
 	}
 
+	data={
+		UserName: "Username",
+		Name: "FULL NAME",
+		DOB: "DD/MM/YYY",
+	};
+
 	render() {
 		return (
 			<div>
-				<ProfileNavBar/>
-				<ProfileBody/>
+				<ProfileNavBar
+					username={"Username"}/>
+				<ProfileBody
+					profileData={this.data}/>
 			</div>
 		)
 	}

@@ -23,12 +23,12 @@ const useStyles = makeStyles({
 });
 
 
-const Followers = () => {
+const Followers = ({section}) => {
 	const classes = useStyles();
 	return(
 		<React.Fragment>
 			<Grid className={classes.title} item sm={12} md={12} lg={12}>
-				<p>Followers</p>
+				<p>{section}</p>
 			</Grid>
 			<Grid item sm={12} md={12} lg={12}>
 				<Card style={{"backgroundColor":"#f9f9f9"}}>

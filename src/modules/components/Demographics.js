@@ -9,23 +9,23 @@ import {CardContent} from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
-	cardname:{
+	cardname: {
 		border: "none",
 		textAlign: "center",
+	},
+	dataPanel :{
+		marginTop: 8
 	}
 });
 
-const Demographics = () => {
+const Demographics = ({profileData}) => {
 	const classes = useStyles();
-	return(
+	return (
 		<React.Fragment>
 			<Grid item
 			      sm={12}
 			      md={12}
 			      lg={12}>
-				<p className={classes.cardname}>
-					Demographics
-				</p>
 				<Card className={classes.card}>
 					<CardActionArea>
 						<CardMedia
@@ -36,21 +36,21 @@ const Demographics = () => {
 							title="Profile Picture"
 						/>
 						<CardContent>
-							<Box container={true} justify={"space-between"} m={2}>
-								<Grid item>
-									Name
-								</Grid>
-								<Grid item>
-									Aishwary Shukla
-								</Grid>
+							<Grid direction={"row"} container={true} justify={"space-between"} m={2}>
+								{
+									Object.keys(profileData).map(key => (
+										<React.Fragment key={key}>
+											<Grid className={classes.dataPanel} item sm={6} md={6} lg={6}>
+												{key}
+											</Grid>
+											<Grid className={classes.dataPanel} item sm={6} md={6} lg={6}>
+												{profileData[key]}
+											</Grid>
+										</React.Fragment>
+									))
+								}
 
-								<Grid item>
-									DOB
-								</Grid>
-								<Grid item>
-									September 27, 1995
-								</Grid>
-							</Box>
+							</Grid>
 						</CardContent>
 					</CardActionArea>
 				</Card>

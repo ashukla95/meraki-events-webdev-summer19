@@ -63,7 +63,7 @@ const ProfileNavBar = (props) => {
 		setAnchorEl(null);
 	}
 
-	return(
+	return (
 		<div>
 			<AppBar position={"fixed"}>
 				<Toolbar className={classes.toolbar}>
@@ -89,7 +89,7 @@ const ProfileNavBar = (props) => {
 							className={classes.button}
 							aria-haspopup="true"
 							onClick={handleClick}>
-							UserName
+							{props.username}
 						</Button>
 						<Menu
 							id="simple-menu"
@@ -104,15 +104,14 @@ const ProfileNavBar = (props) => {
 							}}
 							keepMounted
 							open={Boolean(anchorEl)}
-							onClose={redirectToProfile}
-						>
+							onClose={redirectToProfile}>
 							<MenuItem><NavLink className={classes.link} to={'/profile'}>My account</NavLink></MenuItem>
 							<MenuItem><NavLink className={classes.link} to={'/'}>Logout</NavLink></MenuItem>
 						</Menu>
 					</div>
 				</Toolbar>
 			</AppBar>
-			<div className={classes.placeholder} />
+			<div className={classes.placeholder}/>
 		</div>
 	);
 };

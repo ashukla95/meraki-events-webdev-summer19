@@ -21,40 +21,49 @@ const useStyles = makeStyles(theme => ({
 
 	eventTitle: {
 		textAlign: "center",
+	},
+
+	demographics: {
+		marginTop: 5
 	}
 }));
 
-const ProfileBody = () => {
+const ProfileBody = ({profileData}) => {
 	const classes = useStyles();
 	return (
 		<React.Fragment>
 			<Grid container={true} spacing={2}>
 				<Grid item={true} lg={2} md={2} sm={2} margin={2}>
-					<Grid container={true}>
-						<Demographics/>
+					<Grid className={classes.demographics} container={true}>
+						<Demographics
+							profileData={profileData}/>
 					</Grid>
 				</Grid>
 				<Grid item={true} lg={7} md={7} sm={7} margin={2} padding={2}>
 					<Paper className={classes.paper}>
 						<Grid container={true}>
-							<Events/>
+							<Events
+								section={"Upcoming Events"}/>
 						</Grid>
 					</Paper>
 					<Paper elevation={2} className={classes.paper}>
 						<Grid container={true}>
-							<Events/>
+							<Events
+								section={"Past Events"}/>
 						</Grid>
 					</Paper>
 				</Grid>
 				<Grid item={true} lg={3} md={3} sm={3}>
 					<Paper className={classes.paper}>
 						<Grid container>
-							<Followers/>
+							<Followers
+								section={"Followers"}/>
 						</Grid>
 					</Paper>
 					<Paper className={classes.paper}>
 						<Grid container>
-							<Followers/>
+							<Followers
+								section={"Following"}/>
 						</Grid>
 					</Paper>
 				</Grid>

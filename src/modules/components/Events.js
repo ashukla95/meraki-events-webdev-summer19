@@ -23,19 +23,19 @@ const useStyles = makeStyles({
 
 });
 
-const Events = () => {
+const Events = ({section}) => {
 	const classes = useStyles();
 	return(
 		<React.Fragment>
 			<Grid className={classes.title} item sm={12} md={12} lg={12}>
-				<p>Upcoming Events</p>
+				<p>{section}</p>
 			</Grid>
 			<Grid item sm={12} md={12} lg={12}>
 				<Card style={{"backgroundColor":"#f9f9f9"}}>
 					<CardActionArea>
 						<CardContent>
 							<Grid container spacing={2}>
-								<Box item sm={3}  p={3}>
+								<Box item={true} sm={3} p={3}>
 									<Typography m={2} align={"center"} variant={"body1"} component={"p"}>
 										Company Meeting
 									</Typography>
