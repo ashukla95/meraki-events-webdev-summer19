@@ -26,7 +26,7 @@ const Demographics = ({profileData}) => {
 			      sm={12}
 			      md={12}
 			      lg={12}>
-				<Card className={classes.card}>
+				<Card className={classes.cardname}>
 					<CardActionArea>
 						<CardMedia
 							component="img"

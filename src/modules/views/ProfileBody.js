@@ -7,7 +7,7 @@ import {Paper} from "@material-ui/core";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {grey} from "@material-ui/core/colors";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
 	},
@@ -26,28 +26,29 @@ const useStyles = makeStyles(theme => ({
 	demographics: {
 		marginTop: 5
 	}
+
 }));
 
 const ProfileBody = ({profileData}) => {
 	const classes = useStyles();
 	return (
 		<React.Fragment>
-			<Grid container={true} spacing={2}>
-				<Grid item={true} lg={2} md={2} sm={2} margin={2}>
-					<Grid className={classes.demographics} container={true}>
+			<Grid container spacing={2}>
+				<Grid item lg={2} md={2} sm={2} className={classes.demographics}>
+					<Grid container>
 						<Demographics
 							profileData={profileData}/>
 					</Grid>
 				</Grid>
-				<Grid item={true} lg={7} md={7} sm={7} margin={2} padding={2}>
+				<Grid item lg={7} md={7} sm={7} margin={2} padding={2}>
 					<Paper className={classes.paper}>
-						<Grid container={true}>
+						<Grid container>
 							<Events
 								section={"Upcoming Events"}/>
 						</Grid>
 					</Paper>
 					<Paper elevation={2} className={classes.paper}>
-						<Grid container={true}>
+						<Grid container>
 							<Events
 								section={"Past Events"}/>
 						</Grid>
