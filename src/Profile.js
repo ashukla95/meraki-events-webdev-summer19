@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import ProfileNavBar from "./modules/views/ProfileNavBar";
 import ProfileBody from "./modules/views/ProfileBody";
+import withRoot from "./modules/withRoot";
 
-export default class Profile extends Component {
+class Profile extends Component {
 	constructor(props) {
 		super(props);
 	}
@@ -62,3 +63,5 @@ export default class Profile extends Component {
 		)
 	}
 }
+
+export default withRoot(Profile)

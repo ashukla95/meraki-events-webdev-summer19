@@ -24,7 +24,13 @@ const useStyles = makeStyles((theme) => ({
 	},
 
 	demographics: {
-		marginTop: 5
+		marginTop: 5,
+	},
+
+	profileBody: {
+		backgroundColor: "#757575",
+		height: "100%",
+		padding: 5
 	}
 
 }));
@@ -33,7 +39,7 @@ const ProfileBody = ({profileData, events, networking}) => {
 	const classes = useStyles();
 	return (
 		<React.Fragment>
-			<Grid container spacing={2}>
+			<Grid className={classes.profileBody} container spacing={2}>
 				<Grid item lg={2} md={12} sm={12} xs={12} className={classes.demographics}>
 					<Grid container>
 						<Demographics
