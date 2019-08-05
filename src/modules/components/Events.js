@@ -22,10 +22,14 @@ const useStyles = makeStyles({
 		float: 'right'
 	},
 
+	eventCard: {
+		marginTop: 10
+	}
+
 
 });
 
-const Events = ({section}) => {
+const Events = ({section, events}) => {
 	const classes = useStyles();
 	return (
 		<React.Fragment>
@@ -37,32 +41,49 @@ const Events = ({section}) => {
 				            component={"p"}>{section}</Typography>
 			</Grid>
 			<Grid item sm={12} md={12} lg={12}>
-				<Card style={{"backgroundColor": "#f9f9f9"}}>
-					<CardActionArea>
-						<CardContent>
+				{events.map(event => (
+					<Card className={classes.eventCard} style={{"backgroundColor": "#f9f9f9"}}>
+						<CardActionArea>
 							<Grid container spacing={2}>
-								<Box sm={3} p={3}>
-									<Typography align={"center"} variant={"body1"} component={"p"}>
-										Company Meeting
-									</Typography>
-								</Box>
+								<Grid item sm={3}>
+									<Box p={3}>
+										<Typography align={"justify"} variant={"body1"} component={"p"}>
+											{event.eventName}
+										</Typography>
+									</Box>
+								</Grid>
+								<Grid item sm={3}>
+									<Box sm={3} p={3}>
+										<Typography align={"justify"} variant={"body1"} component={"p"}>
+											{event.eventDate}
+										</Typography>
+									</Box>
+								</Grid>
+								<Grid item sm={3}>
+									<Box sm={3} p={3}>
+										<Typography align={"justify"} variant={"body1"} component={"p"}>
+											{event.eventPlace}
+										</Typography>
+									</Box>
+								</Grid>
 								<Grid item
-								      sm={9}>
-									<Box p={2}>
-										<LockIcon className={classes.iconButton}>
-										</LockIcon>
-
-										<LockOpenIcon className={classes.iconButton}>
-										</LockOpenIcon>
-
+								      sm={3}>
+									<Box p={3}>
+										{event.eventVisibility === 'public' ?
+											<LockOpenIcon className={classes.iconButton}>
+											</LockOpenIcon>
+											:
+											<LockIcon className={classes.iconButton}>
+											</LockIcon>
+										}
 										<DeleteIcon className={classes.iconButton}>
 										</DeleteIcon>
 									</Box>
 								</Grid>
 							</Grid>
-						</CardContent>
-					</CardActionArea>
-				</Card>
+						</CardActionArea>
+					</Card>
+				))}
 			</Grid>
 		</React.Fragment>
 	);

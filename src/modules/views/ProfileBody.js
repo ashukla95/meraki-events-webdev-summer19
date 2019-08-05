@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const ProfileBody = ({profileData}) => {
+const ProfileBody = ({profileData, events}) => {
 	const classes = useStyles();
 	return (
 		<React.Fragment>
@@ -44,12 +44,14 @@ const ProfileBody = ({profileData}) => {
 					<Paper className={classes.paper}>
 						<Grid container>
 							<Events
+								events={events.filter(event => event.isUpcomingEvent == true)}
 								section={"Upcoming Events"}/>
 						</Grid>
 					</Paper>
 					<Paper elevation={2} className={classes.paper}>
 						<Grid container>
 							<Events
+								events={events.filter(event => event.isUpcomingEvent == false)}
 								section={"Past Events"}/>
 						</Grid>
 					</Paper>
@@ -58,12 +60,16 @@ const ProfileBody = ({profileData}) => {
 					<Paper className={classes.paper}>
 						<Grid container>
 							<Followers
+								addFollowers={true}
+								removeFollowers={false}
 								section={"Followers"}/>
 						</Grid>
 					</Paper>
 					<Paper className={classes.paper}>
 						<Grid container>
 							<Followers
+								addFollowers={false}
+								removeFollowers={true}
 								section={"Following"}/>
 						</Grid>
 					</Paper>

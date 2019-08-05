@@ -4,7 +4,8 @@ import {Card} from "@material-ui/core";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Typography from "@material-ui/core/Typography";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import DeleteIcon from "@material-ui/icons/Delete"
+import AddIcon from "@material-ui/icons/AddCircle"
+import RemoveIcon from "@material-ui/icons/Remove"
 import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
@@ -16,13 +17,13 @@ const useStyles = makeStyles({
 
 	iconButton: {
 		float: 'right',
-		padding: 12
+		padding: 15
 	}
 
 });
 
 
-const Followers = ({section}) => {
+const Followers = ({section, addFollowers, removeFollowers}) => {
 	const classes = useStyles();
 	return (
 		<React.Fragment>
@@ -47,8 +48,10 @@ const Followers = ({section}) => {
 							</Box>
 							<Grid item sm={6}>
 								<Grid className={classes.iconButton}>
-									<DeleteIcon>
-									</DeleteIcon>
+									{addFollowers && <AddIcon>
+									</AddIcon>}
+									{removeFollowers && <RemoveIcon>
+									</RemoveIcon>}
 								</Grid>
 							</Grid>
 						</Grid>
