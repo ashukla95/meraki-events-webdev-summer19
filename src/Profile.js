@@ -2,12 +2,9 @@ import React, {Component} from 'react';
 import ProfileNavBar from "./modules/views/ProfileNavBar";
 import ProfileBody from "./modules/views/ProfileBody";
 import withRoot from "./modules/withRoot";
+import Grid from "@material-ui/core/Grid";
 
 class Profile extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	/*This section has summy data. Since, it was very limited, I just created it here. But after we discuss the db design,
 	* I will move it to a separate file with the mock design and I will load this data when the component mounts.*/
 	data = {
@@ -52,18 +49,16 @@ class Profile extends Component {
 
 	render() {
 		return (
-			<div style={{"height": "100%"}}>
+			<div>
 				<ProfileNavBar
 					username={"Username"}/>
-
 				<ProfileBody
 					events={this.events}
 					networking={this.followers}
 					profileData={this.data}/>
-
 			</div>
 		)
 	}
 }
 
-export default withRoot(Profile)
+export default (Profile)

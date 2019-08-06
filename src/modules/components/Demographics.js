@@ -10,7 +10,9 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles({
 	dataPanel: {
 		marginTop: 8
-	}
+	},
+
+
 });
 
 const Demographics = ({profileData}) => {

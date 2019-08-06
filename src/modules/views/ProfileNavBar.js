@@ -10,8 +10,13 @@ import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import {NavLink} from 'react-router-dom'
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
 
 const styles = theme => ({
+
+	appBar: {
+		backgroundColor: "black"
+	},
 	title: {
 		fontSize: 16,
 	},
@@ -42,8 +47,13 @@ const styles = theme => ({
 	link: {
 		textDecoration: 'none',
 		color: 'black'
+	},
+	userName: {
+		color: 'white'
+	},
+	arrowDownIcon: {
+		color: "white"
 	}
-
 });
 
 const ProfileNavBar = (props) => {
@@ -61,7 +71,7 @@ const ProfileNavBar = (props) => {
 
 	return (
 		<div>
-			<AppBar position={"fixed"}>
+			<AppBar className={classes.appBar} position={"fixed"}>
 				<Toolbar className={classes.toolbar}>
 					<div className={classes.leftSmall}>
 						<Link
@@ -85,7 +95,16 @@ const ProfileNavBar = (props) => {
 							className={classes.button}
 							aria-haspopup="true"
 							onClick={handleClick}>
-							{props.username}
+							<Typography display={"block"}
+							            align={"justify"}
+							            className={classes.userName}
+							            gutterBottom={false}
+							            variant={"subtitle2"}
+							            component={"p"}>
+								{props.username}
+							</Typography>
+							<ArrowDropDownIcon className={classes.arrowDownIcon}>
+							</ArrowDropDownIcon>
 						</Button>
 						<Menu
 							id="simple-menu"

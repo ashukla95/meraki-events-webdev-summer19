@@ -21,7 +21,8 @@ const useStyles = makeStyles({
 	},
 
 	eventCard: {
-		marginTop: 10
+		marginTop: 10,
+		backgroundColor: "#f9f9f9"
 	}
 
 
@@ -40,8 +41,7 @@ const Events = ({section, events}) => {
 			</Grid>
 			<Grid item sm={12} md={12} lg={12}>
 				{events.map(event => (
-					<Card key={new Date().getTime()} className={classes.eventCard}
-					      style={{"backgroundColor": "#f9f9f9"}}>
+					<Card key={new Date().getTime()} className={classes.eventCard}>
 						<CardActionArea>
 							<Grid container spacing={2}>
 								<Grid item xs={12} sm={6} md={4} lg={3}>

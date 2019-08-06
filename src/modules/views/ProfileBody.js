@@ -5,18 +5,19 @@ import Events from "../components/Events";
 import Followers from "../components/Followers";
 import {Paper} from "@material-ui/core";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {grey} from "@material-ui/core/colors";
+import withRoot from "../withRoot";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
 	root: {
 		flexGrow: 1,
 	},
 	paper: {
-		padding: theme.spacing(2),
+		padding: theme.spacing(1),
+		margin: theme.spacing(1),
 		textAlign: 'center',
 		color: theme.palette.text.secondary,
-		backgroundColor: grey,
-		marginTop: 5
+		marginTop: 5,
+		marginRight:0
 	},
 
 	eventTitle: {
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 	profileBody: {
 		backgroundColor: "#757575",
 		height: "100%",
-		padding: 5
+		padding:4
 	}
 
 }));
@@ -38,26 +39,26 @@ const useStyles = makeStyles((theme) => ({
 const ProfileBody = ({profileData, events, networking}) => {
 	const classes = useStyles();
 	return (
-		<React.Fragment>
-			<Grid className={classes.profileBody} container spacing={2}>
+		<div className={classes.root}>
+			<Grid className={classes.profileBody} container direction={"row"} spacing={2}>
 				<Grid item lg={2} md={12} sm={12} xs={12} className={classes.demographics}>
 					<Grid container>
 						<Demographics
 							profileData={profileData}/>
 					</Grid>
 				</Grid>
-				<Grid item lg={7} md={12} sm={12} xs={12} margin={2} padding={2}>
+				<Grid item lg={7} md={12} sm={12} xs={12}>
 					<Paper className={classes.paper}>
 						<Grid container>
 							<Events
-								events={events.filter(event => event.isUpcomingEvent == true)}
+								events={events.filter(event => event.isUpcomingEvent === true)}
 								section={"Upcoming Events"}/>
 						</Grid>
 					</Paper>
 					<Paper elevation={2} className={classes.paper}>
 						<Grid container>
 							<Events
-								events={events.filter(event => event.isUpcomingEvent == false)}
+								events={events.filter(event => event.isUpcomingEvent === false)}
 								section={"Past Events"}/>
 						</Grid>
 					</Paper>
@@ -83,8 +84,8 @@ const ProfileBody = ({profileData, events, networking}) => {
 					</Paper>
 				</Grid>
 			</Grid>
-		</React.Fragment>
+		</div>
 	);
 };
 
-export default ProfileBody;
+export default (ProfileBody);
