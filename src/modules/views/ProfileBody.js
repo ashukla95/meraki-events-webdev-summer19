@@ -5,7 +5,6 @@ import Events from "../components/Events";
 import Followers from "../components/Followers";
 import {Paper} from "@material-ui/core";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import withRoot from "../withRoot";
 
 const useStyles = makeStyles(theme => ({
 	root: {

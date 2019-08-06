@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import ProfileNavBar from "./modules/views/ProfileNavBar";
 import ProfileBody from "./modules/views/ProfileBody";
-import withRoot from "./modules/withRoot";
-import Grid from "@material-ui/core/Grid";
 
 class Profile extends Component {
 	/*This section has summy data. Since, it was very limited, I just created it here. But after we discuss the db design,
