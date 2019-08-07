@@ -11,6 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { NavLink } from 'react-router-dom'
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
+import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
 
@@ -40,8 +41,6 @@ const styles = theme => ({
 	},
 	right: {
 		flex: 1,
-		justifyContent: "left",
-		display: 'flex',
 		marginLeft: 50
 	},
 	link: {
@@ -73,7 +72,7 @@ const ProfileNavBar = (props) => {
 		<div>
 			<AppBar className={classes.appBar} position={"fixed"}>
 				<Toolbar className={classes.toolbar}>
-					<div className={classes.leftSmall}>
+					<Grid item className={classes.leftSmall}>
 						<Link
 							underline="none"
 							color="inherit"
@@ -85,9 +84,8 @@ const ProfileNavBar = (props) => {
 								{'Meraki Events'}
 							</Typography>
 						</Link>
-					</div>
-					<div align={"center"} className={classes.left}></div>
-					<div className={classes.right}>
+					</Grid>
+					<Grid item>
 						<Button
 							aria-controls="simple-menu"
 							className={classes.button}
@@ -122,7 +120,7 @@ const ProfileNavBar = (props) => {
 							<MenuItem><NavLink className={classes.link} to={'/profile'}>My account</NavLink></MenuItem>
 							<MenuItem><NavLink className={classes.link} to={'/'}>Logout</NavLink></MenuItem>
 						</Menu>
-					</div>
+					</Grid>
 				</Toolbar>
 			</AppBar>
 			<div className={classes.placeholder} />
