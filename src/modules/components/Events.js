@@ -8,6 +8,9 @@ import LockOpenIcon from "@material-ui/icons/LockOpen"
 import DeleteIcon from "@material-ui/icons/Delete"
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Box from "@material-ui/core/Box";
+import Hidden from '@material-ui/core/Hidden';
+import PropTypes from 'prop-types';
+import withWidth from '@material-ui/core/withWidth';
 
 const useStyles = makeStyles({
 	title: {
@@ -23,7 +26,7 @@ const useStyles = makeStyles({
 	eventCard: {
 		marginTop: 10,
 		backgroundColor: "#f9f9f9"
-	}
+	},
 
 
 });
@@ -34,6 +37,7 @@ const Events = ({section, events}) => {
 		<React.Fragment>
 			<Grid className={classes.title}
 			      item
+			      xs={12}
 			      sm={12}
 			      md={12}
 			      lg={12}>
@@ -46,6 +50,7 @@ const Events = ({section, events}) => {
 			</Grid>
 			<Grid
 				item
+				xs={12}
 				sm={12}
 				md={12}
 				lg={12}>
@@ -53,28 +58,32 @@ const Events = ({section, events}) => {
 					<Card key={new Date().getTime()} className={classes.eventCard}>
 						<CardActionArea>
 							<Grid container spacing={2}>
-								<Grid item xs={6} sm={4} md={4} lg={3}>
+								<Grid item xs={6} sm={6} md={4} lg={3}>
 									<Box p={3}>
-										<Typography align={"justify"} variant={"body1"} component={"p"}>
+										<Typography align={"left"} variant={"body1"} component={"p"}>
 											{event.eventName}
 										</Typography>
 									</Box>
 								</Grid>
-								<Grid item xs={6} sm={2} md={2} lg={3}>
-									<Box p={3}>
-										<Typography align={"right"} variant={"body1"} component={"p"}>
-											{event.eventDate}
-										</Typography>
-									</Box>
-								</Grid>
-								<Grid item xs={6} sm={4} md={4} lg={3}>
-									<Box p={3}>
-										<Typography align={"justify"} variant={"body1"} component={"p"}>
-											{event.eventPlace}
-										</Typography>
-									</Box>
-								</Grid>
-								<Grid item xs={6} sm={2} md={2} lg={3}>
+								<Hidden smDown xsDown >
+									<Grid item xs={6} sm={2} md={2} lg={3}>
+										<Box p={3}>
+											<Typography align={"right"} variant={"body1"} component={"p"}>
+												{event.eventDate}
+											</Typography>
+										</Box>
+									</Grid>
+								</Hidden>
+								<Hidden smDown xsDown >
+									<Grid item xs={6} sm={4} md={4} lg={3}>
+										<Box p={3}>
+											<Typography align={"left"} variant={"body1"} component={"p"}>
+												{event.eventPlace}
+											</Typography>
+										</Box>
+									</Grid>
+								</Hidden>
+								<Grid item xs={6} sm={6} md={2} lg={3}>
 									<Box p={3}>
 										{event.eventVisibility === 'public' ?
 											<LockOpenIcon className={classes.iconButton}>
@@ -95,5 +104,4 @@ const Events = ({section, events}) => {
 		</React.Fragment>
 	);
 };
-
-export default Events;
+export default (Events);

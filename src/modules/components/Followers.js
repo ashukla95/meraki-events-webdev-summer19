@@ -51,17 +51,17 @@ const Followers = ({section, addFollowers, removeFollowers, networking}) => {
 							<Card key={new Date().getMilliseconds()} className={classes.network}>
 								<CardActionArea>
 									<Grid container spacing={2}>
-										<Grid item xs={12} sm={9} md={9} lg={9}>
+										<Grid item xs={6} sm={9} md={9} lg={9}>
 											<Box p={2}>
 												<Typography display={"block"}
 												            align={"justify"}
-												            variant={"body2"}
+												            variant={"body1"}
 												            component={"p"}>
 													{network}
 												</Typography>
 											</Box>
 										</Grid>
-										<Grid item xs={12} sm={3} md={3} lg={3}>
+										<Grid item xs={6} sm={3} md={3} lg={3}>
 											<Box p={2} className={classes.iconButton}>
 												{addFollowers && <AddIcon>
 												</AddIcon>}
