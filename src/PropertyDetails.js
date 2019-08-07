@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import TextSearchAPIService from './modules/APIServices/TextSearchAPIService'
+import TextSearchAPIService from './APIServices/TextSearchAPIService'
 import withRoot from "./modules/withRoot";
 import SearchBar from "./modules/views/SearchBar";
 import DetailsCard from "./modules/components/DetailsCard";
-import {Grid} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 class PropertyDetails extends Component {
     constructor(props) {
@@ -28,7 +28,7 @@ class PropertyDetails extends Component {
                         <DetailsCard
                             result={this.state.placeDetails}
                             imageHeight={365}
-                            showLearnMore={true}/>
+                            showLearnMore={true} />
                     </Grid>
                 </div>
             </div>

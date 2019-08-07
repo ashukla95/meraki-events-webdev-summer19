@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import withRoot from './modules/withRoot';
 import SearchBar from "./modules/views/SearchBar";
-import TextSearchAPIService from './modules/APIServices/TextSearchAPIService'
+import TextSearchAPIService from './APIServices/TextSearchAPIService'
 import SearchResult from './modules/views/SearchResult'
 import Grid from "@material-ui/core/Grid";
 
@@ -43,12 +43,12 @@ class Search extends Component {
                         search={this.search} />
                 </div>
                 <div className={"container"}>
-                        <Grid alignContent={"center"}
-                            container
-                            spacing={3}
-                            justify={"flex-start"}>
-                            <SearchResult autoCompleteResults={this.state.searchDataFromPlacesAPI} />
-                        </Grid>
+                    <Grid alignContent={"center"}
+                        container
+                        spacing={3}
+                        justify={"flex-start"}>
+                        <SearchResult autoCompleteResults={this.state.searchDataFromPlacesAPI} />
+                    </Grid>
                 </div>
             </div>
         )
