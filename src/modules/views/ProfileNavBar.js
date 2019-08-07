@@ -1,15 +1,15 @@
 import React from 'react';
-import {styles as toolbarStyles} from "../components/Toolbar";
+import { styles as toolbarStyles } from "../components/Toolbar";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
-import {AppBar} from "@material-ui/core";
+import { AppBar } from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
 
 const styles = theme => ({
@@ -57,7 +57,7 @@ const styles = theme => ({
 });
 
 const ProfileNavBar = (props) => {
-	const {classes} = props;
+	const { classes } = props;
 
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -80,15 +80,13 @@ const ProfileNavBar = (props) => {
 							className={classes.title}
 							href={"/"}>
 							<Typography variant={"h5"}
-							            align={"center"}
-							            color={"initial"}>
+								align={"center"}
+								color={"initial"}>
 								{'Meraki Events'}
 							</Typography>
 						</Link>
 					</div>
-					<div align={"center"} className={classes.left}>
-						Profile
-					</div>
+					<div align={"center"} className={classes.left}></div>
 					<div className={classes.right}>
 						<Button
 							aria-controls="simple-menu"
@@ -96,11 +94,11 @@ const ProfileNavBar = (props) => {
 							aria-haspopup="true"
 							onClick={handleClick}>
 							<Typography display={"block"}
-							            align={"justify"}
-							            className={classes.userName}
-							            gutterBottom={false}
-							            variant={"subtitle2"}
-							            component={"p"}>
+								align={"justify"}
+								className={classes.userName}
+								gutterBottom={false}
+								variant={"subtitle2"}
+								component={"p"}>
 								{props.username}
 							</Typography>
 							<ArrowDropDownIcon className={classes.arrowDownIcon}>
@@ -127,7 +125,7 @@ const ProfileNavBar = (props) => {
 					</div>
 				</Toolbar>
 			</AppBar>
-			<div className={classes.placeholder}/>
+			<div className={classes.placeholder} />
 		</div>
 	);
 };
