@@ -34,7 +34,10 @@ const Demographics = ({ profileData }) => {
 								/*This code iterates over the json data directly thereby eliminating the need to pass props separately.*/
 								<React.Fragment >
 									<Grid className={classes.dataPanel} item xs={12} sm={6} md={6} lg={6}>
-										{Object.keys(profileData).map(entry => <Typography display={"block"}
+										{Object.keys(profileData).map(entry => 
+										<Typography 
+											key={entry}
+											display={"block"}
 											align={"center"}
 											gutterBottom={false}
 											variant={"subtitle2"}
