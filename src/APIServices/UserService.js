@@ -9,6 +9,10 @@ export default class UserService {
     return this.oneInstance;
   }
 
+  getProfileSearchResult = () => {
+    return ["A","B","C"];
+  };
+
   getUserData() {
     return {
       primary: {

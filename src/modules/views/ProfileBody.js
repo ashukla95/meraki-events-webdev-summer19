@@ -9,6 +9,8 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 const useStyles = makeStyles(theme => ({
 	root: {
 		flexGrow: 1,
+		height: "100%",
+		backgroundColor: "#757575"
 	},
 	paper: {
 		padding: theme.spacing(1),
@@ -16,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 		textAlign: 'center',
 		color: theme.palette.text.secondary,
 		marginTop: 5,
-		marginRight:0
+		marginRight:0,
 	},
 
 	eventTitle: {

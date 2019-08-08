@@ -2,7 +2,7 @@ import React from 'react';
 import { styles as toolbarStyles } from "../components/Toolbar";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
-import { AppBar } from "@material-ui/core";
+import {AppBar, TextField} from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
@@ -12,6 +12,11 @@ import Menu from "@material-ui/core/Menu";
 import { NavLink } from 'react-router-dom'
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
 import Grid from "@material-ui/core/Grid";
+import InputBase from "@material-ui/core/InputBase";
+import {fade} from "@material-ui/core/styles";
+import SearchIcon from '@material-ui/icons/Search';
+import IconButton from "@material-ui/core/IconButton";
+import clsx from 'clsx';
 
 const styles = theme => ({
 
@@ -26,7 +31,7 @@ const styles = theme => ({
 		justifyContent: 'space-between',
 	},
 	left: {
-		flex: 4,
+		flex: 2,
 
 	},
 	leftLinkActive: {
@@ -52,7 +57,63 @@ const styles = theme => ({
 	},
 	arrowDownIcon: {
 		color: "white"
-	}
+	},
+	inputInput: {
+		padding: theme.spacing(1, 1, 1, 7),
+		transition: theme.transitions.create('width'),
+		width: '100%',
+		[theme.breakpoints.up('lg')]: {
+			width: 200,
+		},
+	},
+	search: {
+		position: 'relative',
+		borderRadius: theme.shape.borderRadius,
+		backgroundColor: fade(theme.palette.common.white, 0.15),
+		'&:hover': {
+			backgroundColor: fade(theme.palette.common.white, 0.25),
+		},
+		marginRight: theme.spacing(2),
+		marginLeft: 0,
+		width: '100%',
+		[theme.breakpoints.up('sm')]: {
+			marginLeft: theme.spacing(3),
+			width: 'auto',
+		},
+	},
+	searchIcon: {
+		width: theme.spacing(7),
+		height: '100%',
+		position: 'absolute',
+		pointerEvents: 'none',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	inputRoot: {
+		color: 'inherit',
+	},
+	textField: {
+		marginLeft: theme.spacing(1),
+		marginRight: theme.spacing(1),
+		backgroundColor: fade(theme.palette.common.white, 0.50),
+		'&:hover': {
+			backgroundColor: fade(theme.palette.common.white, 0.65),
+		},
+		borderRadius: "0.2em 0.2em 0.3em 0.3em "
+	},
+	rightLink: {
+		fontSize: 30,
+		color: theme.palette.common.white,
+		marginLeft: theme.spacing(2),
+	},
+	linkSecondary: {
+		color: theme.palette.secondary.main,
+	},
+	icon: {
+		margin: theme.spacing(1),
+		fontSize: 40,
+	},
 });
 
 const ProfileNavBar = (props) => {
@@ -85,7 +146,30 @@ const ProfileNavBar = (props) => {
 							</Typography>
 						</Link>
 					</Grid>
+					<Grid item className={classes.left}>
+						<TextField
+							id="filled-search"
+							label="Search User by ID"
+							autoFocus={false}
+							type="text"
+							fullWidth
+							margin={"dense"}
+							className={classes.textField}
+							variant={"filled"}
+							onChange={props.changeField}
+						/>
+					</Grid>
 					<Grid item>
+						<div className={classes.right}
+						     onClick={(flag) => props.renderProfileList(false)}>
+							<IconButton size={"small"}>
+								<SearchIcon
+									className={clsx(classes.rightLink, classes.linkSecondary, classes.icon)}>
+								</SearchIcon>
+							</IconButton>
+						</div>
+					</Grid>
+					<Grid item className={classes.right}>
 						<Button
 							aria-controls="simple-menu"
 							className={classes.button}
@@ -117,7 +201,7 @@ const ProfileNavBar = (props) => {
 							keepMounted
 							open={Boolean(anchorEl)}
 							onClose={redirectToProfile}>
-							<MenuItem><NavLink className={classes.link} to={'/profile'}>My account</NavLink></MenuItem>
+							<MenuItem onClick={(flag) => props.renderProfileList(true)}>My account</MenuItem>
 							<MenuItem><NavLink className={classes.link} to={'/'}>Logout</NavLink></MenuItem>
 						</Menu>
 					</Grid>
