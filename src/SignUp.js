@@ -9,7 +9,6 @@ import Typography from './modules/components/Typography';
 import AppFooter from './modules/views/AppFooter';
 import AppAppBar from './modules/views/AppAppBar';
 import AppForm from './modules/views/AppForm';
-import { email, required } from './modules/form/validation';
 import TextField from '@material-ui/core/TextField';
 import FormButton from './modules/form/FormButton';
 
@@ -29,19 +28,6 @@ const styles = theme => ({
 class SignUp extends React.Component {
   state = {
     sent: false,
-  };
-
-  validate = values => {
-    const errors = required(['firstName', 'lastName', 'email', 'password'], values, this.props);
-
-    if (!errors.email) {
-      const emailError = email(values.email, values, this.props);
-      if (emailError) {
-        errors.email = email(values.email, values, this.props);
-      }
-    }
-
-    return errors;
   };
 
   handleSubmit = () => {
