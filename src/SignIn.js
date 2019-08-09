@@ -13,7 +13,6 @@ import { email, required } from './modules/form/validation';
 import RFTextField from './modules/form/RFTextField';
 import FormButton from './modules/form/FormButton';
 import FormFeedback from './modules/form/FormFeedback';
-import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   form: {
@@ -46,7 +45,7 @@ class SignIn extends React.Component {
     return errors;
   };
 
-  handleSubmit = () => {};
+  handleSubmit = () => { };
 
   render() {
     const { classes } = this.props;
@@ -134,6 +133,10 @@ class SignIn extends React.Component {
 SignIn.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+
+const compose = (...funcs) => {
+  return funcs.reduce((a, b) => (...args) => a(b(...args)), arg => arg);
+}
 
 export default compose(
   withRoot,

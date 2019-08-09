@@ -2,7 +2,7 @@ import React from 'react';
 import { styles as toolbarStyles } from "../components/Toolbar";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
-import {AppBar, TextField} from "@material-ui/core";
+import { AppBar, TextField } from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
@@ -12,8 +12,7 @@ import Menu from "@material-ui/core/Menu";
 import { NavLink } from 'react-router-dom'
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
 import Grid from "@material-ui/core/Grid";
-import InputBase from "@material-ui/core/InputBase";
-import {fade} from "@material-ui/core/styles";
+import { fade } from "@material-ui/core/styles";
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from "@material-ui/core/IconButton";
 import clsx from 'clsx';
@@ -161,7 +160,7 @@ const ProfileNavBar = (props) => {
 					</Grid>
 					<Grid item>
 						<div className={classes.right}
-						     onClick={(flag) => props.renderProfileList(false)}>
+							onClick={(flag) => props.renderProfileList(false)}>
 							<IconButton size={"small"}>
 								<SearchIcon
 									className={clsx(classes.rightLink, classes.linkSecondary, classes.icon)}>
