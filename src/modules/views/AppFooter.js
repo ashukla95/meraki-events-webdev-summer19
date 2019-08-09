@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
 import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
-import TextField from '../components/TextField';
 
 const styles = theme => ({
   root: {
@@ -50,17 +48,6 @@ const styles = theme => ({
   },
 });
 
-const LANGUAGES = [
-  {
-    code: 'en-US',
-    name: 'English',
-  },
-  {
-    code: 'fr-FR',
-    name: 'Français',
-  },
-];
-
 function AppFooter(props) {
   const { classes } = props;
 
@@ -74,8 +61,7 @@ function AppFooter(props) {
               direction="column"
               justify="flex-end"
               className={classes.iconsWrapper}
-              spacing={2}
-            >
+              spacing={2}>
               <Grid item className={classes.icons}>
                 <a href="/book-now/" className={classes.icon}>
                   <img src="/appFooterFacebook.png" alt="Facebook" />
@@ -84,7 +70,7 @@ function AppFooter(props) {
                   <img src="/appFooterTwitter.png" alt="Twitter" />
                 </a>
               </Grid>
-              <Grid item>© 2018 Meraki Events</Grid>
+              <Grid item>© 2019 Meraki Events</Grid>
             </Grid>
           </Grid>
         </Grid>
