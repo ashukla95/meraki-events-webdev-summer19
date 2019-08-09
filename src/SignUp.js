@@ -5,15 +5,18 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import { Field, Form, FormSpy } from 'react-final-form';
+import { Form, FormSpy } from 'react-final-form';
 import Typography from './modules/components/Typography';
 import AppFooter from './modules/views/AppFooter';
 import AppAppBar from './modules/views/AppAppBar';
 import AppForm from './modules/views/AppForm';
 import { email, required } from './modules/form/validation';
-import RFTextField from './modules/form/RFTextField';
+// import RFTextField from './modules/form/RFTextField';
+import TextField from '@material-ui/core/TextField';
 import FormButton from './modules/form/FormButton';
 import FormFeedback from './modules/form/FormFeedback';
+// import TextField from './modules/components/TextField';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 
 const styles = theme => ({
   form: {
@@ -46,7 +49,7 @@ class SignUp extends React.Component {
     return errors;
   };
 
-  handleSubmit = () => { 
+  handleSubmit = () => {
     console.log('Handle submit');
   };
 
@@ -74,48 +77,27 @@ class SignUp extends React.Component {
             validate={this.validate}>
             {({ handleSubmit, submitting }) => (
               <form onSubmit={handleSubmit} className={classes.form} noValidate>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} alignItems="flex-end">
                   <Grid item xs={12} sm={6}>
-                    <Field
-                      autoFocus
-                      component={RFTextField}
-                      autoComplete="fname"
-                      fullWidth
-                      label="First name"
-                      name="firstName"
-                      required
-                    />
+                    <TextField fullWidth label="First Name" margin="normal" />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <Field
-                      component={RFTextField}
-                      autoComplete="lname"
+                    <TextField
                       fullWidth
-                      label="Last name"
-                      name="lastName"
                       required
+                      margin="normal"
+                      label="Last Name"
                     />
                   </Grid>
                 </Grid>
-                <Field
-                  autoComplete="email"
-                  component={RFTextField}
-                  disabled={submitting || sent}
+                <TextField
                   fullWidth
-                  label="Email"
+                  label="Username"
                   margin="normal"
-                  name="email"
-                  required
                 />
-                <Field
+                <TextField
                   fullWidth
-                  component={RFTextField}
-                  disabled={submitting || sent}
-                  required
-                  name="password"
-                  autoComplete="current-password"
                   label="Password"
-                  type="password"
                   margin="normal"
                 />
                 <FormSpy subscription={{ submitError: true }}>

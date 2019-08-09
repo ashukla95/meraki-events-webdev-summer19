@@ -2,7 +2,7 @@ import withRoot from './modules/withRoot';
 // --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field, Form } from 'react-final-form';
+// import { Field, Form } from 'react-final-form';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Typography from './modules/components/Typography';
@@ -10,8 +10,12 @@ import AppFooter from './modules/views/AppFooter';
 import AppAppBar from './modules/views/AppAppBar';
 import AppForm from './modules/views/AppForm';
 import { email, required } from './modules/form/validation';
-import RFTextField from './modules/form/RFTextField';
+// import RFTextField from './modules/form/RFTextField';
 import FormButton from './modules/form/FormButton';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Lock from '@material-ui/icons/Lock';
 
 const styles = theme => ({
   form: {
@@ -32,6 +36,7 @@ class SignIn extends React.Component {
   };
 
   validate = values => {
+    console.log(values)
     const errors = required(['email', 'password'], values, this.props);
 
     if (!errors.email) {
@@ -50,7 +55,6 @@ class SignIn extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { sent } = this.state;
 
     return (
       <React.Fragment>
@@ -67,47 +71,35 @@ class SignIn extends React.Component {
               </Link>
             </Typography>
           </React.Fragment>
-          <Form
-            onSubmit={this.handleSubmit}
-            subscription={{ submitting: true }}
-            validate={this.validate}>
-            {({ handleSubmit, submitting }) => (
-              <form onSubmit={handleSubmit} className={classes.form} noValidate>
-                <Field
-                  autoComplete="email"
-                  autoFocus
-                  component={RFTextField}
-                  disabled={submitting || sent}
-                  fullWidth
-                  label="Email"
-                  margin="normal"
-                  name="email"
-                  required
-                  size="large"
-                />
-                <Field
-                  fullWidth
-                  size="large"
-                  component={RFTextField}
-                  disabled={submitting || sent}
-                  required
-                  name="password"
-                  autoComplete="current-password"
-                  label="Password"
-                  type="password"
-                  margin="normal"
-                />
-                <FormButton
-                  className={classes.button}
-                  disabled={submitting || sent}
-                  size="large"
-                  color="secondary"
-                  fullWidth>
-                  {submitting || sent ? 'In progress…' : 'Sign In'}
-                </FormButton>
-              </form>
-            )}
-          </Form>
+          <Grid container spacing={1} alignItems="flex-end">
+            <Grid item xs={12} sm={12} md={12} lg={12}>
+              <Grid container spacing={1} alignItems="flex-end">
+                <Grid item xs={1} sm={1} md={1} lg={1}>
+                  <AccountCircle />
+                </Grid>
+                <Grid item xs={11} sm={11} md={11} lg={11}>
+                  <TextField fullWidth id="input-with-icon-grid" label="Username" margin="normal" />
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={12} sm={12} md={12} lg={12}>
+              <Grid container spacing={1} alignItems="flex-end">
+                <Grid item xs={1} sm={1} md={1} lg={1}>
+                  <Lock />
+                </Grid>
+                <Grid item xs={11} sm={11} md={11} lg={11}>
+                  <TextField fullWidth id="input-with-icon-grid" label="Password" margin="normal" />
+                </Grid>
+              </Grid>
+            </Grid>
+            <FormButton
+              className={classes.button}
+              size="large"
+              color="secondary"
+              fullWidth>
+              {'Sign In'}
+            </FormButton>
+          </Grid>
         </AppForm>
         <AppFooter />
       </React.Fragment>
