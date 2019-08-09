@@ -2,7 +2,7 @@ import withRoot from './modules/withRoot';
 // --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field, Form, FormSpy } from 'react-final-form';
+import { Field, Form } from 'react-final-form';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Typography from './modules/components/Typography';
@@ -12,7 +12,6 @@ import AppForm from './modules/views/AppForm';
 import { email, required } from './modules/form/validation';
 import RFTextField from './modules/form/RFTextField';
 import FormButton from './modules/form/FormButton';
-import FormFeedback from './modules/form/FormFeedback';
 
 const styles = theme => ({
   form: {
@@ -45,7 +44,9 @@ class SignIn extends React.Component {
     return errors;
   };
 
-  handleSubmit = () => { };
+  handleSubmit = () => {
+    console.log('Handling submit');
+  };
 
   render() {
     const { classes } = this.props;
@@ -61,7 +62,7 @@ class SignIn extends React.Component {
             </Typography>
             <Typography variant="body2" align="center">
               {'Not a member yet? '}
-              <Link href="/premium-themes/onepirate/sign-up/" align="center" underline="always">
+              <Link href="/sign-up/" align="center" underline="always">
                 Sign Up here
               </Link>
             </Typography>
@@ -69,8 +70,7 @@ class SignIn extends React.Component {
           <Form
             onSubmit={this.handleSubmit}
             subscription={{ submitting: true }}
-            validate={this.validate}
-          >
+            validate={this.validate}>
             {({ handleSubmit, submitting }) => (
               <form onSubmit={handleSubmit} className={classes.form} noValidate>
                 <Field
@@ -97,32 +97,17 @@ class SignIn extends React.Component {
                   type="password"
                   margin="normal"
                 />
-                <FormSpy subscription={{ submitError: true }}>
-                  {({ submitError }) =>
-                    submitError ? (
-                      <FormFeedback className={classes.feedback} error>
-                        {submitError}
-                      </FormFeedback>
-                    ) : null
-                  }
-                </FormSpy>
                 <FormButton
                   className={classes.button}
                   disabled={submitting || sent}
                   size="large"
                   color="secondary"
-                  fullWidth
-                >
+                  fullWidth>
                   {submitting || sent ? 'In progress…' : 'Sign In'}
                 </FormButton>
               </form>
             )}
           </Form>
-          <Typography align="center">
-            <Link underline="always" href="/premium-themes/onepirate/forgot-password/">
-              Forgot password?
-            </Link>
-          </Typography>
         </AppForm>
         <AppFooter />
       </React.Fragment>

@@ -46,7 +46,9 @@ class SignUp extends React.Component {
     return errors;
   };
 
-  handleSubmit = () => { };
+  handleSubmit = () => { 
+    console.log('Handle submit');
+  };
 
   render() {
     const { classes } = this.props;
@@ -61,7 +63,7 @@ class SignUp extends React.Component {
               Sign Up
             </Typography>
             <Typography variant="body2" align="center">
-              <Link href="/premium-themes/onepirate/sign-in/" underline="always">
+              <Link href="/sign-in/" underline="always">
                 Already have an account?
               </Link>
             </Typography>
@@ -69,8 +71,7 @@ class SignUp extends React.Component {
           <Form
             onSubmit={this.handleSubmit}
             subscription={{ submitting: true }}
-            validate={this.validate}
-          >
+            validate={this.validate}>
             {({ handleSubmit, submitting }) => (
               <form onSubmit={handleSubmit} className={classes.form} noValidate>
                 <Grid container spacing={2}>
