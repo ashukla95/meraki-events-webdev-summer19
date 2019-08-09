@@ -2,7 +2,6 @@ import withRoot from './modules/withRoot';
 // --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Field, Form } from 'react-final-form';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Typography from './modules/components/Typography';
@@ -10,7 +9,6 @@ import AppFooter from './modules/views/AppFooter';
 import AppAppBar from './modules/views/AppAppBar';
 import AppForm from './modules/views/AppForm';
 import { email, required } from './modules/form/validation';
-// import RFTextField from './modules/form/RFTextField';
 import FormButton from './modules/form/FormButton';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
@@ -31,12 +29,8 @@ const styles = theme => ({
 });
 
 class SignIn extends React.Component {
-  state = {
-    sent: false,
-  };
 
   validate = values => {
-    console.log(values)
     const errors = required(['email', 'password'], values, this.props);
 
     if (!errors.email) {
@@ -94,6 +88,7 @@ class SignIn extends React.Component {
             </Grid>
             <FormButton
               className={classes.button}
+              onClick={this.handleSubmit}
               size="large"
               color="secondary"
               fullWidth>
