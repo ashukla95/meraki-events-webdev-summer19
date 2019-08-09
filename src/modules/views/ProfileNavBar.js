@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { styles as toolbarStyles } from "../components/Toolbar";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -12,7 +12,6 @@ import Menu from "@material-ui/core/Menu";
 import { NavLink } from 'react-router-dom'
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
 import Grid from "@material-ui/core/Grid";
-import InputBase from "@material-ui/core/InputBase";
 import {fade} from "@material-ui/core/styles";
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from "@material-ui/core/IconButton";
@@ -119,7 +118,13 @@ const styles = theme => ({
 const ProfileNavBar = (props) => {
 	const { classes } = props;
 
-	const [anchorEl, setAnchorEl] = React.useState(null);
+	const [anchorEl, setAnchorEl] = useState(null);
+	const [formData, setFormData] = useState('');
+
+	function changeField(event) {
+		setFormData(event.currentTarget.value);
+		console.log("This form: ", formData);
+	}
 
 	function handleClick(event) {
 		setAnchorEl(event.currentTarget);
@@ -156,12 +161,13 @@ const ProfileNavBar = (props) => {
 							margin={"dense"}
 							className={classes.textField}
 							variant={"filled"}
-							onChange={props.changeField}
+							value={formData}
+							onChange={(event) => setFormData(event.target.value)}
 						/>
 					</Grid>
 					<Grid item>
 						<div className={classes.right}
-						     onClick={(flag) => props.renderProfileList(false)}>
+						     onClick={(flag, data) => props.renderProfileList(false, formData)}>
 							<IconButton size={"small"}>
 								<SearchIcon
 									className={clsx(classes.rightLink, classes.linkSecondary, classes.icon)}>

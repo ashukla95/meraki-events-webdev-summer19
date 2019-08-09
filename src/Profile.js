@@ -11,37 +11,37 @@ class Profile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			...userService.getUserData(),
+			userData: userService.getUserData(),
 			displayProfile: true,
 			searchFormData: '',
 			profileSearchResult: []
 		};
 	}
 
+
 	changeField = (evt) => {
+		console.log("event received: ", evt.target.value);
 		/*This function keeps a track of the data inserted in the textfield of the search page.*/
 		this.setState({
 			searchFormData: evt.target.value
-		})
+		}, () => {console.log("state at this moment: ", this.state)})
 	};
 
-	componentDidUpdate(prevProps, prevState, snapshot) {
-		console.log("**************************************************************")
-		console.log("prev state: ", prevState);
-		console.log("this state: ", this.state);
-		if((!this.state.displayProfile) && (this.state.searchFormData !== prevState.searchFormData)) {
-			console.log("Setting search result.");
+	generateProfileList() {
+		if((!this.state.displayProfile) && (this.state.searchFormData !== '')) {
 			this.setState({
-				profileSearchResult: userService.getProfileSearchResult()
-			})
+				profileSearchResult: userService.getProfileSearchResult(),
+				searchFormData: ''
+			});
 		}
-		this.render();
 	}
 
-	renderProfileList = (flag) => {
+	renderProfileList = (flag, formData) => {
+		console.log("Inside render profile function. Setting flag to: ", flag, " formData: ", formData);
 		this.setState({
-			displayProfile: flag
-		});
+			displayProfile: flag,
+			searchFormData: formData
+		}, () => {this.generateProfileList()});
 	};
 
 	render() {
@@ -53,9 +53,9 @@ class Profile extends Component {
 					username={"Username"}/>
 				{this.state.displayProfile ?
 					<ProfileBody
-						events={this.state.events}
-						networking={this.state.followers}
-						profileData={this.state.primary}/>
+						events={this.state.userData.events}
+						networking={this.state.userData.followers}
+						profileData={this.state.userData.primary}/>
 					:
 					<ProfileList searchResult={this.state.profileSearchResult}/>}
 

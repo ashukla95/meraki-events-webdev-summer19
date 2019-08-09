@@ -38,6 +38,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ProfileBody = ({profileData, events, networking}) => {
+	console.log("events: ", events);
+	console.log("networking: ", networking);
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>

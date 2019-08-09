@@ -32,6 +32,7 @@ const useStyles = makeStyles({
 });
 
 const Events = ({section, events}) => {
+	console.log("events received for section: ", section, " are: ", events);
 	const classes = useStyles();
 	return (
 		<React.Fragment>

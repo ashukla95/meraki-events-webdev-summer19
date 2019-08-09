@@ -16,6 +16,7 @@ const routing = (
     <Route path={"/book-now/"} component={Home} />
     <Route path={"/property/:placeId/"} component={PropertyDetails} />
     <Route path={"/profile"} component={Profile}/>
+    <Route exact path={"/profile/:profileId"} component={Profile}/>
   </Router>
 );
 
