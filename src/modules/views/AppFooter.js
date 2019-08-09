@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
 import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
-import TextField from '../components/TextField';
 
 const styles = theme => ({
   root: {
@@ -50,17 +48,6 @@ const styles = theme => ({
   },
 });
 
-const LANGUAGES = [
-  {
-    code: 'en-US',
-    name: 'English',
-  },
-  {
-    code: 'fr-FR',
-    name: 'Français',
-  },
-];
-
 function AppFooter(props) {
   const { classes } = props;
 
@@ -74,8 +61,7 @@ function AppFooter(props) {
               direction="column"
               justify="flex-end"
               className={classes.iconsWrapper}
-              spacing={2}
-            >
+              spacing={2}>
               <Grid item className={classes.icons}>
                 <a href="/book-now/" className={classes.icon}>
                   <img src="/appFooterFacebook.png" alt="Facebook" />
@@ -84,60 +70,8 @@ function AppFooter(props) {
                   <img src="/appFooterTwitter.png" alt="Twitter" />
                 </a>
               </Grid>
-              <Grid item>© 2018 Meraki Events</Grid>
+              <Grid item>© 2019 Meraki Events</Grid>
             </Grid>
-          </Grid>
-          <Grid item xs={6} sm={4} md={2}>
-            <Typography variant="h6" marked="left" gutterBottom>
-              Legal
-            </Typography>
-            <ul className={classes.list}>
-              <li className={classes.listItem}>
-                <Link href="">Terms</Link>
-              </li>
-              <li className={classes.listItem}>
-                <Link href="">Privacy</Link>
-              </li>
-            </ul>
-          </Grid>
-          <Grid item xs={6} sm={8} md={4}>
-            <Typography variant="h6" marked="left" gutterBottom>
-              Language
-            </Typography>
-            <TextField
-              select
-              SelectProps={{
-                native: true,
-              }}
-              className={classes.language}
-            >
-              {LANGUAGES.map(language => (
-                <option value={language.code} key={language.code}>
-                  {language.name}
-                </option>
-              ))}
-            </TextField>
-          </Grid>
-          <Grid item>
-            <Typography variant="caption">
-              {'Icons made by '}
-              <Link href="https://www.freepik.com" rel="nofollow" title="Freepik">
-                Freepik
-              </Link>
-              {' from '}
-              <Link href="https://www.flaticon.com" rel="nofollow" title="Flaticon">
-                www.flaticon.com
-              </Link>
-              {' is licensed by '}
-              <Link
-                href="https://creativecommons.org/licenses/by/3.0/"
-                title="Creative Commons BY 3.0"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                CC 3.0 BY
-              </Link>
-            </Typography>
           </Grid>
         </Grid>
       </Container>

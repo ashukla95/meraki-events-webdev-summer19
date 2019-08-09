@@ -2,7 +2,6 @@ import withRoot from './modules/withRoot';
 // --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field, Form, FormSpy } from 'react-final-form';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Typography from './modules/components/Typography';
@@ -10,10 +9,11 @@ import AppFooter from './modules/views/AppFooter';
 import AppAppBar from './modules/views/AppAppBar';
 import AppForm from './modules/views/AppForm';
 import { email, required } from './modules/form/validation';
-import RFTextField from './modules/form/RFTextField';
 import FormButton from './modules/form/FormButton';
-import FormFeedback from './modules/form/FormFeedback';
-import compose from 'docs/src/modules/utils/compose';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Lock from '@material-ui/icons/Lock';
 
 const styles = theme => ({
   form: {
@@ -29,9 +29,6 @@ const styles = theme => ({
 });
 
 class SignIn extends React.Component {
-  state = {
-    sent: false,
-  };
 
   validate = values => {
     const errors = required(['email', 'password'], values, this.props);
@@ -46,11 +43,12 @@ class SignIn extends React.Component {
     return errors;
   };
 
-  handleSubmit = () => {};
+  handleSubmit = () => {
+    console.log('Handling submit');
+  };
 
   render() {
     const { classes } = this.props;
-    const { sent } = this.state;
 
     return (
       <React.Fragment>
@@ -62,68 +60,41 @@ class SignIn extends React.Component {
             </Typography>
             <Typography variant="body2" align="center">
               {'Not a member yet? '}
-              <Link href="/premium-themes/onepirate/sign-up/" align="center" underline="always">
+              <Link href="/sign-up/" align="center" underline="always">
                 Sign Up here
               </Link>
             </Typography>
           </React.Fragment>
-          <Form
-            onSubmit={this.handleSubmit}
-            subscription={{ submitting: true }}
-            validate={this.validate}
-          >
-            {({ handleSubmit, submitting }) => (
-              <form onSubmit={handleSubmit} className={classes.form} noValidate>
-                <Field
-                  autoComplete="email"
-                  autoFocus
-                  component={RFTextField}
-                  disabled={submitting || sent}
-                  fullWidth
-                  label="Email"
-                  margin="normal"
-                  name="email"
-                  required
-                  size="large"
-                />
-                <Field
-                  fullWidth
-                  size="large"
-                  component={RFTextField}
-                  disabled={submitting || sent}
-                  required
-                  name="password"
-                  autoComplete="current-password"
-                  label="Password"
-                  type="password"
-                  margin="normal"
-                />
-                <FormSpy subscription={{ submitError: true }}>
-                  {({ submitError }) =>
-                    submitError ? (
-                      <FormFeedback className={classes.feedback} error>
-                        {submitError}
-                      </FormFeedback>
-                    ) : null
-                  }
-                </FormSpy>
-                <FormButton
-                  className={classes.button}
-                  disabled={submitting || sent}
-                  size="large"
-                  color="secondary"
-                  fullWidth
-                >
-                  {submitting || sent ? 'In progress…' : 'Sign In'}
-                </FormButton>
-              </form>
-            )}
-          </Form>
-          <Typography align="center">
-            <Link underline="always" href="/premium-themes/onepirate/forgot-password/">
-              Forgot password?
-            </Link>
-          </Typography>
+          <Grid container spacing={1} alignItems="flex-end">
+            <Grid item xs={12} sm={12} md={12} lg={12}>
+              <Grid container spacing={1} alignItems="flex-end">
+                <Grid item xs={1} sm={1} md={1} lg={1}>
+                  <AccountCircle />
+                </Grid>
+                <Grid item xs={11} sm={11} md={11} lg={11}>
+                  <TextField fullWidth id="input-with-icon-grid" label="Username" margin="normal" />
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={12} sm={12} md={12} lg={12}>
+              <Grid container spacing={1} alignItems="flex-end">
+                <Grid item xs={1} sm={1} md={1} lg={1}>
+                  <Lock />
+                </Grid>
+                <Grid item xs={11} sm={11} md={11} lg={11}>
+                  <TextField fullWidth id="input-with-icon-grid" label="Password" margin="normal" />
+                </Grid>
+              </Grid>
+            </Grid>
+            <FormButton
+              className={classes.button}
+              onClick={this.handleSubmit}
+              size="large"
+              color="secondary"
+              fullWidth>
+              {'Sign In'}
+            </FormButton>
+          </Grid>
         </AppForm>
         <AppFooter />
       </React.Fragment>
@@ -134,6 +105,10 @@ class SignIn extends React.Component {
 SignIn.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+
+const compose = (...funcs) => {
+  return funcs.reduce((a, b) => (...args) => a(b(...args)), arg => arg);
+}
 
 export default compose(
   withRoot,

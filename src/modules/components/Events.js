@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from "@material-ui/core/Grid";
-import {Card} from "@material-ui/core";
+import { Card } from "@material-ui/core";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Typography from "@material-ui/core/Typography";
 import LockIcon from "@material-ui/icons/Lock"
@@ -9,8 +9,6 @@ import DeleteIcon from "@material-ui/icons/Delete"
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Box from "@material-ui/core/Box";
 import Hidden from '@material-ui/core/Hidden';
-import PropTypes from 'prop-types';
-import withWidth from '@material-ui/core/withWidth';
 
 const useStyles = makeStyles({
 	title: {
@@ -37,16 +35,16 @@ const Events = ({section, events}) => {
 	return (
 		<React.Fragment>
 			<Grid className={classes.title}
-			      item
-			      xs={12}
-			      sm={12}
-			      md={12}
-			      lg={12}>
+				item
+				xs={12}
+				sm={12}
+				md={12}
+				lg={12}>
 				<Typography align={"justify"}
-				            variant={"h6"}
-				            display={"inline"}
-				            gutterBottom={true}
-				            component={"p"}>{section}
+					variant={"h6"}
+					display={"inline"}
+					gutterBottom={true}
+					component={"p"}>{section}
 				</Typography>
 			</Grid>
 			<Grid

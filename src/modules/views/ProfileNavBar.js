@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { styles as toolbarStyles } from "../components/Toolbar";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
-import {AppBar, TextField} from "@material-ui/core";
+import { AppBar, TextField } from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
@@ -12,7 +12,7 @@ import Menu from "@material-ui/core/Menu";
 import { NavLink } from 'react-router-dom'
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
 import Grid from "@material-ui/core/Grid";
-import {fade} from "@material-ui/core/styles";
+import { fade } from "@material-ui/core/styles";
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from "@material-ui/core/IconButton";
 import clsx from 'clsx';
