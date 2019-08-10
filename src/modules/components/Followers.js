@@ -9,6 +9,7 @@ import RemoveIcon from "@material-ui/icons/Remove"
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles({
 	title: {
@@ -29,6 +30,11 @@ const useStyles = makeStyles({
 	seeMore: {
 		float: "right",
 		marginTop: 10
+	},
+
+	linkData:{
+		textDecoration:"none",
+		color: 'black'
 	}
 
 });
@@ -58,24 +64,23 @@ const Followers = ({section, addFollowers, removeFollowers, networking, unFollow
 											            align={"justify"}
 											            variant={"body1"}
 											            component={"p"}>
-												{network}
+												<Link className={classes.linkData} to={`/profile/${network}`}>{network}</Link>
 											</Typography>
 										</Box>
 									</Grid>
-									<CardActions>
-										<Grid item xs={6} sm={3} md={3} lg={3}>
-											<Box p={2} className={classes.iconButton}>
-												{addFollowers && <Button>
-													<AddIcon>
-													</AddIcon>
-												</Button>}
-												{removeFollowers && <Button onClick={(follow, follower) => unFollowUser(networking, window.localStorage.getItem("currentUser"))}>
-													<RemoveIcon>
-													</RemoveIcon>
-												</Button>}
-											</Box>
-										</Grid>
-									</CardActions>
+									<Grid item xs={6} sm={3} md={3} lg={3}>
+										<Box p={2} className={classes.iconButton}>
+											{addFollowers && <Button>
+												<AddIcon>
+												</AddIcon>
+											</Button> ||
+											removeFollowers && <Button
+												onClick={(follow, follower) => unFollowUser(networking, localStorage.getItem("currentUser"))}>
+												<RemoveIcon>
+												</RemoveIcon>
+											</Button>}
+										</Box>
+									</Grid>
 								</Grid>
 							</Card>
 						)

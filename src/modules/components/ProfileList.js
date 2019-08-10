@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ProfileList = ({searchResult, followUser, unFollowUser}) => {
-	console.log("search result: ", searchResult);
+	//console.log("search result: ", searchResult);
 	const classes = useStyles();
 	return (
 		<React.Fragment>

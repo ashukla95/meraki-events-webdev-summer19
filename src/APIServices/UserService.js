@@ -15,7 +15,7 @@ export default class UserService {
 	};
 
 	getUserData(username) {
-		console.log("username received: ", username);
+		//console.log("username received: ", username);
 		return fetch(`https://meraki-backend-wbdv.herokuapp.com/api/user/${username}`)
 			.then(response => response.json())
 	}

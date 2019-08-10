@@ -37,8 +37,8 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const ProfileBody = ({username, firstName, lastName, events, followers, following, unFollowUser}) => {
-	console.log("events: ", events);
+const ProfileBody = ({username, firstName, lastName, events, followers, following, unFollowUser, changeVisibiltiy}) => {
+	//console.log("events: ", events);
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
@@ -54,22 +54,26 @@ const ProfileBody = ({username, firstName, lastName, events, followers, followin
 				<Grid item lg={7} md={12} sm={12} xs={12}>
 					<Paper className={classes.paper}>
 						<Grid container>
-							{(events === [])?
+							{(events !== [])?
 								<Events
-									events={events.filter(event => event.isUpcomingEvent === true)}
+									changeVisibiltiy={changeVisibiltiy}
+									events={events.filter(event => new Date(event.date) > new Date())}
 									section={"Upcoming Events"}/>:
 								<Events
+									changeVisibiltiy={changeVisibiltiy}
 									events={events}
 									section={"Upcoming Events"}/>}
 						</Grid>
 					</Paper>
 					<Paper elevation={2} className={classes.paper}>
 						<Grid container>
-							{(events === [])?
+							{(events !== [])?
 								<Events
-									events={events.filter(event => event.isUpcomingEvent === false)}
+									changeVisibiltiy={changeVisibiltiy}
+									events={events.filter(event => new Date(event.date) < new Date())}
 									section={"Past Events"}/>:
 								<Events
+									changeVisibiltiy={changeVisibiltiy}
 									events={events}
 									section={"Past Events"}/>}
 						</Grid>

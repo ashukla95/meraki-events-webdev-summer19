@@ -10,6 +10,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import Box from "@material-ui/core/Box";
 import Hidden from '@material-ui/core/Hidden';
 import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles({
 	title: {
@@ -30,8 +31,8 @@ const useStyles = makeStyles({
 
 });
 
-const Events = ({section, events}) => {
-	console.log("events received for section: ", section, " are: ", events);
+const Events = ({section, events, changeVisibiltiy}) => {
+	//console.log("events received for section: ", section, " are: ", events);
 	const classes = useStyles();
 	return (
 		<React.Fragment>
@@ -56,55 +57,57 @@ const Events = ({section, events}) => {
 				lg={12}>
 				{(typeof events !== "undefined" && events.length !== 0) ? events.map(event => (
 						<Card key={new Date().getTime()} className={classes.eventCard}>
-							<CardActionArea>
-								<Grid container spacing={2}>
-									<Grid item xs={6} sm={6} md={4} lg={3}>
+
+							<Grid container spacing={2}>
+								<Grid item xs={6} sm={6} md={4} lg={3}>
+									<Box p={3}>
+										<Typography align={"left"} variant={"body1"} component={"p"}>
+											{event.eventName}
+										</Typography>
+									</Box>
+								</Grid>
+								<Hidden smDown xsDown>
+									<Grid item xs={6} sm={2} md={2} lg={3}>
 										<Box p={3}>
-											<Typography align={"left"} variant={"body1"} component={"p"}>
-												{event.eventName}
+											<Typography align={"right"} variant={"body1"} component={"p"}>
+												{new Date(event.date).getDate()+'/'+new Date(event.date).getMonth()+'/'+new Date(event.date).getFullYear()}
 											</Typography>
 										</Box>
 									</Grid>
-									<Hidden smDown xsDown>
-										<Grid item xs={6} sm={2} md={2} lg={3}>
-											<Box p={3}>
-												<Typography align={"right"} variant={"body1"} component={"p"}>
-													{event.eventDate}
-												</Typography>
-											</Box>
-										</Grid>
-									</Hidden>
-									<Hidden smDown xsDown>
-										<Grid item xs={6} sm={4} md={4} lg={3}>
-											<Box p={3}>
-												<Typography align={"left"} variant={"body1"} component={"p"}>
-													{event.eventPlace}
-												</Typography>
-											</Box>
-										</Grid>
-									</Hidden>
-									<Grid item xs={6} sm={6} md={2} lg={3}>
+								</Hidden>
+								<Hidden smDown xsDown>
+									<Grid item xs={6} sm={4} md={4} lg={3}>
 										<Box p={3}>
-											{event.eventVisibility === 'public' ?
-												<LockOpenIcon className={classes.iconButton}>
-												</LockOpenIcon>
-												:
-												<LockIcon className={classes.iconButton}>
-												</LockIcon>
-											}
-											<DeleteIcon className={classes.iconButton}>
-											</DeleteIcon>
+											<Typography align={"left"} variant={"body1"} component={"p"}>
+												{event.location}
+											</Typography>
 										</Box>
 									</Grid>
+								</Hidden>
+								<Grid item xs={6} sm={6} md={2} lg={3}>
+									<Box p={3}>
+										{event.isPrivate ?
+											<Button onClick={(value, eventData) => changeVisibiltiy(false, event)}>
+												<LockIcon className={classes.iconButton}>
+												</LockIcon>
+											</Button>
+											:
+											<Button onClick={(value, eventData) => changeVisibiltiy(true, event)}>
+												<LockOpenIcon className={classes.iconButton}>
+												</LockOpenIcon>
+											</Button>
+										}
+
+									</Box>
 								</Grid>
-							</CardActionArea>
+							</Grid>
+
 						</Card>
 					))
 					:
-
-								<Typography variant={"body2"} component={"p"} align={"center"}>
-									There are no {section}
-								</Typography>
+					<Typography variant={"body2"} component={"p"} align={"center"}>
+						There are no {section}
+					</Typography>
 
 				}
 			</Grid>
