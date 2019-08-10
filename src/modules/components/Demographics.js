@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
-import {CardContent} from "@material-ui/core";
+import { CardContent } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 
 });
 
-const Demographics = ({profileData}) => {
+const Demographics = ({ profileData }) => {
 	const classes = useStyles();
 	return (
 		<React.Fragment>
@@ -33,10 +33,10 @@ const Demographics = ({profileData}) => {
 							{
 								/*This code iterates over the json data directly thereby eliminating the need to pass props separately.*/
 								<React.Fragment>
-									{Object.keys(profileData).map(entry =>
-										<Grid className={classes.dataPanel} item xs={12} sm={12} md={12} lg={12}>
+									{Object.keys(profileData).map((entry, index) =>
+										<Grid key={index} className={classes.dataPanel} item xs={12} sm={12} md={12} lg={12}>
 											<Typography
-												key={entry}
+												key={index}
 												display={"initial"}
 												align={"justify"}
 												gutterBottom={false}

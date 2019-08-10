@@ -1,6 +1,6 @@
 export default class UserService {
   static oneInstance = null;
-
+  backendUrl = "http://localhost:8080";
   //return a single instance of the TextSearchAPIService class.
   static getInstance() {
     if (this.oneInstance === null) {
@@ -10,8 +10,21 @@ export default class UserService {
   }
 
   getProfileSearchResult = () => {
-    return ["A","B","C"];
+    return ["A", "B", "C"];
   };
+
+  createUser(user) {
+    return fetch(`${this.backendUrl}/api/user`, {
+      method: 'post',
+      body: JSON.stringify(user),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      return response.json()
+    }).catch((error) => console.log(error));
+  }
 
   getUserData() {
     return {

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { styles as toolbarStyles } from "../components/Toolbar";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -121,10 +121,10 @@ const ProfileNavBar = (props) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [formData, setFormData] = useState('');
 
-	function changeField(event) {
-		setFormData(event.currentTarget.value);
-		console.log("This form: ", formData);
-	}
+	// function changeField(event) {
+	// 	setFormData(event.currentTarget.value);
+	// 	console.log("This form: ", formData);
+	// }
 
 	function handleClick(event) {
 		setAnchorEl(event.currentTarget);
@@ -167,7 +167,7 @@ const ProfileNavBar = (props) => {
 					</Grid>
 					<Grid item>
 						<div className={classes.right}
-						     onClick={(flag, data) => props.renderProfileList(false, formData)}>
+							onClick={(flag, data) => props.renderProfileList(false, formData)}>
 							<IconButton size={"small"}>
 								<SearchIcon
 									className={clsx(classes.rightLink, classes.linkSecondary, classes.icon)}>
