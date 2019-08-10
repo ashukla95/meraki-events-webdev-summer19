@@ -33,8 +33,8 @@ const styles = theme => ({
 
 class SignIn extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       profile: {
         username: "",
@@ -79,6 +79,7 @@ class SignIn extends React.Component {
     return (
       <React.Fragment>
         {this.state.redirect && <Redirect to="/profile" />}
+        {this.props.location.clearData && window.localStorage.clear()}
         <AppAppBar />
         <AppForm>
           <React.Fragment>

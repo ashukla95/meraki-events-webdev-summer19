@@ -108,7 +108,7 @@ class Profile extends Component {
 							userData: response,
 							displayProfile: true,
 							searchFormData: '',
-							profileSearchResult: null
+							profileSearchresult: null
 						})
 					}))
 	};
