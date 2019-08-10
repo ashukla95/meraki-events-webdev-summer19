@@ -16,7 +16,6 @@ class Profile extends Component {
 		console.log("window storage: ", localStorage);
 		if (props.match.params.profileId === null || props.match.params.profileId === undefined) {
 			this.userNameToBeSearched = localStorage.getItem("currentUser");
-			//console.log("username to be searched: ", this.userNameToBeSearched)
 		} else {
 			this.userNameToBeSearched = props.match.params.profileId
 		}
@@ -25,7 +24,8 @@ class Profile extends Component {
 			displayProfile: true,
 			searchFormData: '',
 			profileSearchResult: null,
-			eventList: []
+			eventList: [],
+			profileId: props.match.params.profileId
 
 		}
 	}
@@ -93,7 +93,7 @@ class Profile extends Component {
 							userData: response,
 							displayProfile: true,
 							searchFormData: '',
-							profileSearchresult: null
+							profileSearchResult: null
 						})
 					}))
 	};
@@ -140,6 +140,7 @@ class Profile extends Component {
 					username={localStorage.getItem("currentUser")}/>
 				{this.state.displayProfile ?
 					<ProfileBody
+						profileId={this.state.profileId}
 						changeVisibiltiy={this.changeVisibiltiy}
 						events={this.state.eventList}
 						unFollowUser={this.unFollowUser}

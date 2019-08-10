@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const ProfileBody = ({username, firstName, lastName, events, followers, following, unFollowUser, changeVisibiltiy}) => {
+const ProfileBody = ({username, firstName, lastName, events, followers, following, unFollowUser, changeVisibiltiy, profileId}) => {
 	//console.log("events: ", events);
 	const classes = useStyles();
 	return (
@@ -56,10 +56,12 @@ const ProfileBody = ({username, firstName, lastName, events, followers, followin
 						<Grid container>
 							{(events !== [])?
 								<Events
+									profileId={profileId}
 									changeVisibiltiy={changeVisibiltiy}
 									events={events.filter(event => new Date(event.date) > new Date())}
 									section={"Upcoming Events"}/>:
 								<Events
+									profileId={profileId}
 									changeVisibiltiy={changeVisibiltiy}
 									events={events}
 									section={"Upcoming Events"}/>}
@@ -69,10 +71,12 @@ const ProfileBody = ({username, firstName, lastName, events, followers, followin
 						<Grid container>
 							{(events !== [])?
 								<Events
+									profileId={profileId}
 									changeVisibiltiy={changeVisibiltiy}
 									events={events.filter(event => new Date(event.date) < new Date())}
 									section={"Past Events"}/>:
 								<Events
+									profileId={profileId}
 									changeVisibiltiy={changeVisibiltiy}
 									events={events}
 									section={"Past Events"}/>}
