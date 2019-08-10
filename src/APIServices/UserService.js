@@ -36,6 +36,18 @@ export default class UserService {
       .catch(error => error);
   }
 
+  login(username, password) {
+    return fetch(`${this.backendUrl}/api/login`, {
+      method: 'post',
+      body: JSON.stringify({ username, password }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(user => user.json())
+      .catch(error => undefined);
+  }
+
   getUserData() {
     return {
       primary: {

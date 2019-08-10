@@ -13,12 +13,12 @@ const routing = (
     <Route exact path={"/"} component={Home} />
     <Route exact path={"/home"} component={Home} />
     <Route path={"/search/"} component={Search} />
-    <Route path={"/sign-in/"} component={SignIn} />
-    <Route path={"/sign-up/"} component={SignUp} />
+    <Route path={"/login/"} component={SignIn} />
+    <Route path={"/register/"} component={SignUp} />
     <Route path={"/book-now/"} component={Home} />
     <Route path={"/property/:placeId/"} component={PropertyDetails} />
-    <Route path={"/profile"} component={Profile}/>
-    <Route exact path={"/profile/:profileId"} component={Profile}/>
+    <Route path={"/profile"} component={Profile} />
+    <Route exact path={"/profile/:profileId"} component={Profile} />
   </Router>
 );
 
