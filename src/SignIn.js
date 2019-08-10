@@ -2,18 +2,21 @@ import withRoot from './modules/withRoot';
 // --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Typography from './modules/components/Typography';
 import AppFooter from './modules/views/AppFooter';
 import AppAppBar from './modules/views/AppAppBar';
 import AppForm from './modules/views/AppForm';
-import { email, required } from './modules/form/validation';
 import FormButton from './modules/form/FormButton';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Lock from '@material-ui/icons/Lock';
+import UserService from './APIServices/UserService';
+
+const userService = UserService.getInstance();
 
 const styles = theme => ({
   form: {
@@ -30,38 +33,62 @@ const styles = theme => ({
 
 class SignIn extends React.Component {
 
-  validate = values => {
-    const errors = required(['email', 'password'], values, this.props);
-
-    if (!errors.email) {
-      const emailError = email(values.email, values, this.props);
-      if (emailError) {
-        errors.email = email(values.email, values, this.props);
-      }
+  constructor() {
+    super();
+    this.state = {
+      profile: {
+        username: "",
+        password: ""
+      },
+      redirect: false,
+      loading: false
     }
-
-    return errors;
-  };
+  }
 
   handleSubmit = () => {
-    console.log('Handling submit');
+    this.setState({ ...this.state, loading: true })
+    userService
+      .login(this.state.profile.username, this.state.profile.password)
+      .then(user => {
+        console.log(user, 'login response')
+        if (user !== undefined) {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.setState({ ...this.state, redirect: true })
+        }
+        else {
+          alert('Username or password incorrect.');
+        }
+      });
   };
+
+  handleUsernameChange = (username) => {
+    let profile = this.state.profile;
+    profile.username = username;
+    this.setState({ ...this.state, profile })
+  }
+
+  handlePasswordChange = (password) => {
+    let profile = this.state.profile;
+    profile.password = password;
+    this.setState({ ...this.state, profile })
+  }
 
   render() {
     const { classes } = this.props;
 
     return (
       <React.Fragment>
+        {this.state.redirect && <Redirect to="/profile" />}
         <AppAppBar />
         <AppForm>
           <React.Fragment>
             <Typography variant="h3" gutterBottom marked="center" align="center">
-              Sign In
+              Login
             </Typography>
             <Typography variant="body2" align="center">
               {'Not a member yet? '}
               <Link href="/sign-up/" align="center" underline="always">
-                Sign Up here
+                Register here
               </Link>
             </Typography>
           </React.Fragment>
@@ -72,7 +99,12 @@ class SignIn extends React.Component {
                   <AccountCircle />
                 </Grid>
                 <Grid item xs={11} sm={11} md={11} lg={11}>
-                  <TextField fullWidth id="input-with-icon-grid" label="Username" margin="normal" />
+                  <TextField
+                    value={this.state.profile.username}
+                    onChange={(evt) => this.handleUsernameChange(evt.target.value)}
+                    fullWidth
+                    label="Username"
+                    margin="normal" />
                 </Grid>
               </Grid>
             </Grid>
@@ -82,7 +114,13 @@ class SignIn extends React.Component {
                   <Lock />
                 </Grid>
                 <Grid item xs={11} sm={11} md={11} lg={11}>
-                  <TextField fullWidth id="input-with-icon-grid" label="Password" margin="normal" />
+                  <TextField
+                    value={this.state.profile.password}
+                    onChange={(evt) => this.handlePasswordChange(evt.target.value)}
+                    fullWidth
+                    type="password"
+                    label="Password"
+                    margin="normal" />
                 </Grid>
               </Grid>
             </Grid>
@@ -92,7 +130,7 @@ class SignIn extends React.Component {
               size="large"
               color="secondary"
               fullWidth>
-              {'Sign In'}
+              {this.state.loading ? 'Submiting' : 'Sign In'}
             </FormButton>
           </Grid>
         </AppForm>
