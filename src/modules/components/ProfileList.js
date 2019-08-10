@@ -1,16 +1,12 @@
 import React from 'react';
 import {Grid} from "@material-ui/core";
-import CardContent from "@material-ui/core/CardContent";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import {Link} from "react-router-dom";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import Box from "@material-ui/core/Box";
 import Hidden from "@material-ui/core/Hidden";
 import AddIcon from "@material-ui/icons/AddCircle"
-import RemoveIcon from "@material-ui/icons/Remove"
-import LockOpenIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 
@@ -31,7 +27,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ProfileList = ({searchResult, followUser, unFollowUser}) => {
-	//console.log("search result: ", searchResult);
 	const classes = useStyles();
 	return (
 		<React.Fragment>

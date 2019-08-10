@@ -13,7 +13,6 @@ class Profile extends Component {
 
 	constructor(props) {
 		super(props);
-		console.log("window storage: ", localStorage);
 		if (props.match.params.profileId === null || props.match.params.profileId === undefined) {
 			this.userNameToBeSearched = localStorage.getItem("currentUser");
 		} else {
@@ -31,8 +30,6 @@ class Profile extends Component {
 	}
 
 	componentDidMount() {
-		console.log("component did mount.");
-
 		let eventData = [];
 		userService.getUserData(this.userNameToBeSearched).then(response => {
 			this.setState({
@@ -41,24 +38,16 @@ class Profile extends Component {
 			}, () => {
 				this.state.eventList
 					.forEach(event => {
-						//console.log(event);
 						EventService.getInstance().getEventDataUsingEventId(event)
 							.then(response => {
-								//console.log("event resp: ", response);
 								eventData.push(response);
 								this.setState({
 									eventList: eventData
 								});
-								//console.log("event data: ", eventData, this.state.eventList);
 							});
 					});
-				//console.log("event data: ", eventData);
 			});
 		});
-	}
-
-	componentDidUpdate(prevProps, prevState, snapshot) {
-		this.state.eventList.forEach(event => console.log(new Date(event.date) > new Date()));
 	}
 
 	generateProfileList() {
@@ -67,15 +56,12 @@ class Profile extends Component {
 				this.setState({
 					profileSearchResult: [response],
 					searchFormData: ''
-				}, () => {
-					//console.log("result from service: ", this.state.profileSearchResult)
 				});
 			});
 		}
 	};
 
 	renderProfileList = (flag, formData) => {
-		//console.log("Inside render profile function. Setting flag to: ", flag, " formData: ", formData);
 		this.setState({
 			displayProfile: flag,
 			searchFormData: formData
@@ -116,15 +102,12 @@ class Profile extends Component {
 	changeVisibiltiy = (visibilityValue, eventData) => {
 		eventData.isPrivate = visibilityValue;
 		let temp = eventData._id;
-		console.log("event data: ", eventData, temp);
 		let tempData = [];
 		EventService.getInstance().updateEvent(eventData)
 			.then(response => {
 				tempData = Array.from(Object.create(this.state.eventList));
 				tempData = tempData.filter(event => event["_id"] !== temp);
-				console.log("event list data before change: ", tempData);
 				tempData.push(eventData);
-				console.log("event list data after change: ", tempData);
 				this.setState({
 					eventList: tempData
 				});
@@ -143,6 +126,7 @@ class Profile extends Component {
 						profileId={this.state.profileId}
 						changeVisibiltiy={this.changeVisibiltiy}
 						events={this.state.eventList}
+						followUser={this.followUser}
 						unFollowUser={this.unFollowUser}
 						followers={this.state.userData.followers}
 						following={this.state.userData.following}

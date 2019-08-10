@@ -121,11 +121,6 @@ const ProfileNavBar = (props) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [formData, setFormData] = useState('');
 
-	// function changeField(event) {
-	// 	setFormData(event.currentTarget.value);
-	// 	console.log("This form: ", formData);
-	// }
-
 	function handleClick(event) {
 		setAnchorEl(event.currentTarget);
 	}

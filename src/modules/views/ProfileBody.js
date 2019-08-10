@@ -37,8 +37,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const ProfileBody = ({username, firstName, lastName, events, followers, following, unFollowUser, changeVisibiltiy, profileId}) => {
-	//console.log("events: ", events);
+const ProfileBody = ({username, firstName, lastName, events, followers, following, unFollowUser, changeVisibiltiy, profileId,followUser}) => {
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
@@ -87,6 +86,7 @@ const ProfileBody = ({username, firstName, lastName, events, followers, followin
 					<Paper className={classes.paper}>
 						<Grid container>
 							<Followers
+								followUser={followUser}
 								addFollowers={true}
 								unFollowUser={unFollowUser}
 								removeFollowers={false}
@@ -97,6 +97,7 @@ const ProfileBody = ({username, firstName, lastName, events, followers, followin
 					<Paper className={classes.paper}>
 						<Grid container>
 							<Followers
+								followUse={followUser}
 								addFollowers={false}
 								unFollowUser={unFollowUser}
 								removeFollowers={true}
