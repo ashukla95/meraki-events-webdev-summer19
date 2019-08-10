@@ -13,10 +13,10 @@ class Profile extends Component {
 	constructor(props) {
 		super(props);
 		console.log("props match: ", props.match.params.profileId);
-		window.localStorage.setItem("username", "hmavani");
+		window.localStorage.setItem("currentUser", "hmavani");
 		console.log("window storage: ", window.localStorage);
 		if (props.match.params.profileId === null || props.match.params.profileId === undefined) {
-			this.userNameToBeSearched = window.localStorage.getItem("username");
+			this.userNameToBeSearched = window.localStorage.getItem("currentUser");
 			console.log("username to be searched: ", this.userNameToBeSearched)
 		} else {
 			this.userNameToBeSearched = props.match.params.profileId
@@ -62,10 +62,10 @@ class Profile extends Component {
 		});
 	};
 
-	followUser = (userName, followerId) => {
-		userService.followUser(userName, followerId)
+	followUser = (follow, follower) => {
+		userService.followUser(follow, follower)
 			.then(response =>
-				userService.getUserData(window.localStorage.getItem("username"))
+				userService.getUserData(window.localStorage.getItem("currentUser"))
 					.then(response => {
 						this.setState({
 							userData: response,
@@ -79,7 +79,7 @@ class Profile extends Component {
 	unFollowUser = (follow, follower) => {
 		userService.unFollowUser(follow, follower)
 			.then(response =>
-				userService.getUserData(window.localStorage.getItem("username"))
+				userService.getUserData(window.localStorage.getItem("currentUser"))
 					.then(response => {
 						this.setState({
 							userData: response,

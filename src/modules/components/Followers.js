@@ -8,6 +8,7 @@ import AddIcon from "@material-ui/icons/AddCircle"
 import RemoveIcon from "@material-ui/icons/Remove"
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
+import CardActions from "@material-ui/core/CardActions";
 
 const useStyles = makeStyles({
 	title: {
@@ -33,7 +34,7 @@ const useStyles = makeStyles({
 });
 
 
-const Followers = ({section, addFollowers, removeFollowers, networking}) => {
+const Followers = ({section, addFollowers, removeFollowers, networking, unFollowUser}) => {
 	const classes = useStyles();
 	return (
 		<React.Fragment>
@@ -47,31 +48,35 @@ const Followers = ({section, addFollowers, removeFollowers, networking}) => {
 			<br/>
 
 			<Grid item xs={12} sm={12} md={12} lg={12} key={section}>
-				{( typeof networking !== "undefined") ? networking.map(network => {
+				{(typeof networking !== "undefined") ? networking.map(network => {
 						return (
 							<Card key={new Date().getMilliseconds()} className={classes.network}>
-								<CardActionArea>
-									<Grid container spacing={2}>
-										<Grid item xs={6} sm={9} md={9} lg={9}>
-											<Box p={2}>
-												<Typography display={"block"}
-												            align={"justify"}
-												            variant={"body1"}
-												            component={"p"}>
-													{network}
-												</Typography>
-											</Box>
-										</Grid>
+								<Grid container spacing={2}>
+									<Grid item xs={6} sm={9} md={9} lg={9}>
+										<Box p={2}>
+											<Typography display={"block"}
+											            align={"justify"}
+											            variant={"body1"}
+											            component={"p"}>
+												{network}
+											</Typography>
+										</Box>
+									</Grid>
+									<CardActions>
 										<Grid item xs={6} sm={3} md={3} lg={3}>
 											<Box p={2} className={classes.iconButton}>
-												{addFollowers && <AddIcon>
-												</AddIcon>}
-												{removeFollowers && <RemoveIcon>
-												</RemoveIcon>}
+												{addFollowers && <Button>
+													<AddIcon>
+													</AddIcon>
+												</Button>}
+												{removeFollowers && <Button onClick={(follow, follower) => unFollowUser(networking, window.localStorage.getItem("currentUser"))}>
+													<RemoveIcon>
+													</RemoveIcon>
+												</Button>}
 											</Box>
 										</Grid>
-									</Grid>
-								</CardActionArea>
+									</CardActions>
+								</Grid>
 							</Card>
 						)
 					}

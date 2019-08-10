@@ -32,7 +32,7 @@ export default class UserService {
 	}
 
 	unFollowUser(follow, follower) {
-		return fetch(`https://meraki-backend-wbdv.herokuapp.com/api/follow/${follow}/follower/${follower}`, {
+		return fetch(`https://meraki-backend-wbdv.herokuapp.com/api/unfollow/${follow}/follower/${follower}`, {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json'

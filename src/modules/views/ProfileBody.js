@@ -80,6 +80,7 @@ const ProfileBody = ({username, firstName, lastName, events, followers, followin
 						<Grid container>
 							<Followers
 								addFollowers={true}
+								unFollowUser={unFollowUser}
 								removeFollowers={false}
 								networking={followers}
 								section={"Followers"}/>
@@ -89,6 +90,7 @@ const ProfileBody = ({username, firstName, lastName, events, followers, followin
 						<Grid container>
 							<Followers
 								addFollowers={false}
+								unFollowUser={unFollowUser}
 								removeFollowers={true}
 								networking={following}
 								section={"Following"}/>

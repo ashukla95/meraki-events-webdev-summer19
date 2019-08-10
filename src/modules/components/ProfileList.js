@@ -1,9 +1,9 @@
 import React from 'react';
-import { Grid } from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Box from "@material-ui/core/Box";
@@ -104,63 +104,64 @@ const ProfileList = ({searchResult, followUser, unFollowUser}) => {
 				lg={12}>
 				{(searchResult !== null) ? searchResult.map(result => (
 						<Card key={new Date().getTime()} className={classes.eventCard}>
-							<CardActionArea>
-								<Grid container spacing={2}>
-									<Grid item xs={6} sm={6} md={2} lg={2}>
+
+							<Grid container spacing={2}>
+								<Grid item xs={6} sm={6} md={2} lg={2}>
+									<Box p={3}>
+										<Typography align={"justify"} variant={"body1"} component={"p"}>
+											<Link to={`/profile/${result._id}`}
+											      className={classes.profileName}>{result.username}</Link>
+										</Typography>
+									</Box>
+								</Grid>
+								<Hidden smDown xsDown>
+									<Grid item sm={2} md={2} lg={2}>
 										<Box p={3}>
 											<Typography align={"justify"} variant={"body1"} component={"p"}>
-												<Link to={`/profile/${result._id}`}
-												      className={classes.profileName}>{result.username}</Link>
+												{result.firstName}
 											</Typography>
 										</Box>
 									</Grid>
-									<Hidden smDown xsDown>
-										<Grid item sm={2} md={2} lg={2}>
-											<Box p={3}>
-												<Typography align={"justify"} variant={"body1"} component={"p"}>
-													{result.firstName}
-												</Typography>
-											</Box>
-										</Grid>
-									</Hidden>
-									<Hidden smDown xsDown>
-										<Grid item sm={2} md={2} lg={2}>
-											<Box p={3}>
-												<Typography align={"justify"} variant={"body1"} component={"p"}>
-													{result.lastName}
-												</Typography>
-											</Box>
-										</Grid>
-									</Hidden>
-									<Hidden smDown xsDown>
-										<Grid item sm={2} md={2} lg={2}>
-											<Box p={3}>
-												{result.followers.length}
-											</Box>
-										</Grid>
-									</Hidden>
-									<Hidden smDown xsDown>
-										<Grid item sm={2} md={2} lg={2}>
-											<Box p={3}>
-												{result.following.length}
-											</Box>
-										</Grid>
-									</Hidden>
-								</Grid>
-							</CardActionArea>
-							<CardActions>
-								<Grid item xs={6} sm={6} md={2} lg={2}>
-									<Box p={3}>
-										<Button
-											onClick={(username, followerId) => followUser(result._id, window.localStorage.getItem("username"))}>
-											<AddIcon>
-											</AddIcon>
-										</Button>
-									</Box>
-								</Grid>
-							</CardActions>
+								</Hidden>
+								<Hidden smDown xsDown>
+									<Grid item sm={2} md={2} lg={2}>
+										<Box p={3}>
+											<Typography align={"justify"} variant={"body1"} component={"p"}>
+												{result.lastName}
+											</Typography>
+										</Box>
+									</Grid>
+								</Hidden>
+								<Hidden smDown xsDown>
+									<Grid item sm={2} md={2} lg={2}>
+										<Box p={3}>
+											{result.followers.length}
+										</Box>
+									</Grid>
+								</Hidden>
+								<Hidden smDown xsDown>
+									<Grid item sm={2} md={2} lg={2}>
+										<Box p={3}>
+											{result.following.length}
+										</Box>
+									</Grid>
+								</Hidden>
+								<CardActions>
+									<Grid item xs={6} sm={6} md={2} lg={2}>
+										<Box p={3}>
+											<Button
+												onClick={(follow, follower) => followUser(result._id, window.localStorage.getItem("currentUser"))}>
+												<AddIcon>
+												</AddIcon>
+											</Button>
+										</Box>
+									</Grid>
+								</CardActions>
+							</Grid>
 						</Card>
-					)) :
+					)
+					)
+					:
 					<Typography variant={"body2"} align={"center"} component={"p"}>
 						Sorry no results obtained. Please try again by using some other profile name.
 					</Typography>
