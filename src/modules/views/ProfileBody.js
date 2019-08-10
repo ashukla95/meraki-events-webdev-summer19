@@ -37,9 +37,8 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const ProfileBody = ({profileData, events, networking}) => {
+const ProfileBody = ({username, firstName, lastName, events, followers, following, unFollowUser}) => {
 	console.log("events: ", events);
-	console.log("networking: ", networking);
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
@@ -47,22 +46,32 @@ const ProfileBody = ({profileData, events, networking}) => {
 				<Grid item lg={2} md={12} sm={12} xs={12} className={classes.demographics}>
 					<Grid container>
 						<Demographics
-							profileData={profileData}/>
+							username={username}
+							firstName={firstName}
+							lastName={lastName}/>
 					</Grid>
 				</Grid>
 				<Grid item lg={7} md={12} sm={12} xs={12}>
 					<Paper className={classes.paper}>
 						<Grid container>
-							<Events
-								events={events.filter(event => event.isUpcomingEvent === true)}
-								section={"Upcoming Events"}/>
+							{(events === [])?
+								<Events
+									events={events.filter(event => event.isUpcomingEvent === true)}
+									section={"Upcoming Events"}/>:
+								<Events
+									events={events}
+									section={"Upcoming Events"}/>}
 						</Grid>
 					</Paper>
 					<Paper elevation={2} className={classes.paper}>
 						<Grid container>
-							<Events
-								events={events.filter(event => event.isUpcomingEvent === false)}
-								section={"Past Events"}/>
+							{(events === [])?
+								<Events
+									events={events.filter(event => event.isUpcomingEvent === false)}
+									section={"Past Events"}/>:
+								<Events
+									events={events}
+									section={"Past Events"}/>}
 						</Grid>
 					</Paper>
 				</Grid>
@@ -72,7 +81,7 @@ const ProfileBody = ({profileData, events, networking}) => {
 							<Followers
 								addFollowers={true}
 								removeFollowers={false}
-								networking={networking.followers}
+								networking={followers}
 								section={"Followers"}/>
 						</Grid>
 					</Paper>
@@ -81,7 +90,7 @@ const ProfileBody = ({profileData, events, networking}) => {
 							<Followers
 								addFollowers={false}
 								removeFollowers={true}
-								networking={networking.following}
+								networking={following}
 								section={"Following"}/>
 						</Grid>
 					</Paper>

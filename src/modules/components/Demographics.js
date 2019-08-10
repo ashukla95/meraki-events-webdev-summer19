@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 
 });
 
-const Demographics = ({profileData}) => {
+const Demographics = ({username, firstName, lastName}) => {
 	const classes = useStyles();
 	return (
 		<React.Fragment>
@@ -33,19 +33,36 @@ const Demographics = ({profileData}) => {
 							{
 								/*This code iterates over the json data directly thereby eliminating the need to pass props separately.*/
 								<React.Fragment>
-									{Object.keys(profileData).map(entry =>
-										<Grid className={classes.dataPanel} item xs={12} sm={12} md={12} lg={12}>
-											<Typography
-												key={entry}
-												display={"initial"}
-												align={"justify"}
-												gutterBottom={false}
-												variant={"body1"}
-												component={"p"}>
-												{profileData[entry]}
-											</Typography>
-										</Grid>)
-									}
+									<Grid className={classes.dataPanel} item xs={12} sm={12} md={12} lg={12}>
+										<Typography
+											display={"initial"}
+											align={"justify"}
+											gutterBottom={false}
+											variant={"body1"}
+											component={"p"}>
+											{username}
+										</Typography>
+									</Grid>
+									<Grid className={classes.dataPanel} item xs={12} sm={12} md={12} lg={12}>
+										<Typography
+											display={"initial"}
+											align={"justify"}
+											gutterBottom={false}
+											variant={"body1"}
+											component={"p"}>
+											{firstName}
+										</Typography>
+									</Grid>
+									<Grid className={classes.dataPanel} item xs={12} sm={12} md={12} lg={12}>
+										<Typography
+											display={"initial"}
+											align={"justify"}
+											gutterBottom={false}
+											variant={"body1"}
+											component={"p"}>
+											{lastName}
+										</Typography>
+									</Grid>
 
 								</React.Fragment>}
 						</CardContent>

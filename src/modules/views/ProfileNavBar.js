@@ -207,7 +207,7 @@ const ProfileNavBar = (props) => {
 							keepMounted
 							open={Boolean(anchorEl)}
 							onClose={redirectToProfile}>
-							<MenuItem onClick={(flag) => props.renderProfileList(true)}>My account</MenuItem>
+							<MenuItem><NavLink className={classes.link} to={'/profile'}>My account</NavLink></MenuItem>
 							<MenuItem><NavLink className={classes.link} to={'/'}>Logout</NavLink></MenuItem>
 						</Menu>
 					</Grid>

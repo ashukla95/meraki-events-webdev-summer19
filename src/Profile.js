@@ -8,56 +8,107 @@ const userService = UserService.getInstance();
 
 class Profile extends Component {
 
+	userNameToBeSearched = '';
+
 	constructor(props) {
 		super(props);
+		console.log("props match: ", props.match.params.profileId);
+		window.localStorage.setItem("username", "hmavani");
+		console.log("window storage: ", window.localStorage);
+		if (props.match.params.profileId === null || props.match.params.profileId === undefined) {
+			this.userNameToBeSearched = window.localStorage.getItem("username");
+			console.log("username to be searched: ", this.userNameToBeSearched)
+		} else {
+			this.userNameToBeSearched = props.match.params.profileId
+		}
 		this.state = {
-			userData: userService.getUserData(),
+			userData: userService.getUserData(this.userNameToBeSearched),
 			displayProfile: true,
 			searchFormData: '',
-			profileSearchResult: []
-		};
-	}
+			profileSearchResult: null
 
-
-	changeField = (evt) => {
-		console.log("event received: ", evt.target.value);
-		/*This function keeps a track of the data inserted in the textfield of the search page.*/
-		this.setState({
-			searchFormData: evt.target.value
-		}, () => {console.log("state at this moment: ", this.state)})
-	};
-
-	generateProfileList() {
-		if((!this.state.displayProfile) && (this.state.searchFormData !== '')) {
-			this.setState({
-				profileSearchResult: userService.getProfileSearchResult(),
-				searchFormData: ''
-			});
 		}
 	}
+
+	componentDidMount() {
+		console.log("component did mount.")
+		userService.getUserData(this.userNameToBeSearched).then(response => {
+			this.setState({
+				userData: response
+			})
+		})
+	}
+
+	generateProfileList() {
+		if ((!this.state.displayProfile) && (this.state.searchFormData !== '')) {
+			userService.getProfileSearchResult(this.state.searchFormData).then(response => {
+				this.setState({
+					profileSearchResult: [response],
+					searchFormData: ''
+				}, () => {
+					console.log("result from service: ", this.state.profileSearchResult)
+				});
+			});
+		}
+	};
 
 	renderProfileList = (flag, formData) => {
 		console.log("Inside render profile function. Setting flag to: ", flag, " formData: ", formData);
 		this.setState({
 			displayProfile: flag,
 			searchFormData: formData
-		}, () => {this.generateProfileList()});
+		}, () => {
+			this.generateProfileList()
+		});
+	};
+
+	followUser = (userName, followerId) => {
+		userService.followUser(userName, followerId)
+			.then(response =>
+				userService.getUserData(window.localStorage.getItem("username"))
+					.then(response => {
+						this.setState({
+							userData: response,
+							displayProfile: true,
+							searchFormData: '',
+							profileSearchresult: null
+						})
+					}))
+	};
+
+	unFollowUser = (follow, follower) => {
+		userService.unFollowUser(follow, follower)
+			.then(response =>
+				userService.getUserData(window.localStorage.getItem("username"))
+					.then(response => {
+						this.setState({
+							userData: response,
+							displayProfile: true,
+							searchFormData: '',
+							profileSearchResult: null
+						})
+					}))
 	};
 
 	render() {
 		return (
-			<div style={{"height":"100%"}}>
+			<div style={{"height": "100%"}}>
 				<ProfileNavBar
 					renderProfileList={this.renderProfileList}
 					changeField={this.changeField}
-					username={"Username"}/>
+					username={this.state.userData.username}/>
 				{this.state.displayProfile ?
 					<ProfileBody
 						events={this.state.userData.events}
-						networking={this.state.userData.followers}
-						profileData={this.state.userData.primary}/>
+						unFollowUser={this.unFollowUser}
+						followers={this.state.userData.followers}
+						following={this.state.userData.following}
+						username={this.state.userData.username}
+						firstName={this.state.userData.firstName}
+						lastName={this.state.userData.lastName}/>
 					:
-					<ProfileList searchResult={this.state.profileSearchResult}/>}
+					<ProfileList searchResult={this.state.profileSearchResult}
+					             followUser={this.followUser}/>}
 
 			</div>
 		)

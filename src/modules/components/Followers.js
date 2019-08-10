@@ -45,8 +45,9 @@ const Followers = ({section, addFollowers, removeFollowers, networking}) => {
 				            component={"p"}>{section}</Typography>
 			</Grid>
 			<br/>
+
 			<Grid item xs={12} sm={12} md={12} lg={12} key={section}>
-				{networking.map(network => {
+				{( typeof networking !== "undefined") ? networking.map(network => {
 						return (
 							<Card key={new Date().getMilliseconds()} className={classes.network}>
 								<CardActionArea>
@@ -74,7 +75,10 @@ const Followers = ({section, addFollowers, removeFollowers, networking}) => {
 							</Card>
 						)
 					}
-				)}
+					)
+					:
+					<div/>
+				}
 				<Button size={"small"} color={"primary"} className={classes.seeMore}>
 					See more
 				</Button>
