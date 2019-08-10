@@ -208,7 +208,7 @@ const ProfileNavBar = (props) => {
 							open={Boolean(anchorEl)}
 							onClose={redirectToProfile}>
 							<MenuItem><NavLink className={classes.link} to={'/profile'}>My account</NavLink></MenuItem>
-							<MenuItem><NavLink className={classes.link} to={'/'}>Logout</NavLink></MenuItem>
+							<MenuItem><NavLink className={classes.link} to={'/login/'}>Logout</NavLink></MenuItem>
 						</Menu>
 					</Grid>
 				</Toolbar>

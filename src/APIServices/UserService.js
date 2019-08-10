@@ -41,6 +41,14 @@ export default class UserService {
 			.then(response => true)
 			.catch(error => error.json())
 	}
+
+	getTotalUsers() {
+		return fetch(`https://meraki-backend-wbdv.herokuapp.com/api/user/`).then(response => response.json());
+	}
+
+	login(userName, password) {
+		return fetch(`https://meraki-backend-wbdv.herokuapp.com/api/user/${userName}`).then(response => response.json())
+	}
 }
 
 /*
