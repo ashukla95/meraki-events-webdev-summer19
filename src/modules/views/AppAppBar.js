@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import AppBar from '../components/AppBar';
-import Toolbar, { styles as toolbarStyles } from '../components/Toolbar';
+import Toolbar, {styles as toolbarStyles} from '../components/Toolbar';
+import UserService from "../../APIServices/UserService";
 
+const userservice = UserService.getInstance();
 const styles = theme => ({
 	title: {
 		fontSize: 24,
@@ -36,13 +38,13 @@ const styles = theme => ({
 });
 
 function AppAppBar(props) {
-	const { classes } = props;
+	const {classes} = props;
 
 	return (
 		<div>
 			<AppBar position="fixed">
 				<Toolbar className={classes.toolbar}>
-					<div className={classes.left} />
+					<div className={classes.left}/>
 					<Link
 						variant="h6"
 						underline="none"
@@ -53,7 +55,7 @@ function AppAppBar(props) {
 						{'Meraki Events'}
 					</Link>
 					<div className={classes.right}>
-						<Link
+						{!window.localStorage.getItem("currentUser") && <Link
 							color="inherit"
 							variant="h6"
 							underline="none"
@@ -61,15 +63,42 @@ function AppAppBar(props) {
 							href="/login/"
 						>
 							{'Sign In'}
-						</Link>
-						<Link
+						</Link>}
+						{!window.localStorage.getItem("currentUser") && <Link
 							variant="h6"
 							underline="none"
 							className={clsx(classes.rightLink, classes.linkSecondary)}
 							href="/register/"
 						>
 							{'Sign Up'}
-						</Link>
+						</Link>}
+
+						{/*Dynamic Content*/}
+						{window.localStorage.getItem("currentUser") && <Link
+							color="inherit"
+							variant="h6"
+							underline="none"
+							className={classes.rightLink}
+						>
+							Followers: {props.followerCount}
+						</Link>}
+						{window.localStorage.getItem("currentUser") && <Link
+							variant="h6"
+							underline="none"
+							className={clsx(classes.rightLink, classes.linkSecondary)}
+
+						>
+							Following: {props.followingCount}
+						</Link>}
+						{window.localStorage.getItem("currentUser") && <Link
+							variant="h6"
+							underline="none"
+							className={clsx(classes.rightLink, classes.linkSecondary)}
+							href="/profile/"
+						>
+							Profile
+						</Link>}
+						{/*Dynamic Content End*/}
 
 						<Link
 							variant="h6"
@@ -82,7 +111,7 @@ function AppAppBar(props) {
 					</div>
 				</Toolbar>
 			</AppBar>
-			<div className={classes.placeholder} />
+			<div className={classes.placeholder}/>
 		</div>
 	);
 }

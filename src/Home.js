@@ -10,33 +10,50 @@ import ProductHowItWorks from './modules/views/ProductHowItWorks';
 import ProductCTA from './modules/views/ProductCTA';
 import AppAppBar from './modules/views/AppAppBar';
 import UserService from './APIServices/UserService';
+
 const userService = UserService.getInstance();
 
 class Index extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userCount: 0
-    }
-    userService
-      .getTotalUsers()
-      .then(totalUsers => this.setState({ userCount: totalUsers.length }));
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			userCount: 0,
+			followers: 0,
+			following: 0
+		};
+		userService
+			.getTotalUsers()
+			.then(totalUsers => this.setState({userCount: totalUsers.length}));
 
-  render() {
-    return (
-      <React.Fragment>
-        <AppAppBar />
-        <ProductHero users={this.state.userCount} />
-        <ProductValues />
-        <ProductCategories />
-        <ProductHowItWorks />
-        <ProductCTA />
-        <ProductSmokingHero />
-        <AppFooter />
-      </React.Fragment>
-    );
-  }
+		if (window.localStorage.getItem("currentUser")) {
+			userService.getUserData(window.localStorage.getItem("currentUser"))
+				.then(response =>
+					this.setState({
+						followers: response.followers.length,
+						following: response.following.length
+					}, () => {console.log("state: ", this.state)}));
+		}
+
+	}
+
+
+
+	render() {
+		return (
+			<React.Fragment>
+				<AppAppBar
+					followerCount={this.state.followers}
+					followingCount={this.state.following}/>
+				<ProductHero users={this.state.userCount}/>
+				<ProductValues/>
+				<ProductCategories/>
+				<ProductHowItWorks/>
+				<ProductCTA/>
+				<ProductSmokingHero/>
+				<AppFooter/>
+			</React.Fragment>
+		);
+	}
 }
 
 
