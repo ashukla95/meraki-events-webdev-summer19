@@ -21,9 +21,19 @@ export default class UserService {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
-    }).then(response => {
-      return response.json()
-    }).catch((error) => console.log(error));
+    }).then(response => response.json())
+      .catch((error) => console.log(error));
+  }
+
+  getTotalUsers() {
+    return fetch(`${this.backendUrl}/api/user`, {
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(users => users.json())
+      .catch(error => error);
   }
 
   getUserData() {
