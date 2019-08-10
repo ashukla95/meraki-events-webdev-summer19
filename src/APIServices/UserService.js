@@ -49,6 +49,16 @@ export default class UserService {
 	login(userName, password) {
 		return fetch(`https://meraki-backend-wbdv.herokuapp.com/api/user/${userName}`).then(response => response.json())
 	}
+
+	createUser(userData) {
+		return fetch(`https://meraki-backend-wbdv.herokuapp.com/api/user`, {
+			method: 'POST',
+			headers: {
+				'content-type':'application/json'
+			},
+			body: JSON.stringify(userData)
+		}).then(response => response.json());
+	}
 }
 
 /*

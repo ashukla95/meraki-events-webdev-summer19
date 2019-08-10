@@ -13,10 +13,6 @@ class Profile extends Component {
 
 	constructor(props) {
 		super(props);
-		//console.log("props match: ", props.match.params.profileId);
-		let user = JSON.parse(localStorage.getItem("currentUser"));
-		console.log("user: ", user._id, user);
-		localStorage.setItem("currentUser", user._id);
 		console.log("window storage: ", localStorage);
 		if (props.match.params.profileId === null || props.match.params.profileId === undefined) {
 			this.userNameToBeSearched = localStorage.getItem("currentUser");
@@ -103,6 +99,7 @@ class Profile extends Component {
 	};
 
 	unFollowUser = (follow, follower) => {
+		console.log("follow: ", follow," follower: ", follower);
 		userService.unFollowUser(follow, follower)
 			.then(response =>
 				userService.getUserData(localStorage.getItem("currentUser"))

@@ -49,7 +49,7 @@ class SignUp extends React.Component {
       userService
         .createUser(this.state.profile)
         .then(user => {
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('currentUser', user._id);
           this.setState({ ...this.state, redirect: true })
         });
     }
@@ -92,7 +92,7 @@ class SignUp extends React.Component {
               Register
             </Typography>
             <Typography variant="body2" align="center">
-              <Link href="/sign-in/" underline="always">
+              <Link href="/login/" underline="always">
                 Already have an account?
               </Link>
             </Typography>

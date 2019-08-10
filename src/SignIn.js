@@ -52,7 +52,7 @@ class SignIn extends React.Component {
       .then(user => {
         console.log(user, 'login response')
         if (user !== undefined) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('currentUser', user._id);
           this.setState({ ...this.state, redirect: true })
         }
         else {
@@ -87,7 +87,7 @@ class SignIn extends React.Component {
             </Typography>
             <Typography variant="body2" align="center">
               {'Not a member yet? '}
-              <Link href="/sign-up/" align="center" underline="always">
+              <Link href="/register/" align="center" underline="always">
                 Register here
               </Link>
             </Typography>

@@ -73,9 +73,9 @@ const Followers = ({section, addFollowers, removeFollowers, networking, unFollow
 											{addFollowers && <Button>
 												<AddIcon>
 												</AddIcon>
-											</Button> ||
-											removeFollowers && <Button
-												onClick={(follow, follower) => unFollowUser(networking, localStorage.getItem("currentUser"))}>
+											</Button>}
+											{removeFollowers && <Button
+												onClick={(follow, follower) => unFollowUser(network, localStorage.getItem("currentUser"))}>
 												<RemoveIcon>
 												</RemoveIcon>
 											</Button>}
