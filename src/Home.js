@@ -23,7 +23,7 @@ class Index extends React.Component {
 		};
 		userService
 			.getTotalUsers()
-			.then(totalUsers => this.setState({userCount: totalUsers.length}));
+			.then(totalUsers => this.setState({ userCount: totalUsers.length }));
 
 		if (window.localStorage.getItem("currentUser")) {
 			userService.getUserData(window.localStorage.getItem("currentUser"))
@@ -31,26 +31,23 @@ class Index extends React.Component {
 					this.setState({
 						followers: response.followers.length,
 						following: response.following.length
-					}, () => {console.log("state: ", this.state)}));
+					}));
 		}
-
 	}
-
-
 
 	render() {
 		return (
 			<React.Fragment>
 				<AppAppBar
 					followerCount={this.state.followers}
-					followingCount={this.state.following}/>
-				<ProductHero users={this.state.userCount}/>
-				<ProductValues/>
-				<ProductCategories/>
-				<ProductHowItWorks/>
-				<ProductCTA/>
-				<ProductSmokingHero/>
-				<AppFooter/>
+					followingCount={this.state.following} />
+				<ProductHero users={this.state.userCount} />
+				<ProductValues />
+				<ProductCategories />
+				<ProductHowItWorks />
+				<ProductCTA />
+				<ProductSmokingHero />
+				<AppFooter />
 			</React.Fragment>
 		);
 	}

@@ -12,46 +12,39 @@ const eventService = EventService.getInstance();
 
 class Profile extends Component {
 
-	userNameToBeSearched = '';
+	state = {
+		userData: {},
+		displayProfile: true,
+		searchFormData: '',
+		profileSearchResult: null,
+		eventList: [],
+		profileId: -1,
+		offlineUpdate: false
+	}
 
 	constructor(props) {
 		super(props);
-		if (props.match.params.profileId === null || props.match.params.profileId === undefined) {
-			this.userNameToBeSearched = localStorage.getItem("currentUser");
-		} else {
-			this.userNameToBeSearched = props.match.params.profileId
-		}
-		this.state = {
-			userData: userService.getUserData(this.userNameToBeSearched),
-			displayProfile: true,
-			searchFormData: '',
-			profileSearchResult: null,
-			eventList: [],
-			profileId: props.match.params.profileId,
-			offlineUpdate: false
-
-		}
+		let userNameToBeSearched =
+			(props.match.params.profileId === null || props.match.params.profileId === undefined) ?
+				localStorage.getItem("currentUser") : props.match.params.profileId;
+		this.getUserDataToLocal(userNameToBeSearched, props);
 	}
 
-	componentDidMount() {
-		let eventData = [];
-		userService.getUserData(this.userNameToBeSearched).then(response => {
-			this.setState({
-				userData: response,
-				eventList: response.events
-			}, () => {
-				this.state.eventList
-					.forEach(event => {
-						eventService.getEventDataUsingEventId(event)
-							.then(response => {
-								eventData.push(response);
-								this.setState({
-									eventList: eventData
-								});
-							});
-					});
+	getUserDataToLocal(userNameToBeSearched, props) {
+		userService
+			.getUserData(userNameToBeSearched)
+			.then(userData => {
+				this.setState({ ...this.state, userData, profileId: props.match.params.profileId, })
+				let eventList = [];
+				userData.events.map(eventId => {
+					eventService
+						.getEventDataUsingEventId(eventId)
+						.then(eventDetails => {
+							eventList.push(eventDetails);
+							this.setState({ ...this.state, eventList })
+						})
+				})
 			});
-		});
 	}
 
 	generateProfileList() {
@@ -59,6 +52,7 @@ class Profile extends Component {
 			userService.getProfileSearchResult(this.state.searchFormData).then(response => {
 				if (response !== undefined) {
 					this.setState({
+						...this.state,
 						profileSearchResult: [response],
 						searchFormData: ''
 					});
@@ -69,6 +63,7 @@ class Profile extends Component {
 
 	renderProfileList = (flag, formData) => {
 		this.setState({
+			...this.state,
 			displayProfile: flag,
 			searchFormData: formData
 		}, () => {
@@ -80,13 +75,19 @@ class Profile extends Component {
 		userService.followUser(follow, follower)
 			.then(response =>
 				userService.getUserData(localStorage.getItem("currentUser"))
-					.then(response => {
-						this.setState({
-							userData: response,
-							displayProfile: true,
-							searchFormData: '',
-							profileSearchResult: null
-						})
+					.then(userData => {
+						if (userData !== undefined) {
+							this.setState({
+								...this.state,
+								userData,
+								displayProfile: true,
+								searchFormData: '',
+								profileSearchResult: null
+							})
+						}
+						else {
+
+						}
 					}))
 	};
 
@@ -94,9 +95,10 @@ class Profile extends Component {
 		userService.unFollowUser(follow, follower)
 			.then(response =>
 				userService.getUserData(localStorage.getItem("currentUser"))
-					.then(response => {
+					.then(userData => {
 						this.setState({
-							userData: response,
+							...this.state,
+							userData,
 							displayProfile: true,
 							searchFormData: '',
 							profileSearchresult: null
@@ -111,9 +113,11 @@ class Profile extends Component {
 			.then(response => {
 				tempData = Array.from(Object.create(this.state.eventList));
 				this.setState({
+					...this.state,
 					eventList: []
 				});
 				this.setState({
+					...this.state,
 					eventList: tempData,
 				});
 			});

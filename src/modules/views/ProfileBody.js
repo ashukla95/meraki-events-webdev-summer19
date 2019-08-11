@@ -3,7 +3,7 @@ import Demographics from "../components/Demographics";
 import Grid from "@material-ui/core/Grid";
 import Events from "../components/Events";
 import Followers from "../components/Followers";
-import {Paper} from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 		textAlign: 'center',
 		color: theme.palette.text.secondary,
 		marginTop: 5,
-		marginRight:0,
+		marginRight: 0,
 	},
 
 	eventTitle: {
@@ -32,12 +32,12 @@ const useStyles = makeStyles(theme => ({
 	profileBody: {
 		backgroundColor: "#757575",
 		height: "100%",
-		padding:4
+		padding: 4
 	}
 
 }));
 
-const ProfileBody = ({username, firstName, lastName, events, followers, following, unFollowUser, changeVisibiltiy, profileId,followUser}) => {
+const ProfileBody = ({ username, firstName, lastName, events, followers, following, unFollowUser, changeVisibiltiy, profileId, followUser }) => {
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
@@ -47,38 +47,38 @@ const ProfileBody = ({username, firstName, lastName, events, followers, followin
 						<Demographics
 							username={username}
 							firstName={firstName}
-							lastName={lastName}/>
+							lastName={lastName} />
 					</Grid>
 				</Grid>
 				<Grid item lg={7} md={12} sm={12} xs={12}>
 					<Paper className={classes.paper}>
 						<Grid container>
-							{(events !== [])?
+							{(events !== []) ?
 								<Events
 									profileId={profileId}
 									changeVisibiltiy={changeVisibiltiy}
 									events={events.filter(event => new Date(event.date) > new Date())}
-									section={"Upcoming Events"}/>:
+									section={"Upcoming Events"} /> :
 								<Events
 									profileId={profileId}
 									changeVisibiltiy={changeVisibiltiy}
 									events={events}
-									section={"Upcoming Events"}/>}
+									section={"Upcoming Events"} />}
 						</Grid>
 					</Paper>
 					<Paper elevation={2} className={classes.paper}>
 						<Grid container>
-							{(events !== [])?
+							{(events !== []) ?
 								<Events
 									profileId={profileId}
 									changeVisibiltiy={changeVisibiltiy}
 									events={events.filter(event => new Date(event.date) < new Date())}
-									section={"Past Events"}/>:
+									section={"Past Events"} /> :
 								<Events
 									profileId={profileId}
 									changeVisibiltiy={changeVisibiltiy}
 									events={events}
-									section={"Past Events"}/>}
+									section={"Past Events"} />}
 						</Grid>
 					</Paper>
 				</Grid>
@@ -91,7 +91,7 @@ const ProfileBody = ({username, firstName, lastName, events, followers, followin
 								unFollowUser={unFollowUser}
 								removeFollowers={false}
 								networking={followers}
-								section={"Followers"}/>
+								section={"Followers"} />
 						</Grid>
 					</Paper>
 					<Paper className={classes.paper}>
@@ -102,7 +102,7 @@ const ProfileBody = ({username, firstName, lastName, events, followers, followin
 								unFollowUser={unFollowUser}
 								removeFollowers={true}
 								networking={following}
-								section={"Following"}/>
+								section={"Following"} />
 						</Grid>
 					</Paper>
 				</Grid>
