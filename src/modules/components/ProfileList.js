@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
-import {Grid} from "@material-ui/core/index";
-import Card from "@material-ui/core/Card/index";
-import Typography from "@material-ui/core/Typography/index";
+import {Grid} from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import Typography from "@material-ui/core/Typography";
 import {Link, Redirect} from "react-router-dom";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import Box from "@material-ui/core/Box/index";
-import Hidden from "@material-ui/core/Hidden/index";
+import Box from "@material-ui/core/Box";
+import Hidden from "@material-ui/core/Hidden";
 import AddIcon from "@material-ui/icons/AddCircle"
-import Button from "@material-ui/core/Button/index";
-import CardActions from "@material-ui/core/CardActions/index";
+import Button from "@material-ui/core/Button";
+import CardActions from "@material-ui/core/CardActions";
 import withStyles from "@material-ui/core/styles/withStyles";
-import ProfileNavBar from "./views/ProfileNavBar";
-import UserService from "../APIServices/UserService";
-import Snackbar from "./components/Snackbar";
+import ProfileNavBar from "../views/ProfileNavBar";
+import UserService from "../../APIServices/UserService";
+import Snackbar from "./Snackbar";
 
 
 const userService = UserService.getInstance();
@@ -43,7 +43,7 @@ class ProfileList extends Component {
 			redirect: false,
 			open: false
 		}
-	};
+	}
 
 	renderProfileList = (formData) => {
 		this.setState({
@@ -70,7 +70,7 @@ class ProfileList extends Component {
 
 	handleClose = () => {
 		this.setState({...this.state, open: false});
-	};
+	}
 
 	followUser = (follow, follower) => {
 

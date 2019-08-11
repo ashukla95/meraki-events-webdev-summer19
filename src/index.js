@@ -7,7 +7,7 @@ import Search from "./Search"
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import PropertyDetails from './PropertyDetails';
 import Profile from "./Profile";
-import ProfileList from "./modules/ProfileList";
+import ProfileList from "./modules/components/ProfileList";
 
 const routing = (
   <Router>
