@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import React, {Component} from 'react';
+import {Link, Redirect} from "react-router-dom";
 import ProfileNavBar from "./modules/views/ProfileNavBar";
 import ProfileBody from "./modules/views/ProfileBody";
 import UserService from './APIServices/UserService';
@@ -31,9 +31,8 @@ class Profile extends Component {
 			(props.match.params.profileId === null || props.match.params.profileId === undefined) ?
 				localStorage.getItem("currentUser") : props.match.params.profileId;
 		if (userNameToBeSearched === null) {
-			this.state = { ...defaultState, anonymousUser: true }
-		}
-		else {
+			this.state = {...defaultState, anonymousUser: true}
+		} else {
 			this.getUserDataToLocal(userNameToBeSearched, props);
 		}
 	}
@@ -42,40 +41,25 @@ class Profile extends Component {
 		userService
 			.getUserData(userNameToBeSearched)
 			.then(userData => {
-				this.setState({ ...this.state, userData, profileId: props.match.params.profileId, })
+				this.setState({...this.state, userData, profileId: props.match.params.profileId,})
 				let eventList = [];
 				userData.events.forEach(eventId => {
 					eventService
 						.getEventDataUsingEventId(eventId)
 						.then(eventDetails => {
 							eventList.push(eventDetails);
-							this.setState({ ...this.state, eventList })
+							this.setState({...this.state, eventList})
 						})
 				})
 			});
 	}
 
-	generateProfileList() {
-		if ((!this.state.displayProfile) && (this.state.searchFormData !== '')) {
-			userService.getProfileSearchResult(this.state.searchFormData).then(response => {
-				if (response !== undefined) {
-					this.setState({
-						...this.state,
-						profileSearchResult: [response],
-						searchFormData: ''
-					});
-				}
-			});
-		}
-	};
 
-	renderProfileList = (flag, formData) => {
+
+	renderProfileList = (flag) => {
 		this.setState({
 			...this.state,
-			displayProfile: flag,
-			searchFormData: formData
-		}, () => {
-			this.generateProfileList()
+			displayProfile: flag
 		});
 	};
 
@@ -133,10 +117,8 @@ class Profile extends Component {
 			<div>
 				<ProfileNavBar
 					renderProfileList={this.renderProfileList}
-					changeField={this.changeField}
-					username={localStorage.getItem("currentUser")} />
-				{this.state.anonymousUser &&
-					<h1>Please <Link to="/register">register</Link> or <Link to="/login">login</Link> to begin networking!</h1>}
+					searchProfile={true}
+					username={localStorage.getItem("currentUser")}/>
 				{!this.state.anonymousUser && this.state.displayProfile ?
 					<ProfileBody
 						profileId={this.state.profileId}
@@ -148,11 +130,13 @@ class Profile extends Component {
 						following={this.state.userData.following}
 						username={this.state.userData.username}
 						firstName={this.state.userData.firstName}
-						lastName={this.state.userData.lastName} />
-					: !this.state.anonymousUser &&
-					<ProfileList searchResult={this.state.profileSearchResult}
-						followUser={this.followUser} />}
-				<AppFooter />
+						lastName={this.state.userData.lastName}/>
+					:
+					<Redirect to={{
+						pathname: '/profile-list/',
+					}}/>
+				}
+				<AppFooter/>
 			</div>
 		)
 	}

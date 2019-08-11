@@ -45,7 +45,12 @@ const styles = theme => ({
 	},
 	right: {
 		flex: 1,
-		marginLeft: 50
+		marginLeft: theme.spacing(10)
+	},
+	searchProfile: {
+		flex: 1,
+		marginLeft: theme.spacing(70),
+		textAlign: 'justify'
 	},
 	link: {
 		textDecoration: 'none',
@@ -146,71 +151,95 @@ const ProfileNavBar = (props) => {
 							</Typography>
 						</Link>
 					</Grid>
-					<Grid item className={classes.left}>
-						<TextField
-							id="filled-search"
-							label="Search User by ID"
-							autoFocus={false}
-							type="text"
-							fullWidth
-							margin={"dense"}
-							className={classes.textField}
-							variant={"filled"}
-							value={formData}
-							onChange={(event) => setFormData(event.target.value)}
-						/>
-					</Grid>
-					<Grid item>
-						<div className={classes.right}
-						     onClick={(flag, data) => props.renderProfileList(false, formData)}>
-							<IconButton size={"small"}>
-								<SearchIcon
-									className={clsx(classes.rightLink, classes.linkSecondary, classes.icon)}>
-								</SearchIcon>
-							</IconButton>
-						</div>
-					</Grid>
-					{window.localStorage.getItem("currentUser") &&
-					<Grid item className={classes.right}>
-						<Button
-							aria-controls="simple-menu"
-							className={classes.button}
-							aria-haspopup="true"
-							onClick={handleClick}>
-							<Typography display={"block"}
-							            align={"justify"}
-							            className={classes.userName}
-							            gutterBottom={false}
-							            variant={"subtitle2"}
-							            component={"p"}>
-								{props.username}
-							</Typography>
-							<ArrowDropDownIcon className={classes.arrowDownIcon}>
-							</ArrowDropDownIcon>
-						</Button>
-						<Menu
-							id="simple-menu"
-							anchorEl={anchorEl}
-							anchorOrigin={{
-								vertical: 'bottom',
-								horizontal: 'center',
-							}}
-							transformOrigin={{
-								vertical: 'top',
-								horizontal: 'center',
-							}}
-							getContentAnchorEl={null}
-							keepMounted
-							open={Boolean(anchorEl)}
-							onClose={redirectToProfile}>
-							<MenuItem><NavLink className={classes.link} to={'/profile'}>My account</NavLink></MenuItem>
-							<MenuItem><NavLink className={classes.link}
-							                   to={{pathname: '/login/', clearData: true}}>Logout</NavLink></MenuItem>
-						</Menu>
-					</Grid>}
-					{!window.localStorage.getItem("currentUser") &&
-					<Grid item className={classes.right}>
-					</Grid>}
+					{!props.searchProfile ?
+						<React.Fragment>
+							<Grid item className={classes.left}>
+								<TextField
+									id="filled-search"
+									label="Search User by ID"
+									autoFocus={false}
+									type="text"
+									fullWidth
+									margin={"dense"}
+									className={classes.textField}
+									variant={"filled"}
+									value={formData}
+									onChange={(event) => setFormData(event.target.value)}
+								/>
+							</Grid>
+							<Grid item>
+								<div className={classes.right}
+								     onClick={(data) => props.renderProfileList(formData)}>
+									<IconButton size={"small"}>
+										<SearchIcon
+											className={clsx(classes.rightLink, classes.linkSecondary, classes.icon)}>
+										</SearchIcon>
+									</IconButton>
+								</div>
+							</Grid>
+						</React.Fragment>
+						:
+						<React.Fragment>
+							<Grid item className={classes.left}>
+							</Grid>
+							<Grid item>
+								<div className={classes.right}>
+									<Button
+										onClick={(flag) => props.renderProfileList(false)}
+										className={classes.userName}>SEARCH PROFILE
+									</Button>
+								</div>
+							</Grid>
+						</React.Fragment>
+					}
+					{
+						window.localStorage.getItem("currentUser") &&
+						<Grid item className={classes.right}>
+							<Button
+								aria-controls="simple-menu"
+								className={classes.button}
+								aria-haspopup="true"
+								onClick={handleClick}>
+								<Typography display={"block"}
+								            align={"justify"}
+								            className={classes.userName}
+								            gutterBottom={false}
+								            variant={"subtitle2"}
+								            component={"p"}>
+									{props.username}
+								</Typography>
+								<ArrowDropDownIcon className={classes.arrowDownIcon}>
+								</ArrowDropDownIcon>
+							</Button>
+							<Menu
+								id="simple-menu"
+								anchorEl={anchorEl}
+								anchorOrigin={{
+									vertical: 'bottom',
+									horizontal: 'center',
+								}}
+								transformOrigin={{
+									vertical: 'top',
+									horizontal: 'center',
+								}}
+								getContentAnchorEl={null}
+								keepMounted
+								open={Boolean(anchorEl)}
+								onClose={redirectToProfile}>
+								<MenuItem>
+									<NavLink className={classes.link} to={'/profile'}>My account
+									</NavLink>
+								</MenuItem>
+								<MenuItem>
+									<NavLink className={classes.link}
+									         to={{
+										         pathname: '/login/',
+										         clearData: true
+									         }}>Logout
+									</NavLink>
+								</MenuItem>
+							</Menu>
+						</Grid>}
 				</Toolbar>
 			</AppBar>
 			<div className={classes.placeholder}/>
