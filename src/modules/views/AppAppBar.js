@@ -88,14 +88,13 @@ function AppAppBar(props) {
 						>
 							Following: {props.followingCount}
 						</Link>}
-						{window.localStorage.getItem("currentUser") && <Link
+						<Link
 							variant="h6"
 							underline="none"
 							className={clsx(classes.rightLink, classes.linkSecondary)}
-							href="/profile/"
-						>
+							href="/profile/">
 							Profile
-						</Link>}
+						</Link>
 						{/*Dynamic Content End*/}
 
 						<Link
