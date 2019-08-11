@@ -12,6 +12,7 @@ export default class UserService {
   getProfileSearchResult = (profileUserName) => {
     return fetch(`https://meraki-backend-wbdv.herokuapp.com/api/user/${profileUserName}`)
       .then(response => response.json())
+      .catch(error => undefined)
   };
 
   getUserData(username) {
@@ -49,7 +50,7 @@ export default class UserService {
 
   login(username, password) {
 
-    return fetch(`http://localhost:8080/api/login/`, {
+    return fetch(`https://meraki-backend-wbdv.herokuapp.com/api/login/`, {
       method: 'POST',
       body: JSON.stringify({ username, password }),
       headers: {

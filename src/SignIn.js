@@ -14,6 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Lock from '@material-ui/icons/Lock';
+import Snackbar from './modules/components/Snackbar';
 import UserService from './APIServices/UserService';
 
 const userService = UserService.getInstance();
@@ -37,7 +38,8 @@ const defaultState = {
     password: ""
   },
   redirect: false,
-  loading: false
+  loading: false,
+  open: false
 }
 
 class SignIn extends React.Component {
@@ -57,11 +59,14 @@ class SignIn extends React.Component {
           this.setState({ ...this.state, redirect: true })
         }
         else {
-          alert('Username or password incorrect.');
-          this.setState(defaultState)
+          this.setState({ ...this.state, open: true, loading: false });
         }
       });
   };
+
+  handleClose = () => {
+    this.setState({ ...this.state, open: false });
+  }
 
   handleUsernameChange = (username) => {
     let profile = this.state.profile;
@@ -135,6 +140,11 @@ class SignIn extends React.Component {
               fullWidth>
               {this.state.loading ? 'Submiting' : 'Sign In'}
             </FormButton>
+            <Snackbar
+              open={this.state.open}
+              onClose={this.handleClose}
+              message="Username or password is incorrect!"
+            />
           </Grid>
         </AppForm>
         <AppFooter />

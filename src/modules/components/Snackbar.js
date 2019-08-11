@@ -36,10 +36,6 @@ const styles = theme => ({
   },
 });
 
-function Transition(props) {
-  return <Slide {...props} direction="down" />;
-}
-
 function Snackbar(props) {
   const { classes, onClose, message, ...other } = props;
 
@@ -47,7 +43,6 @@ function Snackbar(props) {
     <MuiSnackbar
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       autoHideDuration={6e3}
-      transition={Transition}
       ContentProps={{
         'aria-describedby': 'snackbar',
         classes: {

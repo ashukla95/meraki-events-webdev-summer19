@@ -4,6 +4,8 @@ import ProfileBody from "./modules/views/ProfileBody";
 import UserService from './APIServices/UserService';
 import ProfileList from "./modules/components/ProfileList";
 import EventService from "./APIServices/EventService";
+import AppFooter from "./modules/views/AppFooter"
+import withRoot from "./modules/withRoot";
 
 const userService = UserService.getInstance();
 const eventService = EventService.getInstance();
@@ -55,10 +57,12 @@ class Profile extends Component {
 	generateProfileList() {
 		if ((!this.state.displayProfile) && (this.state.searchFormData !== '')) {
 			userService.getProfileSearchResult(this.state.searchFormData).then(response => {
-				this.setState({
-					profileSearchResult: [response],
-					searchFormData: ''
-				});
+				if (response !== undefined) {
+					this.setState({
+						profileSearchResult: [response],
+						searchFormData: ''
+					});
+				}
 			});
 		}
 	};
@@ -137,10 +141,10 @@ class Profile extends Component {
 					:
 					<ProfileList searchResult={this.state.profileSearchResult}
 						followUser={this.followUser} />}
-
+				<AppFooter />
 			</div>
 		)
 	}
 }
 
-export default (Profile)
+export default withRoot(Profile)

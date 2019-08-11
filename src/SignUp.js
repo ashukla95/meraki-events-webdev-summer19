@@ -11,6 +11,7 @@ import AppFooter from './modules/views/AppFooter';
 import AppAppBar from './modules/views/AppAppBar';
 import AppForm from './modules/views/AppForm';
 import TextField from '@material-ui/core/TextField';
+import Snackbar from './modules/components/Snackbar';
 import FormButton from './modules/form/FormButton';
 
 import UserService from './APIServices/UserService';
@@ -24,27 +25,30 @@ const styles = theme => ({
   },
 });
 
+const defaultState = {
+  profile: {
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    followers: [],
+    following: [],
+    events: []
+  },
+  redirect: false,
+  loading: false,
+  open: false
+}
+
 class SignUp extends React.Component {
   constructor() {
     super();
-    this.state = {
-      profile: {
-        username: "",
-        password: "",
-        firstName: "",
-        lastName: "",
-        followers: [],
-        following: [],
-        events: []
-      },
-      redirect: false,
-      loading: false
-    };
+    this.state = defaultState
   }
 
   handleSubmit = () => {
-    if (this.state.firstName !== "" && this.state.lastName !== ""
-      && this.state.username !== "" && this.state.password !== "") {
+    if (this.state.profile.firstName !== "" && this.state.profile.lastName !== ""
+      && this.state.profile.username !== "" && this.state.profile.password !== "") {
       this.setState({ ...this.state, loading: true });
       userService
         .createUser(this.state.profile)
@@ -52,6 +56,9 @@ class SignUp extends React.Component {
           localStorage.setItem('currentUser', user._id);
           this.setState({ ...this.state, redirect: true })
         });
+    }
+    else {
+      this.setState({ ...this.state, loading: false, open: true })
     }
   };
 
@@ -77,6 +84,10 @@ class SignUp extends React.Component {
     const profile = this.state.profile;
     profile.password = password;
     this.setState({ ...this.state, profile })
+  }
+
+  handleClose = () => {
+    this.setState({ ...this.state, open: false });
   }
 
   render() {
@@ -139,7 +150,11 @@ class SignUp extends React.Component {
             fullWidth>
             {this.state.loading ? 'Submitting' : 'Sign Up'}
           </FormButton>
-
+          <Snackbar
+            open={this.state.open}
+            onClose={this.handleClose}
+            message="Please complete all fields!"
+          />
         </AppForm>
         <AppFooter />
       </React.Fragment >
