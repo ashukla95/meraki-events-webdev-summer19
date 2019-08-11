@@ -87,11 +87,13 @@ const Events = ({section, events, changeVisibiltiy, profileId}) => {
 									<Grid item xs={6} sm={6} md={2} lg={3}>
 										<Box p={3}>
 											{event.isPrivate ?
+												window.localStorage.getItem("currentUser") &&
 												<Button onClick={(value, eventData) => changeVisibiltiy(false, event)}>
 													<LockIcon className={classes.iconButton}>
 													</LockIcon>
 												</Button>
 												:
+												window.localStorage.getItem("currentUser") &&
 												<Button onClick={(value, eventData) => changeVisibiltiy(true, event)}>
 													<LockOpenIcon className={classes.iconButton}>
 													</LockOpenIcon>

@@ -24,7 +24,8 @@ class Profile extends Component {
 			searchFormData: '',
 			profileSearchResult: null,
 			eventList: [],
-			profileId: props.match.params.profileId
+			profileId: props.match.params.profileId,
+			offlineUpdate: false
 
 		}
 	}
@@ -106,10 +107,13 @@ class Profile extends Component {
 		EventService.getInstance().updateEvent(eventData)
 			.then(response => {
 				tempData = Array.from(Object.create(this.state.eventList));
+				this.setState({
+					eventList: []
+				});
 				tempData = tempData.filter(event => event["_id"] !== temp);
 				tempData.push(eventData);
 				this.setState({
-					eventList: tempData
+					eventList: tempData,
 				});
 		});
 	};

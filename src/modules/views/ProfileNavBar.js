@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { styles as toolbarStyles } from "../components/Toolbar";
+import React, {useState} from 'react';
+import {styles as toolbarStyles} from "../components/Toolbar";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
-import { AppBar, TextField } from "@material-ui/core";
+import {AppBar, TextField} from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import { NavLink } from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
 import Grid from "@material-ui/core/Grid";
-import { fade } from "@material-ui/core/styles";
+import {fade} from "@material-ui/core/styles";
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from "@material-ui/core/IconButton";
 import clsx from 'clsx';
@@ -116,7 +116,7 @@ const styles = theme => ({
 });
 
 const ProfileNavBar = (props) => {
-	const { classes } = props;
+	const {classes} = props;
 
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [formData, setFormData] = useState('');
@@ -140,8 +140,8 @@ const ProfileNavBar = (props) => {
 							className={classes.title}
 							href={"/"}>
 							<Typography variant={"h5"}
-								align={"center"}
-								color={"initial"}>
+							            align={"center"}
+							            color={"initial"}>
 								{'Meraki Events'}
 							</Typography>
 						</Link>
@@ -162,7 +162,7 @@ const ProfileNavBar = (props) => {
 					</Grid>
 					<Grid item>
 						<div className={classes.right}
-							onClick={(flag, data) => props.renderProfileList(false, formData)}>
+						     onClick={(flag, data) => props.renderProfileList(false, formData)}>
 							<IconButton size={"small"}>
 								<SearchIcon
 									className={clsx(classes.rightLink, classes.linkSecondary, classes.icon)}>
@@ -170,6 +170,7 @@ const ProfileNavBar = (props) => {
 							</IconButton>
 						</div>
 					</Grid>
+					{window.localStorage.getItem("currentUser") &&
 					<Grid item className={classes.right}>
 						<Button
 							aria-controls="simple-menu"
@@ -177,11 +178,11 @@ const ProfileNavBar = (props) => {
 							aria-haspopup="true"
 							onClick={handleClick}>
 							<Typography display={"block"}
-								align={"justify"}
-								className={classes.userName}
-								gutterBottom={false}
-								variant={"subtitle2"}
-								component={"p"}>
+							            align={"justify"}
+							            className={classes.userName}
+							            gutterBottom={false}
+							            variant={"subtitle2"}
+							            component={"p"}>
 								{props.username}
 							</Typography>
 							<ArrowDropDownIcon className={classes.arrowDownIcon}>
@@ -203,12 +204,16 @@ const ProfileNavBar = (props) => {
 							open={Boolean(anchorEl)}
 							onClose={redirectToProfile}>
 							<MenuItem><NavLink className={classes.link} to={'/profile'}>My account</NavLink></MenuItem>
-							<MenuItem><NavLink className={classes.link} to={{pathname:'/login/', clearData: true}}>Logout</NavLink></MenuItem>
+							<MenuItem><NavLink className={classes.link}
+							                   to={{pathname: '/login/', clearData: true}}>Logout</NavLink></MenuItem>
 						</Menu>
-					</Grid>
+					</Grid>}
+					{!window.localStorage.getItem("currentUser") &&
+					<Grid item className={classes.right}>
+					</Grid>}
 				</Toolbar>
 			</AppBar>
-			<div className={classes.placeholder} />
+			<div className={classes.placeholder}/>
 		</div>
 	);
 };

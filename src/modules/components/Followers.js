@@ -70,12 +70,17 @@ const Followers = ({section, addFollowers, removeFollowers, networking, unFollow
 										</Grid>
 										<Grid item xs={6} sm={3} md={3} lg={3}>
 											<Box p={2} className={classes.iconButton}>
-												{addFollowers && <Button
+												{window.localStorage.getItem("currentUser")&& addFollowers && <Button
 													onClick={(follow, follower) => followUser(network, window.localStorage.getItem("currentUser"))}>
 													<AddIcon>
 													</AddIcon>
 												</Button>}
-												{removeFollowers && <Button
+												{!window.localStorage.getItem("currentUser")&& addFollowers && <Button
+													onClick={() =>alert("Please register")}>
+													<AddIcon>
+													</AddIcon>
+												</Button>}
+												{window.localStorage.getItem("currentUser")&& removeFollowers && <Button
 													onClick={(follow, follower) => unFollowUser(network, localStorage.getItem("currentUser"))}>
 													<RemoveIcon>
 													</RemoveIcon>
