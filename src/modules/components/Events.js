@@ -29,7 +29,6 @@ const useStyles = makeStyles({
 });
 
 const Events = ({section, events, changeVisibiltiy, profileId}) => {
-	console.log("profile id: ", profileId);
 	const classes = useStyles();
 	return (
 		<React.Fragment>

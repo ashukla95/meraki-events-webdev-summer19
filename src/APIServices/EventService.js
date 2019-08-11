@@ -15,7 +15,6 @@ export default class EventService {
 	}
 
 	updateEvent(updatedEventData) {
-		console.log("data: ", updatedEventData._id)
 		return fetch(`https://meraki-backend-wbdv.herokuapp.com/api/events/${updatedEventData._id}`,{
 			method: 'POST',
 			body: JSON.stringify(updatedEventData),

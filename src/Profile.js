@@ -86,7 +86,6 @@ class Profile extends Component {
 	};
 
 	unFollowUser = (follow, follower) => {
-		console.log("follow: ", follow," follower: ", follower);
 		userService.unFollowUser(follow, follower)
 			.then(response =>
 				userService.getUserData(localStorage.getItem("currentUser"))
@@ -102,7 +101,6 @@ class Profile extends Component {
 
 	changeVisibiltiy = (visibilityValue, eventData) => {
 		eventData.isPrivate = visibilityValue;
-		let temp = eventData._id;
 		let tempData = [];
 		EventService.getInstance().updateEvent(eventData)
 			.then(response => {
@@ -110,8 +108,6 @@ class Profile extends Component {
 				this.setState({
 					eventList: []
 				});
-				tempData = tempData.filter(event => event["_id"] !== temp);
-				tempData.push(eventData);
 				this.setState({
 					eventList: tempData,
 				});
