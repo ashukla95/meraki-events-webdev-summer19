@@ -3,7 +3,7 @@ import {Link, Redirect} from "react-router-dom";
 import ProfileNavBar from "./modules/views/ProfileNavBar";
 import ProfileBody from "./modules/views/ProfileBody";
 import UserService from './APIServices/UserService';
-import ProfileList from "./modules/components/ProfileList";
+import ProfileList from "./modules/ProfileList";
 import EventService from "./APIServices/EventService";
 import AppFooter from "./modules/views/AppFooter"
 import withRoot from "./modules/withRoot";

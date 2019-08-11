@@ -193,53 +193,55 @@ const ProfileNavBar = (props) => {
 						</React.Fragment>
 					}
 					{
-						window.localStorage.getItem("currentUser") &&
-						<Grid item className={classes.right}>
-							<Button
-								aria-controls="simple-menu"
-								className={classes.button}
-								aria-haspopup="true"
-								onClick={handleClick}>
-								<Typography display={"block"}
-								            align={"justify"}
-								            className={classes.userName}
-								            gutterBottom={false}
-								            variant={"subtitle2"}
-								            component={"p"}>
-									{props.username}
-								</Typography>
-								<ArrowDropDownIcon className={classes.arrowDownIcon}>
-								</ArrowDropDownIcon>
-							</Button>
-							<Menu
-								id="simple-menu"
-								anchorEl={anchorEl}
-								anchorOrigin={{
-									vertical: 'bottom',
-									horizontal: 'center',
-								}}
-								transformOrigin={{
-									vertical: 'top',
-									horizontal: 'center',
-								}}
-								getContentAnchorEl={null}
-								keepMounted
-								open={Boolean(anchorEl)}
-								onClose={redirectToProfile}>
-								<MenuItem>
-									<NavLink className={classes.link} to={'/profile'}>My account
-									</NavLink>
-								</MenuItem>
-								<MenuItem>
-									<NavLink className={classes.link}
-									         to={{
-										         pathname: '/login/',
-										         clearData: true
-									         }}>Logout
-									</NavLink>
-								</MenuItem>
-							</Menu>
-						</Grid>}
+						window.localStorage.getItem("currentUser") ?
+							<Grid item className={classes.right}>
+								<Button
+									aria-controls="simple-menu"
+									className={classes.button}
+									aria-haspopup="true"
+									onClick={handleClick}>
+									<Typography display={"block"}
+									            align={"justify"}
+									            className={classes.userName}
+									            gutterBottom={false}
+									            variant={"subtitle2"}
+									            component={"p"}>
+										{props.username}
+									</Typography>
+									<ArrowDropDownIcon className={classes.arrowDownIcon}>
+									</ArrowDropDownIcon>
+								</Button>
+								<Menu
+									id="simple-menu"
+									anchorEl={anchorEl}
+									anchorOrigin={{
+										vertical: 'bottom',
+										horizontal: 'center',
+									}}
+									transformOrigin={{
+										vertical: 'top',
+										horizontal: 'center',
+									}}
+									getContentAnchorEl={null}
+									keepMounted
+									open={Boolean(anchorEl)}
+									onClose={redirectToProfile}>
+									<MenuItem>
+										<NavLink className={classes.link} to={'/profile'}>My account
+										</NavLink>
+									</MenuItem>
+									<MenuItem>
+										<NavLink className={classes.link}
+										         to={{
+											         pathname: '/login/',
+											         clearData: true
+										         }}>Logout
+										</NavLink>
+									</MenuItem>
+								</Menu>
+							</Grid> :
+							<Grid item className={classes.right}>
+							</Grid>}
 				</Toolbar>
 			</AppBar>
 			<div className={classes.placeholder}/>
