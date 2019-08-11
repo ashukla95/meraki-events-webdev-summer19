@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ProfileNavBar from "./modules/views/ProfileNavBar";
 import ProfileBody from "./modules/views/ProfileBody";
 import UserService from './APIServices/UserService';
@@ -6,6 +6,7 @@ import ProfileList from "./modules/components/ProfileList";
 import EventService from "./APIServices/EventService";
 
 const userService = UserService.getInstance();
+const eventService = EventService.getInstance();
 
 class Profile extends Component {
 
@@ -39,7 +40,7 @@ class Profile extends Component {
 			}, () => {
 				this.state.eventList
 					.forEach(event => {
-						EventService.getInstance().getEventDataUsingEventId(event)
+						eventService.getEventDataUsingEventId(event)
 							.then(response => {
 								eventData.push(response);
 								this.setState({
@@ -111,16 +112,16 @@ class Profile extends Component {
 				this.setState({
 					eventList: tempData,
 				});
-		});
+			});
 	};
 
 	render() {
 		return (
-			<div style={{"height": "100%"}}>
+			<div style={{ "height": "100%" }}>
 				<ProfileNavBar
 					renderProfileList={this.renderProfileList}
 					changeField={this.changeField}
-					username={localStorage.getItem("currentUser")}/>
+					username={localStorage.getItem("currentUser")} />
 				{this.state.displayProfile ?
 					<ProfileBody
 						profileId={this.state.profileId}
@@ -132,10 +133,10 @@ class Profile extends Component {
 						following={this.state.userData.following}
 						username={this.state.userData.username}
 						firstName={this.state.userData.firstName}
-						lastName={this.state.userData.lastName}/>
+						lastName={this.state.userData.lastName} />
 					:
 					<ProfileList searchResult={this.state.profileSearchResult}
-					             followUser={this.followUser}/>}
+						followUser={this.followUser} />}
 
 			</div>
 		)

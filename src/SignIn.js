@@ -31,18 +31,20 @@ const styles = theme => ({
   },
 });
 
+const defaultState = {
+  profile: {
+    username: "",
+    password: ""
+  },
+  redirect: false,
+  loading: false
+}
+
 class SignIn extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      profile: {
-        username: "",
-        password: ""
-      },
-      redirect: false,
-      loading: false
-    }
+    this.state = defaultState
   }
 
   handleSubmit = () => {
@@ -50,13 +52,13 @@ class SignIn extends React.Component {
     userService
       .login(this.state.profile.username, this.state.profile.password)
       .then(user => {
-        console.log(user, 'login response')
         if (user !== undefined) {
           localStorage.setItem('currentUser', user._id);
           this.setState({ ...this.state, redirect: true })
         }
         else {
           alert('Username or password incorrect.');
+          this.setState(defaultState)
         }
       });
   };
