@@ -85,9 +85,6 @@ class Profile extends Component {
 								profileSearchResult: null
 							})
 						}
-						else {
-
-						}
 					}))
 	};
 
@@ -125,7 +122,7 @@ class Profile extends Component {
 
 	render() {
 		return (
-			<div style={{ "height": "100%" }}>
+			<div >
 				<ProfileNavBar
 					renderProfileList={this.renderProfileList}
 					changeField={this.changeField}

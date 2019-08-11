@@ -52,10 +52,10 @@ const Events = ({ section, events, changeVisibiltiy, profileId }) => {
 				md={12}
 				lg={12}>
 				{(typeof events !== "undefined" && events.length !== 0) ?
-					events.map(event => (
+					events.map((event, index) => (
 						(typeof profileId === "undefined"
 							|| typeof profileId !== "undefined" && !event.isPrivate) &&
-						<Card key={new Date().getTime()} className={classes.eventCard}>
+						<Card key={index} className={classes.eventCard}>
 
 							<Grid container spacing={2}>
 								<Grid item xs={6} sm={6} md={4} lg={3}>

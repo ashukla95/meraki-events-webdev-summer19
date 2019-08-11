@@ -1,8 +1,8 @@
 import React from 'react';
-import {Grid} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Box from "@material-ui/core/Box";
 import Hidden from "@material-ui/core/Hidden";
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const ProfileList = ({searchResult, followUser, unFollowUser}) => {
+const ProfileList = ({ searchResult, followUser, unFollowUser }) => {
 	const classes = useStyles();
 	return (
 		<React.Fragment>
@@ -97,65 +97,65 @@ const ProfileList = ({searchResult, followUser, unFollowUser}) => {
 				sm={12}
 				md={12}
 				lg={12}>
-				{(searchResult !== null) ? searchResult.map(result => (
-						<Card key={new Date().getTime()} className={classes.eventCard}>
+				{(searchResult !== null) ? searchResult.map((result, index) => (
+					<Card key={index} className={classes.eventCard}>
 
-							<Grid container spacing={2}>
-								<Grid item xs={6} sm={6} md={2} lg={2}>
+						<Grid container spacing={2}>
+							<Grid item xs={6} sm={6} md={2} lg={2}>
+								<Box p={3}>
+									<Typography align={"justify"} variant={"body1"} component={"p"}>
+										<Link to={`/profile/${result._id}`}
+											className={classes.profileName}>{result.username}</Link>
+									</Typography>
+								</Box>
+							</Grid>
+							<Hidden smDown xsDown>
+								<Grid item sm={2} md={2} lg={2}>
 									<Box p={3}>
 										<Typography align={"justify"} variant={"body1"} component={"p"}>
-											<Link to={`/profile/${result._id}`}
-											      className={classes.profileName}>{result.username}</Link>
+											{result.firstName}
 										</Typography>
 									</Box>
 								</Grid>
-								<Hidden smDown xsDown>
-									<Grid item sm={2} md={2} lg={2}>
-										<Box p={3}>
-											<Typography align={"justify"} variant={"body1"} component={"p"}>
-												{result.firstName}
-											</Typography>
-										</Box>
-									</Grid>
-								</Hidden>
-								<Hidden smDown xsDown>
-									<Grid item sm={2} md={2} lg={2}>
-										<Box p={3}>
-											<Typography align={"justify"} variant={"body1"} component={"p"}>
-												{result.lastName}
-											</Typography>
-										</Box>
-									</Grid>
-								</Hidden>
-								<Hidden smDown xsDown>
-									<Grid item sm={2} md={2} lg={2}>
-										<Box p={3}>
-											{result.followers.length}
-										</Box>
-									</Grid>
-								</Hidden>
-								<Hidden smDown xsDown>
-									<Grid item sm={2} md={2} lg={2}>
-										<Box p={3}>
-											{result.following.length}
-										</Box>
-									</Grid>
-								</Hidden>
-								<CardActions>
-									<Grid item xs={6} sm={6} md={2} lg={2}>
-										<Box p={3}>
-											<Button
-												onClick={(follow, follower) => followUser(result._id, window.localStorage.getItem("currentUser"))}>
-												<AddIcon>
-												</AddIcon>
-											</Button>
-										</Box>
-									</Grid>
-								</CardActions>
-							</Grid>
-						</Card>
-					)
-					)
+							</Hidden>
+							<Hidden smDown xsDown>
+								<Grid item sm={2} md={2} lg={2}>
+									<Box p={3}>
+										<Typography align={"justify"} variant={"body1"} component={"p"}>
+											{result.lastName}
+										</Typography>
+									</Box>
+								</Grid>
+							</Hidden>
+							<Hidden smDown xsDown>
+								<Grid item sm={2} md={2} lg={2}>
+									<Box p={3}>
+										{result.followers.length}
+									</Box>
+								</Grid>
+							</Hidden>
+							<Hidden smDown xsDown>
+								<Grid item sm={2} md={2} lg={2}>
+									<Box p={3}>
+										{result.following.length}
+									</Box>
+								</Grid>
+							</Hidden>
+							<CardActions>
+								<Grid item xs={6} sm={6} md={2} lg={2}>
+									<Box p={3}>
+										<Button
+											onClick={(follow, follower) => followUser(result._id, window.localStorage.getItem("currentUser"))}>
+											<AddIcon>
+											</AddIcon>
+										</Button>
+									</Box>
+								</Grid>
+							</CardActions>
+						</Grid>
+					</Card>
+				)
+				)
 					:
 					<Typography variant={"body2"} align={"center"} component={"p"}>
 						Sorry no results obtained. Please try again by using some other profile name.
@@ -163,7 +163,7 @@ const ProfileList = ({searchResult, followUser, unFollowUser}) => {
 				}
 			</Grid>
 
-			<div/>
+			<div />
 		</React.Fragment>
 	);
 };
