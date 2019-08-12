@@ -43,7 +43,7 @@ const ProfileBody = ({
 	                     followers, following,
 	                     unFollowUser, changeVisibiltiy,
 	                     profileId, followUser,
-	                     anonymousUser, changeVisibiltiyFlag, redirectFlag
+	                     anonymousUser, changeVisibiltiyFlag, redirectFlag, updateUser
                      }) => {
 	const classes = useStyles();
 	return (
@@ -52,6 +52,7 @@ const ProfileBody = ({
 				<Grid item lg={2} md={12} sm={12} xs={12} className={classes.demographics}>
 					<Grid container>
 						<Demographics
+							updateUser={updateUser}
 							username={username}
 							firstName={firstName}
 							lastName={lastName}/>

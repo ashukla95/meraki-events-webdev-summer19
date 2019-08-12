@@ -83,4 +83,15 @@ export default class UserService {
 		})
 			.then(response => response.json());
 	}
+
+	updateUser(body) {
+		console.log("body: ", body);
+		return fetch(`https://meraki-backend-wbdv.herokuapp.com/api/user/${body._id}`,{
+			method:'POST',
+			headers:{
+				'content-type':'application/json'
+			},
+			body: JSON.stringify(body)
+		}).then(response => response.json());
+	}
 }

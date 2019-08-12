@@ -115,10 +115,40 @@ class Profile extends Component {
 			});
 	};
 
+	updateUser = (firstName, lastName) => {
+		let body = {
+			_id: this.state.userData._id,
+			username: this.state.userData.username,
+			firstName: this.state.userData.firstName,
+			lastName: this.state.userData.lastName,
+			password: this.state.userData.password,
+			events: this.state.userData.events,
+			followers: this.state.userData.followers,
+			following: this.state.userData.following,
+			type: this.state.userData.type
+		};
+		if(typeof firstName !== "undefined") {
+			body.firstName = firstName
+		};
+		if(typeof lastName !== "undefined") {
+			body.lastName = lastName
+		};
+		userService.updateUser(body).then(response => {
+			userService.getUserData(body._id).then(userData => {
+				console.log("userD: ", userData);
+				this.setState({
+					...this.state,
+					userData
+				})
+			})
+		})
+
+	}
+
 	render() {
 		return (
 			<React.Fragment>
-				{this.state.userData.type === 'ADMIN' && <Redirect to={{pathname: '/admin/'}}/>}
+				{!this.state.userData === undefined && this.state.userData.type === 'ADMIN' && <Redirect to={{pathname: '/admin/'}}/>}
 				<div>
 					<ProfileNavBar
 						renderProfileList={this.renderProfileList}
@@ -126,6 +156,7 @@ class Profile extends Component {
 						username={localStorage.getItem("currentUser")}/>
 					{this.state.displayProfile && !this.state.anonymousUser ?
 						<ProfileBody
+							updateUser={this.updateUser}
 							redirectFlag={this.state.redirectFlag}
 							changeVisibiltiyFlag={this.state.changeVisibiltiyFlag}
 							profileId={this.state.profileId}

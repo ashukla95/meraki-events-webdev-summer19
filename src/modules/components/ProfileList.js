@@ -95,7 +95,7 @@ class ProfileList extends Component {
 	};
 
 	render() {
-		const classes = this.props;
+		const {classes} = this.props;
 		return (
 			<React.Fragment>
 				{this.state.redirect && <Redirect to={'/profile'}/>}
@@ -217,7 +217,6 @@ class ProfileList extends Component {
 										<CardActions>
 											<Grid item xs={6} sm={6} md={2} lg={2}>
 												<Box p={3}>
-
 													<Button
 														onClick={(follow, follower) => this.followUser(result._id, window.localStorage.getItem("currentUser"))}>
 														<AddIcon>
