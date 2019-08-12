@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import {Link, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import ProfileNavBar from "./modules/views/ProfileNavBar";
 import ProfileBody from "./modules/views/ProfileBody";
 import UserService from './APIServices/UserService';
-import ProfileList from "./modules/components/ProfileList";
 import EventService from "./APIServices/EventService";
 import AppFooter from "./modules/views/AppFooter"
 import withRoot from "./modules/withRoot";
@@ -19,7 +18,8 @@ const defaultState = {
 	eventList: [],
 	profileId: -1,
 	anonymousUser: false,
-	offlineUpdate: false
+	offlineUpdate: false,
+	changeVisibiltiyFlag: false
 }
 
 class Profile extends Component {
@@ -27,6 +27,7 @@ class Profile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = defaultState;
+		this.state={...defaultState, profileId: props.match.params.profileId};
 		let userNameToBeSearched =
 			(props.match.params.profileId === null || props.match.params.profileId === undefined) ?
 				localStorage.getItem("currentUser") : props.match.params.profileId;
@@ -103,10 +104,12 @@ class Profile extends Component {
 				tempData = Array.from(Object.create(this.state.eventList));
 				this.setState({
 					...this.state,
+					changeVisibiltiyFlag: true,
 					eventList: []
 				});
 				this.setState({
 					...this.state,
+					changeVisibiltiyFlag: true,
 					eventList: tempData,
 				});
 			});
@@ -121,7 +124,9 @@ class Profile extends Component {
 					username={localStorage.getItem("currentUser")}/>
 				{!this.state.anonymousUser && this.state.displayProfile ?
 					<ProfileBody
+						changeVisibiltiyFlag={this.state.changeVisibiltiyFlag}
 						profileId={this.state.profileId}
+						anonymousUser={this.state.anonymousUser}
 						changeVisibiltiy={this.changeVisibiltiy}
 						events={this.state.eventList}
 						followUser={this.followUser}
