@@ -66,7 +66,8 @@ const Followers = ({section, addFollowers, removeFollowers, networking, unFollow
 													            variant={"body1"}
 													            component={"p"}>
 														<Link className={classes.linkData}
-														      to={`/profile/${network}`}>{network}</Link>
+														      to={`/profile/${network}`}>{network}
+														</Link>
 													</Typography>
 												</Box>
 											</Grid>

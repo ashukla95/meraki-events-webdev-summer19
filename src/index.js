@@ -8,10 +8,12 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import PropertyDetails from './PropertyDetails';
 import Profile from "./Profile";
 import ProfileList from "./modules/components/ProfileList";
+import AdminDashBoard from "./modules/AdminDashBoard";
 
 const routing = (
   <Router>
     <Route exact path={"/"} component={Home} />
+    <Route exact path={"/admin/"} component={AdminDashBoard}/>
     <Route exact path={"/home"} component={Home} />
     <Route path={"/search/"} component={Search} />
     <Route path={"/login/"} component={SignIn} />

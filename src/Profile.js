@@ -117,33 +117,36 @@ class Profile extends Component {
 
 	render() {
 		return (
-			<div>
-				<ProfileNavBar
-					renderProfileList={this.renderProfileList}
-					searchProfile={true}
-					username={localStorage.getItem("currentUser")}/>
-				{!this.state.anonymousUser ?
-					<ProfileBody
-						redirectFlag={this.state.redirectFlag}
-						changeVisibiltiyFlag={this.state.changeVisibiltiyFlag}
-						profileId={this.state.profileId}
-						anonymousUser={this.state.anonymousUser}
-						changeVisibiltiy={this.changeVisibiltiy}
-						events={this.state.eventList}
-						followUser={this.followUser}
-						unFollowUser={this.unFollowUser}
-						followers={this.state.userData.followers}
-						following={this.state.userData.following}
-						username={this.state.userData.username}
-						firstName={this.state.userData.firstName}
-						lastName={this.state.userData.lastName}/>
-					:
-					<Redirect to={{
-						pathname: '/profile-list/',
-					}}/>
-				}
-				<AppFooter/>
-			</div>
+			<React.Fragment>
+				{this.state.userData.type === 'ADMIN' && <Redirect to={{pathname: '/admin/'}}/>}
+				<div>
+					<ProfileNavBar
+						renderProfileList={this.renderProfileList}
+						searchProfile={true}
+						username={localStorage.getItem("currentUser")}/>
+					{this.state.displayProfile && !this.state.anonymousUser ?
+						<ProfileBody
+							redirectFlag={this.state.redirectFlag}
+							changeVisibiltiyFlag={this.state.changeVisibiltiyFlag}
+							profileId={this.state.profileId}
+							anonymousUser={this.state.anonymousUser}
+							changeVisibiltiy={this.changeVisibiltiy}
+							events={this.state.eventList}
+							followUser={this.followUser}
+							unFollowUser={this.unFollowUser}
+							followers={this.state.userData.followers}
+							following={this.state.userData.following}
+							username={this.state.userData.username}
+							firstName={this.state.userData.firstName}
+							lastName={this.state.userData.lastName}/>
+						:
+						<Redirect to={{
+							pathname: '/profile-list/',
+						}}/>
+					}
+					<AppFooter/>
+				</div>
+			</React.Fragment>
 		)
 	}
 }

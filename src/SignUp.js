@@ -30,6 +30,7 @@ const defaultState = {
     username: "",
     password: "",
     firstName: "",
+    type:'NORMAL',
     lastName: "",
     followers: [],
     following: [],
