@@ -39,11 +39,18 @@ class Profile extends Component {
 		}
 	}
 
+	shouldComponentUpdate(nextProps, nextState, nextContext) {
+		if(nextProps.match.params.profileId !== this.state.profileId){
+			this.getUserDataToLocal(nextProps.match.params.profileId, nextProps);
+		}
+		return true;
+	}
+
 	getUserDataToLocal(userNameToBeSearched, props) {
 		userService
 			.getUserData(userNameToBeSearched)
 			.then(userData => {
-				this.setState({...this.state, userData, profileId: props.match.params.profileId,})
+				this.setState({...this.state, userData, profileId: props.match.params.profileId,eventList:[]})
 				let eventList = [];
 				userData.events.forEach(eventId => {
 					eventService
@@ -51,8 +58,9 @@ class Profile extends Component {
 						.then(eventDetails => {
 							eventList.push(eventDetails);
 							this.setState({...this.state, eventList})
-						})
-				})
+						});
+				});
+				this.setState({...this.state, eventList});
 			});
 	}
 
