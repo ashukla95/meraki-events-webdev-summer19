@@ -13,13 +13,9 @@ import Modal from "@material-ui/core/Modal";
 import SimpleModal from "./SimpleModal";
 import TextField from "@material-ui/core/TextField";
 
-function rand() {
-	return Math.round(Math.random() * 20) - 10;
-}
-
 function getModalStyle() {
-	const top = 50 + rand();
-	const left = 50 + rand();
+	const top = window.screen.availHeight / 20;
+	const left = window.screen.availHeight / 20;
 
 	return {
 		top: `${top}%`,
@@ -36,20 +32,25 @@ const useStyles = makeStyles(theme => ({
 		position: 'absolute',
 		width: 400,
 		backgroundColor: theme.palette.background.paper,
-		border: '2px solid #000',
-		boxShadow: theme.shadows[5],
+		boxShadow: theme.shadows[20],
 		padding: theme.spacing(2, 4, 4),
 	},
 	textField: {
 		marginLeft: theme.spacing(1),
 		marginRight: theme.spacing(1),
-		width: 200,
+		width: 200
+	}
+	,
+	modalButton: {
+		alignContent: 'left',
+		alignItems:'left',
+		width: 200
 	}
 
 }));
 
 const Demographics = ({username, firstName, lastName, updateUser, flag}) => {
-	
+
 	const classes = useStyles();
 	const [modalStyle] = React.useState(getModalStyle);
 	const [open, setOpen] = React.useState(false);
@@ -121,7 +122,8 @@ const Demographics = ({username, firstName, lastName, updateUser, flag}) => {
 							flag &&
 							<Button onClick={() => handleOpen()}>
 								Edit
-							</Button>}
+							</Button>
+						}
 					</CardActions>
 				</Card>
 			</Grid>
@@ -153,7 +155,7 @@ const Demographics = ({username, firstName, lastName, updateUser, flag}) => {
 					/>
 
 					<Button onClick={(firstName, lastName) => updateUser(values.firstName, values.lastName)}
-					        className={classes.textField}>
+					        className={classes.modalButton}>
 						Save
 					</Button>
 
