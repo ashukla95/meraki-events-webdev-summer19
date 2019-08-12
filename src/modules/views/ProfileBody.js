@@ -52,6 +52,7 @@ const ProfileBody = ({
 				<Grid item lg={2} md={12} sm={12} xs={12} className={classes.demographics}>
 					<Grid container>
 						<Demographics
+							flag={!profileId && !anonymousUser}
 							updateUser={updateUser}
 							username={username}
 							firstName={firstName}

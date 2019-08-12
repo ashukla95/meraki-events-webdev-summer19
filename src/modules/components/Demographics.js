@@ -48,8 +48,8 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const Demographics = ({username, firstName, lastName, updateUser}) => {
-
+const Demographics = ({username, firstName, lastName, updateUser, flag}) => {
+	
 	const classes = useStyles();
 	const [modalStyle] = React.useState(getModalStyle);
 	const [open, setOpen] = React.useState(false);
@@ -117,9 +117,11 @@ const Demographics = ({username, firstName, lastName, updateUser}) => {
 						</CardContent>
 					</CardActionArea>
 					<CardActions>
-						<Button onClick={() => handleOpen()}>
-							Edit
-						</Button>
+						{
+							flag &&
+							<Button onClick={() => handleOpen()}>
+								Edit
+							</Button>}
 					</CardActions>
 				</Card>
 			</Grid>
@@ -138,7 +140,7 @@ const Demographics = ({username, firstName, lastName, updateUser}) => {
 						label="First Name"
 						className={classes.textField}
 						defaultValue={firstName}
-						onChange={(event) => setValues({ ...values, ["firstName"]: event.target.value })}
+						onChange={(event) => setValues({...values, ["firstName"]: event.target.value})}
 						margin="normal"
 					/>
 					<TextField
@@ -146,12 +148,15 @@ const Demographics = ({username, firstName, lastName, updateUser}) => {
 						label="Last Name"
 						className={classes.textField}
 						defaultValue={lastName}
-						onChange={(event) => setValues({ ...values, ["lastName"]: event.target.value })}
+						onChange={(event) => setValues({...values, ["lastName"]: event.target.value})}
 						margin="normal"
 					/>
-					<Button onClick={(firstName, lastName) => updateUser(values.firstName, values.lastName)} className={classes.textField}>
+
+					<Button onClick={(firstName, lastName) => updateUser(values.firstName, values.lastName)}
+					        className={classes.textField}>
 						Save
 					</Button>
+
 				</div>
 			</Modal>
 			{/*Modal component end.*/}

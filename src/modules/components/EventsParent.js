@@ -62,6 +62,7 @@ class EventsParent extends Component {
 				<Paper className={classes.paper}>
 					<Grid container>
 							<Events
+								flag={this.state.flag}
 								changeVisibiltiy={this.state.changeVisibiltiy}
 								events={this.state.upcomingEvents}
 								section={"Upcoming Events"}/>
@@ -70,6 +71,7 @@ class EventsParent extends Component {
 				<Paper elevation={2} className={classes.paper}>
 					<Grid container>
 							<Events
+								flag={this.state.flag}
 								changeVisibiltiy={this.state.changeVisibiltiy}
 								events={this.state.pastEvents}
 								section={"Past Events"}/>
