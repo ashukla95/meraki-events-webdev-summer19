@@ -69,7 +69,6 @@ class SignIn extends React.Component {
   }
 
   handleUsernameChange = (username) => {
-    console.log("username: ", username);
     let profile = this.state.profile;
     profile.username = username;
     this.setState({ ...this.state, profile })
@@ -96,6 +95,8 @@ class SignIn extends React.Component {
     return (
       <React.Fragment>
         {this.state.redirect && <Redirect to="/profile" />}
+        {this.props.location.clearData && window.localStorage.clear()}
+        {this.props.location.clearData = false}
         <AppAppBar />
         <AppForm>
           <React.Fragment>
