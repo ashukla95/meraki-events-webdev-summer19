@@ -38,13 +38,19 @@ const useStyles = makeStyles(theme => ({
 	textField: {
 		marginLeft: theme.spacing(1),
 		marginRight: theme.spacing(1),
-		width: 200
+		width: 300
 	}
 	,
 	modalButton: {
 		alignContent: 'left',
 		alignItems:'left',
-		width: 200
+		width: 100
+	},
+	modalButton2: {
+		alignContent: 'left',
+		alignItems:'left',
+		width: 100,
+		marginRight: theme.spacing(1)
 	}
 
 }));
@@ -153,12 +159,20 @@ const Demographics = ({username, firstName, lastName, updateUser, flag}) => {
 						onChange={(event) => setValues({...values, ["lastName"]: event.target.value})}
 						margin="normal"
 					/>
-
-					<Button onClick={(firstName, lastName) => updateUser(values.firstName, values.lastName)}
-					        className={classes.modalButton}>
-						Save
-					</Button>
-
+					<Grid container direction={"row"} style={{"marginRight":"5"}}>
+						<Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
+							<Button onClick={(firstName, lastName) => updateUser(values.firstName, values.lastName)}
+							        className={classes.modalButton}>
+								Save
+							</Button>
+						</Grid>
+						<Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
+							<Button onClick={() => handleClose()}
+							        className={classes.modalButton2}>
+								Close
+							</Button>
+						</Grid>
+					</Grid>
 				</div>
 			</Modal>
 			{/*Modal component end.*/}
