@@ -240,6 +240,8 @@ const ProfileNavBar = (props) => {
 								</MenuItem>
 							</Menu>
 						</Grid>}
+					{!window.localStorage.getItem("currentUser") && <Grid item className={classes.right}>
+					</Grid>}
 				</Toolbar>
 			</AppBar>
 			<div className={classes.placeholder}/>
