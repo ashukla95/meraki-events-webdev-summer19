@@ -35,7 +35,7 @@ class EventsParent extends Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState, nextContext) {
-		if(nextProps.events.length != this.state.eventLength){
+		if(nextProps.events.length !== this.state.eventLength){
 			this.setState({
 				...this.state,
 				eventLength: nextProps.events.length,
