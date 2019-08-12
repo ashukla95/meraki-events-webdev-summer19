@@ -69,6 +69,7 @@ class SignIn extends React.Component {
   }
 
   handleUsernameChange = (username) => {
+    console.log("username: ", username);
     let profile = this.state.profile;
     profile.username = username;
     this.setState({ ...this.state, profile })
@@ -80,13 +81,21 @@ class SignIn extends React.Component {
     this.setState({ ...this.state, profile })
   }
 
+  clearFields = () => {
+    let profile = this.state.profile;
+    profile.username = '';
+    profile.password = '';
+    this.setState({
+      ...this.state, profile
+    })
+  };
+
   render() {
     const { classes } = this.props;
 
     return (
       <React.Fragment>
         {this.state.redirect && <Redirect to="/profile" />}
-        {this.props.location.clearData && window.localStorage.clear()}
         <AppAppBar />
         <AppForm>
           <React.Fragment>
@@ -108,7 +117,6 @@ class SignIn extends React.Component {
                 </Grid>
                 <Grid item xs={11} sm={11} md={11} lg={11}>
                   <TextField
-                    value={this.state.profile.username}
                     onChange={(evt) => this.handleUsernameChange(evt.target.value)}
                     fullWidth
                     label="Username"
@@ -123,7 +131,6 @@ class SignIn extends React.Component {
                 </Grid>
                 <Grid item xs={11} sm={11} md={11} lg={11}>
                   <TextField
-                    value={this.state.profile.password}
                     onChange={(evt) => this.handlePasswordChange(evt.target.value)}
                     fullWidth
                     type="password"
