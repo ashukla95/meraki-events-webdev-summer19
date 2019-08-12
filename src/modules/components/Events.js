@@ -29,7 +29,6 @@ const useStyles = makeStyles({
 });
 
 const Events = ({section, events, changeVisibiltiy, flag}) => {
-	console.log("events obtained: ", events);
 	const classes = useStyles();
 	return (
 		<React.Fragment>
@@ -53,8 +52,7 @@ const Events = ({section, events, changeVisibiltiy, flag}) => {
 				md={12}
 				lg={12}>
 				{
-					(
-						events.length !== 0) ?
+					(events.length !== 0) ?
 						events.map((event, index) =>
 							(
 								<Card key={index} className={classes.eventCard}>
@@ -111,7 +109,6 @@ const Events = ({section, events, changeVisibiltiy, flag}) => {
 						<Typography variant={"body2"} component={"p"} align={"center"}>
 							There are no {section}
 						</Typography>
-
 				}
 			</Grid>
 		</React.Fragment>

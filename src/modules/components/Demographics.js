@@ -6,9 +6,11 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import {CardContent} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
+import PencilIcon from "@material-ui/icons/Edit"
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
+import SimpleModal from "./SimpleModal";
 import TextField from "@material-ui/core/TextField";
 
 function getModalStyle() {
@@ -146,7 +148,7 @@ const Demographics = ({username, firstName, lastName, updateUser, flag}) => {
 						label="First Name"
 						className={classes.textField}
 						defaultValue={firstName}
-						onChange={(event) => setValues({...values, "firstName": event.target.value})}
+						onChange={(event) => setValues({...values, ["firstName"]: event.target.value})}
 						margin="normal"
 					/>
 					<TextField
@@ -154,7 +156,7 @@ const Demographics = ({username, firstName, lastName, updateUser, flag}) => {
 						label="Last Name"
 						className={classes.textField}
 						defaultValue={lastName}
-						onChange={(event) => setValues({...values, "lastName": event.target.value})}
+						onChange={(event) => setValues({...values, ["lastName"]: event.target.value})}
 						margin="normal"
 					/>
 					<Grid container direction={"row"} style={{"marginRight":"5"}}>

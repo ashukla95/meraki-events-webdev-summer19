@@ -45,7 +45,6 @@ const ProfileBody = ({
 	                     profileId, followUser,
 	                     anonymousUser, changeVisibiltiyFlag, redirectFlag, updateUser
                      }) => {
-	console.log("events in profile body: ", events);
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
@@ -62,7 +61,6 @@ const ProfileBody = ({
 				</Grid>
 				<Grid item lg={7} md={12} sm={12} xs={12}>
 					<EventsParent
-						username={username}
 						changeVisibiltiy={changeVisibiltiy}
 						events={events}
 						changeVisibiltiyFlag={changeVisibiltiyFlag}
