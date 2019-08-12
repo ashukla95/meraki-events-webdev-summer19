@@ -27,7 +27,7 @@ class Profile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = defaultState;
-		this.state={...defaultState, profileId: props.match.params.profileId};
+		this.state = {...defaultState, profileId: props.match.params.profileId};
 		let userNameToBeSearched =
 			(props.match.params.profileId === null || props.match.params.profileId === undefined) ?
 				localStorage.getItem("currentUser") : props.match.params.profileId;
@@ -54,8 +54,6 @@ class Profile extends Component {
 				})
 			});
 	}
-
-
 
 	renderProfileList = (flag) => {
 		this.setState({

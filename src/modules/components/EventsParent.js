@@ -35,10 +35,7 @@ class EventsParent extends Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState, nextContext) {
-		console.log("*************************************");
 		if(nextProps.events.length > this.state.eventLength){
-			console.log("Inside");
-			console.log("state flag: ", this.state.flag);
 			this.setState({
 				...this.state,
 				eventLength: nextProps.events.length,
@@ -50,8 +47,6 @@ class EventsParent extends Component {
 					.filter(event =>  (new Date(event.date) < new Date()) && event !== {})
 					.filter(event => (!this.state.flag) ?((!event.isPrivate) ? event: null): event),
 			});
-
-			console.log("*************************************");
 			return true;
 		}
 		if (nextProps.changeVisibiltiyFlag){
@@ -62,12 +57,10 @@ class EventsParent extends Component {
 
 	render() {
 		const {classes} = this.props;
-		console.log("state in events parent: ", this.state);
 		return (
 			<React.Fragment>
 				<Paper className={classes.paper}>
 					<Grid container>
-
 							<Events
 								changeVisibiltiy={this.state.changeVisibiltiy}
 								events={this.state.upcomingEvents}
@@ -76,7 +69,6 @@ class EventsParent extends Component {
 				</Paper>
 				<Paper elevation={2} className={classes.paper}>
 					<Grid container>
-
 							<Events
 								changeVisibiltiy={this.state.changeVisibiltiy}
 								events={this.state.pastEvents}

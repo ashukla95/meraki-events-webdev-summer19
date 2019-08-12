@@ -99,7 +99,6 @@ const Events = ({section, events, changeVisibiltiy}) => {
 														</LockOpenIcon>
 													</Button>
 												}
-
 											</Box>
 										</Grid>
 									</Grid>

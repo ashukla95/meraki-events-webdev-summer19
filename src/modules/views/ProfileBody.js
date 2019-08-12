@@ -68,6 +68,7 @@ const ProfileBody = ({
 					<Paper className={classes.paper}>
 						<Grid container>
 							<Followers
+								flag={!profileId && !anonymousUser}
 								followUser={followUser}
 								addFollowers={true}
 								unFollowUser={unFollowUser}
@@ -79,6 +80,7 @@ const ProfileBody = ({
 					<Paper className={classes.paper}>
 						<Grid container>
 							<Followers
+								flag={!profileId && !anonymousUser}
 								followUse={followUser}
 								addFollowers={false}
 								unFollowUser={unFollowUser}
