@@ -7,7 +7,7 @@ import AddIcon from "@material-ui/icons/AddCircle"
 import RemoveIcon from "@material-ui/icons/Remove"
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 const useStyles = makeStyles({
 	title: {
@@ -38,10 +38,11 @@ const useStyles = makeStyles({
 });
 
 
-const Followers = ({section, addFollowers, removeFollowers, networking, unFollowUser, followUser, flag}) => {
+const Followers = ({section, addFollowers, removeFollowers, networking, unFollowUser, followUser, flag, redirectFlag}) => {
 	const classes = useStyles();
 	return (
 		<React.Fragment>
+			{redirectFlag && <Redirect to={'/profile'}/>}
 			<Grid className={classes.title} item xs={12} sm={12} md={12} lg={12}>
 				<Typography align={"justify"}
 				            variant={"h6"}

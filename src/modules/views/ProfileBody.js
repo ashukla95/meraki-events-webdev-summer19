@@ -43,7 +43,7 @@ const ProfileBody = ({
 	                     followers, following,
 	                     unFollowUser, changeVisibiltiy,
 	                     profileId, followUser,
-	                     anonymousUser, changeVisibiltiyFlag
+	                     anonymousUser, changeVisibiltiyFlag, redirectFlag
                      }) => {
 	const classes = useStyles();
 	return (
@@ -68,6 +68,7 @@ const ProfileBody = ({
 					<Paper className={classes.paper}>
 						<Grid container>
 							<Followers
+								redirectFlag={redirectFlag}
 								flag={!profileId && !anonymousUser}
 								followUser={followUser}
 								addFollowers={true}
@@ -80,6 +81,7 @@ const ProfileBody = ({
 					<Paper className={classes.paper}>
 						<Grid container>
 							<Followers
+								redirectFlag={redirectFlag}
 								flag={!profileId && !anonymousUser}
 								followUse={followUser}
 								addFollowers={false}

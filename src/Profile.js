@@ -19,7 +19,8 @@ const defaultState = {
 	profileId: -1,
 	anonymousUser: false,
 	offlineUpdate: false,
-	changeVisibiltiyFlag: false
+	changeVisibiltiyFlag: false,
+	redirectFlag: false
 }
 
 class Profile extends Component {
@@ -71,6 +72,7 @@ class Profile extends Component {
 							this.setState({
 								...this.state,
 								userData,
+								redirectFlag: true,
 								displayProfile: true,
 								searchFormData: '',
 								profileSearchResult: null
@@ -120,8 +122,9 @@ class Profile extends Component {
 					renderProfileList={this.renderProfileList}
 					searchProfile={true}
 					username={localStorage.getItem("currentUser")}/>
-				{!this.state.anonymousUser && this.state.displayProfile ?
+				{!this.state.anonymousUser ?
 					<ProfileBody
+						redirectFlag={this.state.redirectFlag}
 						changeVisibiltiyFlag={this.state.changeVisibiltiyFlag}
 						profileId={this.state.profileId}
 						anonymousUser={this.state.anonymousUser}
