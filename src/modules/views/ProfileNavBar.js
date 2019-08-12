@@ -4,12 +4,11 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import {AppBar, TextField} from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
-import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import {NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
 import Grid from "@material-ui/core/Grid";
 import {fade} from "@material-ui/core/styles";
@@ -24,6 +23,8 @@ const styles = theme => ({
 	},
 	title: {
 		fontSize: 16,
+		color: 'white',
+		textDecoration: "none"
 	},
 	placeholder: toolbarStyles(theme).root,
 	toolbar: {
@@ -143,7 +144,7 @@ const ProfileNavBar = (props) => {
 							underline="none"
 							color="inherit"
 							className={classes.title}
-							href={"/"}>
+							to={"/"}>
 							<Typography variant={"h5"}
 							            align={"center"}
 							            color={"initial"}>
@@ -227,16 +228,16 @@ const ProfileNavBar = (props) => {
 								open={Boolean(anchorEl)}
 								onClose={redirectToProfile}>
 								<MenuItem>
-									<NavLink className={classes.link} to={'/profile'}>My account
-									</NavLink>
+									<Link className={classes.link} to={'/profile'}>My account
+									</Link>
 								</MenuItem>
 								<MenuItem>
-									<NavLink className={classes.link}
+									<Link className={classes.link}
 									         to={{
 										         pathname: '/login/',
 										         clearData: true
 									         }}>Logout
-									</NavLink>
+									</Link>
 								</MenuItem>
 							</Menu>
 						</Grid>}
