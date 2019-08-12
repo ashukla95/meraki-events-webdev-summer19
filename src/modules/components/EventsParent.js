@@ -18,7 +18,7 @@ const styles = theme => ({
 const defaultState = {
 	upcomingEvents: [],
 	pastEvents: [],
-	eventLength:0,
+	eventLength: 0,
 	changeVisibiltiy: null,
 	flag: true
 };
@@ -35,46 +35,49 @@ class EventsParent extends Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState, nextContext) {
-		if(nextProps.events.length > this.state.eventLength){
+		console.log("next props: ", nextProps, this.state);
+		if ((nextProps.events.length !== this.state.eventLength)) {
 			this.setState({
 				...this.state,
 				eventLength: nextProps.events.length,
 				upcomingEvents: nextProps.events
-					.filter(event =>  (new Date(event.date) > new Date()))
-					.filter(event => (!this.state.flag) ?((!event.isPrivate) ? event: null): event)
-					,
-				pastEvents:nextProps.events
-					.filter(event =>  (new Date(event.date) < new Date()) && event !== {})
-					.filter(event => (!this.state.flag) ?((!event.isPrivate) ? event: null): event),
+					.filter(event => (new Date(event.date) > new Date()))
+					.filter(event => (!this.state.flag) ? ((!event.isPrivate) ? event : null) : event)
+				,
+				pastEvents: nextProps.events
+					.filter(event => (new Date(event.date) < new Date()) && event !== {})
+					.filter(event => (!this.state.flag) ? ((!event.isPrivate) ? event : null) : event),
 			});
 			return true;
 		}
-		if (nextProps.changeVisibiltiyFlag){
+		if (nextProps.changeVisibiltiyFlag) {
 			return true;
 		}
 		return false;
 	}
 
 	render() {
+		console.log("uce: ", this.state.upcomingEvents);
+		console.log("pe: ", this.state.pastEvents);
 		const {classes} = this.props;
 		return (
 			<React.Fragment>
 				<Paper className={classes.paper}>
 					<Grid container>
-							<Events
-								flag={this.state.flag}
-								changeVisibiltiy={this.state.changeVisibiltiy}
-								events={this.state.upcomingEvents}
-								section={"Upcoming Events"}/>
+						<Events
+							flag={this.state.flag}
+							changeVisibiltiy={this.state.changeVisibiltiy}
+							events={this.state.upcomingEvents}
+							section={"Upcoming Events"}/>
 					</Grid>
 				</Paper>
 				<Paper elevation={2} className={classes.paper}>
 					<Grid container>
-							<Events
-								flag={this.state.flag}
-								changeVisibiltiy={this.state.changeVisibiltiy}
-								events={this.state.pastEvents}
-								section={"Past Events"}/>
+						<Events
+							flag={this.state.flag}
+							changeVisibiltiy={this.state.changeVisibiltiy}
+							events={this.state.pastEvents}
+							section={"Past Events"}/>
 					</Grid>
 				</Paper>
 			</React.Fragment>
