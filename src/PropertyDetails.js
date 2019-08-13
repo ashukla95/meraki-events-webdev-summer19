@@ -10,7 +10,7 @@ class PropertyDetails extends Component {
 	constructor(props) {
 		super(props);
 		console.log("place id received: ", props.match.params.placeId);
-		this.state = {placeDetails: {}, merakiRating: 0};
+		this.state = {placeDetails: {}, merakiRating: null};
 		TextSearchAPIService.getInstance()
 			.getPlaceDetails(props.match.params.placeId)
 			.then(placeDetails => {

@@ -52,32 +52,6 @@ const DetailsCard = ({
 									{result["name"]}
 								</Typography>
 							</Grid>
-
-							<Grid item>
-								<Grid container spacing={1} direction={"row"} justify={"space-between"}>
-									<Grid item>
-										<Typography variant={"body1"} component={"p"}>
-											Meraki Rating:
-										</Typography>
-									</Grid>
-									<Grid item>
-										<Rating initialRating={merakiRating}
-										        readonly
-										        stop={5}
-										        emptySymbol={['fa fa-star-o  red']}
-										        fullSymbol={['fa fa-star  red']}/>
-									</Grid>
-								</Grid>
-							</Grid>
-						</Grid>
-						<Grid container justify={"space-between"}>
-							<Grid item>
-								<Typography gutterBottom
-								            variant="body1"
-								            component="p">
-									{result["description"] ? result["description"] : result["formatted_address"]}
-								</Typography>
-							</Grid>
 							<Grid item>
 								{
 									showLearnMore &&
@@ -97,6 +71,34 @@ const DetailsCard = ({
 									</Grid>
 								}
 							</Grid>
+						</Grid>
+						<Grid container justify={"space-between"}>
+							<Grid item>
+								<Typography gutterBottom
+								            variant="body1"
+								            component="p">
+									{result["description"] ? result["description"] : result["formatted_address"]}
+								</Typography>
+							</Grid>
+							{
+								merakiRating &&
+								<Grid item>
+									<Grid container spacing={1} direction={"row"} justify={"space-between"}>
+										<Grid item>
+											<Typography variant={"body1"} component={"p"}>
+												Meraki Rating:
+											</Typography>
+										</Grid>
+										<Grid item>
+											<Rating initialRating={merakiRating}
+											        readonly
+											        stop={5}
+											        emptySymbol={['fa fa-star-o  red']}
+											        fullSymbol={['fa fa-star  red']}/>
+										</Grid>
+									</Grid>
+								</Grid>
+							}
 						</Grid>
 					</CardContent>
 				</CardActionArea>
