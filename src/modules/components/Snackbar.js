@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MuiSnackbar from '@material-ui/core/Snackbar';
-import Slide from '@material-ui/core/Slide';
 import CloseIcon from '@material-ui/icons/Close';
 import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '@material-ui/core/IconButton';
@@ -36,10 +35,6 @@ const styles = theme => ({
   },
 });
 
-function Transition(props) {
-  return <Slide {...props} direction="down" />;
-}
-
 function Snackbar(props) {
   const { classes, onClose, message, ...other } = props;
 
@@ -47,7 +42,6 @@ function Snackbar(props) {
     <MuiSnackbar
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       autoHideDuration={6e3}
-      transition={Transition}
       ContentProps={{
         'aria-describedby': 'snackbar',
         classes: {

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -40,7 +41,7 @@ function ProductHero(props) {
         Upgrade your Sundays
       </Typography>
       <Typography color="inherit" align="center" variant="h5" className={classes.h5}>
-        Enjoy secret offers up to -70% off the best luxury hotels every Sunday.
+        {props.users} users have celebrated with us. Join the meraki family today!
       </Typography>
       <Button
         color="secondary"
@@ -48,7 +49,7 @@ function ProductHero(props) {
         size="large"
         className={classes.button}
         component="a"
-        href="/book-now/"
+        href="/register"
       >
         Register
       </Button>

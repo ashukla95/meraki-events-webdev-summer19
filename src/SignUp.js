@@ -2,145 +2,163 @@ import withRoot from './modules/withRoot';
 // --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import { Field, Form, FormSpy } from 'react-final-form';
 import Typography from './modules/components/Typography';
 import AppFooter from './modules/views/AppFooter';
 import AppAppBar from './modules/views/AppAppBar';
 import AppForm from './modules/views/AppForm';
-import { email, required } from './modules/form/validation';
-import RFTextField from './modules/form/RFTextField';
+import TextField from '@material-ui/core/TextField';
+import Snackbar from './modules/components/Snackbar';
 import FormButton from './modules/form/FormButton';
-import FormFeedback from './modules/form/FormFeedback';
-import compose from 'docs/src/modules/utils/compose';
+
+import UserService from './APIServices/UserService';
+
+const userService = UserService.getInstance();
 
 const styles = theme => ({
-  form: {
-    marginTop: theme.spacing(6),
-  },
   button: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(2),
   },
-  feedback: {
-    marginTop: theme.spacing(2),
-  },
 });
 
+const defaultState = {
+  profile: {
+    username: "",
+    password: "",
+    firstName: "",
+    type:'NORMAL',
+    lastName: "",
+    followers: [],
+    following: [],
+    events: []
+  },
+  redirect: false,
+  loading: false,
+  open: false
+}
+
 class SignUp extends React.Component {
-  state = {
-    sent: false,
-  };
+  constructor() {
+    super();
+    this.state = defaultState
+  }
 
-  validate = values => {
-    const errors = required(['firstName', 'lastName', 'email', 'password'], values, this.props);
-
-    if (!errors.email) {
-      const emailError = email(values.email, values, this.props);
-      if (emailError) {
-        errors.email = email(values.email, values, this.props);
-      }
+  handleSubmit = () => {
+    if (this.state.profile.firstName !== "" && this.state.profile.lastName !== ""
+      && this.state.profile.username !== "" && this.state.profile.password !== "") {
+      this.setState({ ...this.state, loading: true });
+      userService
+        .createUser(this.state.profile)
+        .then(user => {
+          localStorage.setItem('currentUser', user._id);
+          this.setState({ ...this.state, redirect: true })
+        });
     }
-
-    return errors;
+    else {
+      this.setState({ ...this.state, loading: false, open: true })
+    }
   };
 
-  handleSubmit = () => {};
+  handleFirstNameChange = (firstName) => {
+    const profile = this.state.profile;
+    profile.firstName = firstName;
+    this.setState({ ...this.state, profile })
+  }
+
+  handleLastNameChange = (lastName) => {
+    const profile = this.state.profile;
+    profile.lastName = lastName;
+    this.setState({ ...this.state, profile })
+  }
+
+  handleUsernameChange = (username) => {
+    const profile = this.state.profile;
+    profile.username = username;
+    this.setState({ ...this.state, profile })
+  }
+
+  handlePasswordChange = (password) => {
+    const profile = this.state.profile;
+    profile.password = password;
+    this.setState({ ...this.state, profile })
+  }
+
+  handleClose = () => {
+    this.setState({ ...this.state, open: false });
+  }
 
   render() {
     const { classes } = this.props;
-    const { sent } = this.state;
 
     return (
       <React.Fragment>
+        {this.state.redirect && <Redirect to="/profile" />}
         <AppAppBar />
         <AppForm>
           <React.Fragment>
             <Typography variant="h3" gutterBottom marked="center" align="center">
-              Sign Up
+              Register
             </Typography>
             <Typography variant="body2" align="center">
-              <Link href="/premium-themes/onepirate/sign-in/" underline="always">
+              <Link href="/login/" underline="always">
                 Already have an account?
               </Link>
             </Typography>
           </React.Fragment>
-          <Form
-            onSubmit={this.handleSubmit}
-            subscription={{ submitting: true }}
-            validate={this.validate}
-          >
-            {({ handleSubmit, submitting }) => (
-              <form onSubmit={handleSubmit} className={classes.form} noValidate>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
-                    <Field
-                      autoFocus
-                      component={RFTextField}
-                      autoComplete="fname"
-                      fullWidth
-                      label="First name"
-                      name="firstName"
-                      required
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <Field
-                      component={RFTextField}
-                      autoComplete="lname"
-                      fullWidth
-                      label="Last name"
-                      name="lastName"
-                      required
-                    />
-                  </Grid>
-                </Grid>
-                <Field
-                  autoComplete="email"
-                  component={RFTextField}
-                  disabled={submitting || sent}
-                  fullWidth
-                  label="Email"
-                  margin="normal"
-                  name="email"
-                  required
-                />
-                <Field
-                  fullWidth
-                  component={RFTextField}
-                  disabled={submitting || sent}
-                  required
-                  name="password"
-                  autoComplete="current-password"
-                  label="Password"
-                  type="password"
-                  margin="normal"
-                />
-                <FormSpy subscription={{ submitError: true }}>
-                  {({ submitError }) =>
-                    submitError ? (
-                      <FormFeedback className={classes.feedback} error>
-                        {submitError}
-                      </FormFeedback>
-                    ) : null
-                  }
-                </FormSpy>
-                <FormButton
-                  className={classes.button}
-                  disabled={submitting || sent}
-                  color="secondary"
-                  fullWidth
-                >
-                  {submitting || sent ? 'In progress…' : 'Sign Up'}
-                </FormButton>
-              </form>
-            )}
-          </Form>
+          <Grid container spacing={2} alignItems="flex-end">
+            <Grid item xs={12} sm={6}>
+              <TextField
+                value={this.state.firstName}
+                onChange={(evt) => this.handleFirstNameChange(evt.target.value)}
+                fullWidth
+                label="First Name"
+                margin="normal" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                value={this.state.lastName}
+                onChange={(evt) => this.handleLastNameChange(evt.target.value)}
+                fullWidth
+                required
+                margin="normal"
+                label="Last Name"
+              />
+            </Grid>
+          </Grid>
+          <TextField
+            fullWidth
+            value={this.state.username}
+            onChange={(evt) => this.handleUsernameChange(evt.target.value)}
+            label="Username"
+            margin="normal"
+          />
+          <TextField
+            fullWidth
+            value={this.state.password}
+            type="password"
+            onChange={(evt) => this.handlePasswordChange(evt.target.value)}
+            label="Password"
+            margin="normal" />
+
+          <FormButton
+            className={classes.button}
+            color="secondary"
+            onClick={this.handleSubmit}
+            fullWidth>
+            {this.state.loading ? 'Submitting' : 'Sign Up'}
+          </FormButton>
+          <Snackbar
+            open={this.state.open}
+            onClose={this.handleClose}
+            message="Please complete all fields!"
+          />
         </AppForm>
         <AppFooter />
-      </React.Fragment>
+      </React.Fragment >
     );
   }
 }
@@ -148,6 +166,10 @@ class SignUp extends React.Component {
 SignUp.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+
+const compose = (...funcs) => {
+  return funcs.reduce((a, b) => (...args) => a(b(...args)), arg => arg);
+}
 
 export default compose(
   withRoot,
