@@ -9,7 +9,6 @@ import Button from "@material-ui/core/Button";
 import {Link} from 'react-router-dom';
 import Grid from "@material-ui/core/Grid";
 import Rating from 'react-rating'
-import Box from "@material-ui/core/Box";
 
 const styleCustom = makeStyles({
 	/*Set the css property for the card to be rendered after retrieval of the data from the back-end service.*/

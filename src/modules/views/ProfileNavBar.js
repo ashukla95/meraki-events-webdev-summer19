@@ -13,7 +13,6 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
 import Grid from "@material-ui/core/Grid";
 import {fade} from "@material-ui/core/styles";
 import SearchIcon from '@material-ui/icons/Search';
-import IconButton from "@material-ui/core/IconButton";
 import clsx from 'clsx';
 
 const styles = theme => ({
@@ -141,7 +140,7 @@ const ProfileNavBar = (props) => {
 			<AppBar className={classes.appBar} position={"static"}>
 				<Toolbar className={classes.toolbar}>
 					{/*goal: w/o login 3 component; with login 4 component*/}
-					<Grid container direction={"row"} alignItems={"justify"} alignContent={"justify"}>
+					<Grid container direction={"row"}>
 						{/*permanent component: meraki events*/}
 						<Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
 							<Link
@@ -160,7 +159,7 @@ const ProfileNavBar = (props) => {
 						<Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
 							{!props.searchProfile ?
 								<React.Fragment>
-									<Grid container alignContent={"justify"} alignItems={"justify"} direction={"row"}>
+									<Grid container direction={"row"}>
 										{/*permanent component: profile search field.*/}
 										<Grid item xs={12} sm={12} md={10} lg={10} xl={10}>
 											<TextField
@@ -213,7 +212,7 @@ const ProfileNavBar = (props) => {
 									className={classes.button}
 									aria-haspopup="true"
 									onClick={handleClick}>
-									<Typography display={"block"}
+									<Typography
 									            align={"justify"}
 									            className={classes.userName2}
 									            gutterBottom={false}
@@ -264,113 +263,5 @@ ProfileNavBar.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 export default withStyles(styles)(ProfileNavBar);
-{/*
-<Grid container direction={"row"} spacing={2}>
-						<Grid item xs={12} sm={12} className={classes.leftSmall}>
-							<Link
-								underline="none"
-								color="inherit"
-								className={classes.title}
-								to={"/"}>
-								<Typography variant={"h5"}
-								            align={"center"}
-								            color={"initial"}>
-									{'Meraki Events'}
-								</Typography>
-							</Link>
-						</Grid>
-						{!props.searchProfile ?
-							<React.Fragment>
-								<Grid sm={12} xs={12} item className={classes.left}>
-									<TextField
-										id="filled-search"
-										label="Search User by ID"
-										autoFocus={false}
-										type="text"
-										fullWidth
-										margin={"dense"}
-										className={classes.textField}
-										variant={"filled"}
-										value={formData}
-										onChange={(event) => setFormData(event.target.value)}
-									/>
-								</Grid>
-								<Grid item sm={12} xs={12}>
-									<div className={classes.right}
-									     onClick={(data) => props.renderProfileList(formData)}>
-										<IconButton size={"small"}>
-											<SearchIcon
-												className={clsx(classes.rightLink, classes.linkSecondary, classes.icon)}>
-											</SearchIcon>
-										</IconButton>
-									</div>
-								</Grid>
-							</React.Fragment>
-							:
-							<React.Fragment>
-								<Grid item className={classes.left}>
-								</Grid>
-								<Grid item>
-									<div className={classes.right}>
-										<Button
-											onClick={(flag) => props.renderProfileList(false)}
-											className={classes.userName}>SEARCH PROFILE
-										</Button>
-									</div>
-								</Grid>
-							</React.Fragment>
-						}
-						{
-							window.localStorage.getItem("currentUser") &&
-							<Grid item className={classes.right}>
-								<Button
-									aria-controls="simple-menu"
-									className={classes.button}
-									aria-haspopup="true"
-									onClick={handleClick}>
-									<Typography display={"block"}
-									            align={"justify"}
-									            className={classes.userName}
-									            gutterBottom={false}
-									            variant={"subtitle2"}
-									            component={"p"}>
-										{props.username}
-									</Typography>
-									<ArrowDropDownIcon className={classes.arrowDownIcon}>
-									</ArrowDropDownIcon>
-								</Button>
-								<Menu
-									id="simple-menu"
-									anchorEl={anchorEl}
-									anchorOrigin={{
-										vertical: 'bottom',
-										horizontal: 'center',
-									}}
-									transformOrigin={{
-										vertical: 'top',
-										horizontal: 'center',
-									}}
-									getContentAnchorEl={null}
-									keepMounted
-									open={Boolean(anchorEl)}
-									onClose={redirectToProfile}>
-									<MenuItem>
-										<Link className={classes.link} to={'/profile'}>My account
-										</Link>
-									</MenuItem>
-									<MenuItem>
-										<Link className={classes.link}
-										      to={{
-											      pathname: '/login/',
-											      clearData: true
-										      }}>Logout
-										</Link>
-									</MenuItem>
-								</Menu>
-							</Grid>}
-						{!window.localStorage.getItem("currentUser") && <Grid item className={classes.right}>
-						</Grid>}
-					</Grid>
-*/
-}
-{/**/}
+
+
