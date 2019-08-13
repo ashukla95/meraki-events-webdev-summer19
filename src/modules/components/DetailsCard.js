@@ -30,7 +30,6 @@ const DetailsCard = ({
 	                     merakiRating
 
                      }) => {
-	console.log("result: ", result);
 	const classes = styleCustom();
 	return (
 		<Card raised

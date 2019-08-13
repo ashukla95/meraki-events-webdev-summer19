@@ -138,7 +138,7 @@ const ProfileNavBar = (props) => {
 	return (
 		<div>
 			<AppBar className={classes.appBar} position={"static"}>
-				<Toolbar className={classes.toolbar}>
+				<Toolbar className={classes.toolbar} variant={"dense"}>
 					{/*goal: w/o login 3 component; with login 4 component*/}
 					<Grid container direction={"row"}>
 						{/*permanent component: meraki events*/}
@@ -190,10 +190,10 @@ const ProfileNavBar = (props) => {
 								</React.Fragment>
 								:
 								<React.Fragment>
-									<Grid container alignContent={"justify"} alignItems={"justify"} direction={"row"}>
+									<Grid container alignContent={"center"} alignItems={"center"} direction={"row"}>
 										<Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
 										</Grid>
-										<Grid itemxs={12} sm={12} md={4} lg={4} xl={4}>
+										<Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
 											<Button
 												onClick={(flag) => props.renderProfileList(false)}
 												className={classes.userName}>SEARCH PROFILE
