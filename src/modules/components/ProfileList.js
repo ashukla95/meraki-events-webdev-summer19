@@ -29,7 +29,7 @@ const styles = makeStyles(theme => ({
 		float: 'right'
 	},
 	dataGrid: {
-		marginTop: theme.spacing(1)
+		marginTop: theme.spacing(10)
 	}
 }));
 
@@ -105,7 +105,7 @@ class ProfileList extends Component {
 					searchProfile={false}
 					username={localStorage.getItem("currentUser")}/>
 				{/*Render the column names inside a card.*/}
-				<Grid item sm={12} md={12} lg={12} xl={12}>
+				<Grid style={{"marginTop":"100"}} item sm={12} md={12} lg={12} xl={12}>
 					<Grid container spacing={2}>
 						<Grid item xs={6} sm={6} md={2} lg={2}>
 							<Box p={3} fontWeight={"fontWeightBold"}>
