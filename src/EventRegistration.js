@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import AppForm from "./modules/views/AppForm";
 import Typography from "./modules/components/Typography";
-import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import {AccountCircle} from "@material-ui/icons";
 import TextField from "@material-ui/core/TextField";
 import FormButton from "./modules/form/FormButton";
 import Snackbar from "./modules/components/Snackbar";
@@ -11,7 +9,6 @@ import AppFooter from "./modules/views/AppFooter";
 import withRoot from "./modules/withRoot";
 import {withStyles} from "@material-ui/core";
 import PropTypes from "prop-types";
-import {Lock} from "@material-ui/icons";
 import {Home} from "@material-ui/icons";
 import {Email} from "@material-ui/icons";
 import {ContactPhone} from "@material-ui/icons";
@@ -23,7 +20,6 @@ import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import {
 	MuiPickersUtilsProvider,
-	KeyboardTimePicker,
 	KeyboardDatePicker,
 } from '@material-ui/pickers';
 import EventRegistrationRequestService from "./APIServices/EventRegistrationRequestService";
@@ -38,7 +34,7 @@ const stateBody = {
 	username: window.localStorage.getItem("currentUser"),
 	dateOfEvent: new Date(),
 	email: '',
-	contactNumber: 0,
+	contactNumber: 1234567893,
 	numberOfPeopleExpected: 0,
 	eventName: '',
 	eventDescription: '',
@@ -146,7 +142,7 @@ class EventRegistration extends Component {
 								</Grid>
 								<Grid item xs={11} sm={11} md={11} lg={11}>
 									<TextField
-										disbaled
+										disabled
 										fullWidth
 										value={this.state.propertyName}
 										label="Property Name"
@@ -161,7 +157,7 @@ class EventRegistration extends Component {
 								</Grid>
 								<Grid item xs={11} sm={11} md={11} lg={11}>
 									<TextField
-										disbaled
+										disabled
 										fullWidth
 										value={this.state.propertyAddress}
 										label="Address"
@@ -208,7 +204,7 @@ class EventRegistration extends Component {
 									<TextField
 										onChange={(evt) => this.handleEventNameChange(evt.target.value)}
 										fullWidth
-										value={this.state.eventName}
+										defaultValue={this.state.eventName}
 										label="Event Name"
 										margin="normal"/>
 								</Grid>

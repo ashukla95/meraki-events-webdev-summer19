@@ -9,7 +9,6 @@ import MerakiReviewSearch from "./APIServices/MerakiReviewSearch";
 class PropertyDetails extends Component {
 	constructor(props) {
 		super(props);
-		console.log("place id received: ", props.match.params.placeId);
 		this.state = {placeDetails: {}, merakiRating: null};
 		TextSearchAPIService.getInstance()
 			.getPlaceDetails(props.match.params.placeId)
@@ -40,6 +39,7 @@ class PropertyDetails extends Component {
 							merakiRating={this.state.merakiRating}
 							result={this.state.placeDetails}
 							imageHeight={365}
+							showBookNow={true}
 							showLearnMore={true}/>
 					</Grid>
 				</div>
