@@ -38,7 +38,7 @@ function ProductHero(props) {
       {/* Increase the network loading priority of the background image. */}
       <img style={{ display: 'none' }} src={backgroundImage} alt="" />
       <Typography color="inherit" align="center" variant="h2" marked="center">
-        Upgrade your Sundays
+        New era of event planning!
       </Typography>
       <Typography color="inherit" align="center" variant="h5" className={classes.h5}>
         {props.users} users have celebrated with us. Join the meraki family today!

@@ -14,6 +14,7 @@ const SearchResult = ({autoCompleteResults}) => {
 			      md={6}
 			      sm={12}>
 				<DetailsCard
+					showBookNow={false}
 					result={prediction}
 					showLearnMore={false}
 					imageHeight={200}

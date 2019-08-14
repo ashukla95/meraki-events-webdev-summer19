@@ -117,7 +117,7 @@ const styles = theme => ({
 
 	},
 	companyTitle: {
-		marginTop: theme.spacing(2)
+		marginTop: theme.spacing(1)
 	}
 });
 
@@ -138,7 +138,7 @@ const ProfileNavBar = (props) => {
 	return (
 		<div>
 			<AppBar className={classes.appBar} position={"static"}>
-				<Toolbar className={classes.toolbar} variant={"dense"}>
+				<Toolbar className={classes.toolbar}>
 					{/*goal: w/o login 3 component; with login 4 component*/}
 					<Grid container direction={"row"}>
 						{/*permanent component: meraki events*/}

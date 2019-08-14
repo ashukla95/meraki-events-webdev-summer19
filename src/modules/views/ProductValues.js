@@ -57,11 +57,11 @@ function ProductValues(props) {
                 alt="suitcase"
               />
               <Typography variant="h6" className={classes.title}>
-                The best luxury hotels
+                The best event properties
               </Typography>
               <Typography variant="h5">
-                {'From the latest trendy boutique hotel to the iconic palace with XXL pool'}
-                {', go for a mini-vacation just a few subway stops away from your home.'}
+                {'From the latest trendy event pe to the iconic palace with XXL pool'}
+                {', register for an event just a few subway stops away from your home.'}
               </Typography>
             </div>
           </Grid>
@@ -77,7 +77,7 @@ function ProductValues(props) {
               </Typography>
               <Typography variant="h5">
                 {'Privatize a pool, take a Japanese bath or wake up in 900m2 of garden… '}
-                {'your Sundays will not be alike.'}
+                {'your special moments will not be alike.'}
               </Typography>
             </div>
           </Grid>
