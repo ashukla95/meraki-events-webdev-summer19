@@ -271,7 +271,7 @@ class EventRegistration extends Component {
 							size="large"
 							color="secondary"
 							fullWidth>
-							{this.state.loading ? 'Submiting' : 'Sign In'}
+							{this.state.loading ? 'Submiting' : 'Submit Request'}
 						</FormButton>
 						<Snackbar
 							open={this.state.open}
