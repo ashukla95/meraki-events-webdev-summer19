@@ -12,7 +12,7 @@ export default class EventRegistrationRequestService {
 	createEventRegistrationRequest = (eventData) => {
 		eventData._id = new Date().getTime();
 		console.log("request received: ", eventData);
-		return fetch("http://localhost:8080/api/event-registration-request/", {
+		return fetch("https://meraki-backend-wbdv.herokuapp.com/api/event-registration-request/", {
 				method: 'POST',
 				headers: {
 					'content-type': 'application/json'
