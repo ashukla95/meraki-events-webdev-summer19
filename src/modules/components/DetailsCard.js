@@ -102,19 +102,20 @@ const DetailsCard = ({
 				</CardActionArea>
 			</Link>
 			<CardActions>
-				<Button size="small"
-				        color="primary" href={`/book-now/`}>
-					Book Now
-				</Button>
-				{!showLearnMore &&
-				<Link className={classes.link} to={`/property/${result.place_id}/`}>
+				<Link to={{pathname: '/book-now/', hotelData: result}}>
 					<Button size="small"
 					        color="primary">
-						Learn More
+						Book Now
 					</Button>
-				</Link>}
-
-			</CardActions>
+				</Link>
+			{!showLearnMore &&
+			<Link className={classes.link} to={`/property/${result.place_id}/`}>
+				<Button size="small"
+				        color="primary">
+					Learn More
+				</Button>
+			</Link>}
+		</CardActions>
 		</Card>
 	);
 };

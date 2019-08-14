@@ -9,6 +9,7 @@ import PropertyDetails from './PropertyDetails';
 import Profile from "./Profile";
 import ProfileList from "./modules/components/ProfileList";
 import AdminDashBoard from "./modules/AdminDashBoard";
+import EventRegistration from "./EventRegistration";
 
 const routing = (
   <Router>
@@ -18,7 +19,7 @@ const routing = (
     <Route path={"/search/"} component={Search} />
     <Route path={"/login/"} component={SignIn} />
     <Route path={"/register/"} component={SignUp} />
-    <Route path={"/book-now/"} component={Home} />
+    <Route path={"/book-now/"} component={EventRegistration} />
     <Route path={"/property/:placeId/"} component={PropertyDetails} />
     <Route exact path={"/profile-list/"} component={ProfileList}/>
     <Route exact path={"/profile/:profileId"} component={Profile} />
