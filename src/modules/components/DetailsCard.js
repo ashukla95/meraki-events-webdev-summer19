@@ -102,8 +102,9 @@ const DetailsCard = ({
 				</CardActionArea>
 			</Link>
 			<CardActions>
-				<Link to={{pathname: '/book-now/', hotelData: result}}>
+				<Link to={{pathname: '/book-now/', hotelData: result}} className={classes.link}>
 					<Button size="small"
+					        className={classes.link}
 					        color="primary">
 						Book Now
 					</Button>
@@ -111,6 +112,7 @@ const DetailsCard = ({
 			{!showLearnMore &&
 			<Link className={classes.link} to={`/property/${result.place_id}/`}>
 				<Button size="small"
+				        className={classes.link}
 				        color="primary">
 					Learn More
 				</Button>
